@@ -1,3 +1,9 @@
-[submodule "packages/ndk"]
-	path = packages/ndk
-	url = https://github.com/nostr-dev-kit/ndk
+[submodule "ndk"]
+	path = ndk
+	url = git@github.com:nostr-dev-kit/ndk
+[submodule "ndk-svelte-components"]
+	path = ndk-svelte-components
+	url = git@github.com:nostr-dev-kit/ndk-svelte-components
+[submodule "ndk-svelte"]
+	path = ndk-svelte
+	url = git@github.com:nostr-dev-kit/ndk-svelte
