@@ -1,0 +1,8 @@
+packages:
+  - 'eslint-config-custom/**'
+  - 'nostr/**'
+  - 'tailwind-config/**'
+  - 'ui-common/**'
+  - 'ui-mobile/**'
+  - 'ui-web/**'
+  - 'utils/**'

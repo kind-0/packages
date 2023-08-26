@@ -12,3 +12,4 @@ server/dist
 public/dist
 .turbo
 **/turbo-build.log
+_local_
