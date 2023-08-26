@@ -1,0 +1,19 @@
+{
+  "name": "@highlighter/utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "module": "index.ts",
+  "svelte": "index.ts",
+  "scripts": {
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore ."
+  },
+  "devDependencies": {
+    "@highlighter/eslint-config-custom": "*",
+    "@types/luxon": "^3.3.1"
+  },
+  "dependencies": {
+    "luxon": "^3.4.0"
+  }
+}

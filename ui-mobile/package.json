@@ -1,0 +1,25 @@
+{
+  "name": "@highlighter/ui-mobile",
+  "version": "0.0.0",
+  "description": "Highlighter mobile component library",
+  "type": "module",
+  "module": "index.ts",
+  "svelte": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore ."
+  },
+  "dependencies": {
+    "@highlighter/ui-common": "*",
+    "@highlighter/utils": "*",
+    "luxon": "^3.4.0"
+  },
+  "devDependencies": {
+    "@highlighter/eslint-config-custom": "*",
+    "@highlighter/tailwind-config": "*",
+    "@types/luxon": "^3.3.1",
+    "postcss": "^8.4.20",
+    "svelte": "^4.0.5"
+  }
+}

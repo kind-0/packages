@@ -1,0 +1,25 @@
+{
+  "name": "@highlighter/ui-common",
+  "version": "0.0.0",
+  "description": "Highlighter common component library",
+  "type": "module",
+  "module": "index.ts",
+  "svelte": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore ."
+  },
+  "devDependencies": {
+    "@highlighter/eslint-config-custom": "*",
+    "@highlighter/tailwind-config": "*",
+    "postcss": "^8.4.20",
+		"svelte": "^4.0.5"
+  },
+  "dependencies": {
+    "@highlighter/nostr": "*",
+    "@nostr-dev-kit/ndk": "^0.8.18",
+    "@nostr-dev-kit/ndk-svelte": "^0.8.18",
+    "@nostr-dev-kit/ndk-svelte-components": "^0.8.18-1"
+  }
+}
