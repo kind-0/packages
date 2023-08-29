@@ -1,7 +1,7 @@
 {
-  "name": "@highlighter/ui-common",
+  "name": "@kind0/ui-common",
   "version": "0.0.0",
-  "description": "Highlighter common component library",
+  "description": "Kind0 common component library",
   "type": "module",
   "module": "index.ts",
   "svelte": "index.ts",
