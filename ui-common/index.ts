@@ -28,3 +28,8 @@ export { default as AtlasNotesLogo } from './src/logos/AtlasNotesLogo.svelte';
  * Modals
  */
 export { default as ModalWrapper } from './src/components/modals/ModalWrapper.svelte'
+
+/**
+ * Sidebar
+ */
+export { default as SidebarSectionLink } from './src/components/Sidebar/SidebarSectionLink.svelte'
