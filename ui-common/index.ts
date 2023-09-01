@@ -13,6 +13,7 @@ export { default as MenuItem } from './src/components/Sidebar/MenuItem.svelte'
 export { default as PopularShelves } from './src/components/lists/PopularShelves.svelte'
 export { default as ElementConnector } from './src/components/ElementConnector.svelte'
 export { default as RelativeTime } from './src/components/RelativeTime.svelte'
+export { default as Avatar } from './src/components/Avatar.svelte'
 
 /**
  * Layouts
