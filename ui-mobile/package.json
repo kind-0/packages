@@ -1,5 +1,5 @@
 {
-  "name": "@highlighter/ui-mobile",
+  "name": "@kind0/ui-mobile",
   "version": "0.0.0",
   "description": "Highlighter mobile component library",
   "type": "module",
@@ -11,13 +11,13 @@
     "format": "prettier --write --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
-    "@kind0/ui-common": "*",
-    "@highlighter/utils": "*",
+    "@kind0/ui-common": "workspace:*",
+    "@kind0/utils": "workspace:*",
     "luxon": "^3.4.0"
   },
   "devDependencies": {
-    "@highlighter/eslint-config-custom": "*",
-    "@highlighter/tailwind-config": "*",
+    "@kind0/eslint-config-custom": "workspace:*",
+    "@kind0/tailwind-config": "workspace:*",
     "@types/luxon": "^3.3.1",
     "postcss": "^8.4.20",
     "svelte": "^4.0.5"

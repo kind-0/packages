@@ -1,5 +1,5 @@
 {
-  "name": "@highlighter/eslint-config-custom",
+  "name": "@kind0/eslint-config-custom",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",

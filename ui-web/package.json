@@ -1,5 +1,5 @@
 {
-  "name": "@highlighter/ui-web",
+  "name": "@kind0/ui-web",
   "version": "0.0.0",
   "description": "Highlighter web component library",
   "type": "module",
@@ -11,12 +11,12 @@
     "format": "prettier --write --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
-    "@kind0/ui-common": "*",
-    "@highlighter/utils": "*"
+    "@kind0/ui-common": "workspace:*",
+    "@kind0/utils": "workspace:*"
   },
   "devDependencies": {
-    "@highlighter/eslint-config-custom": "*",
-    "@highlighter/tailwind-config": "*",
+    "@kind0/eslint-config-custom": "workspace:*",
+    "@kind0/tailwind-config": "workspace:*",
     "postcss": "^8.4.20",
     "svelte": "^4.0.5"
   }

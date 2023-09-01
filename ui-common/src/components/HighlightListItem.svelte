@@ -4,7 +4,7 @@
     import Avatar from './Avatar.svelte';
 
     import NoteCard from '$lib/components/notes/card.svelte';
-    import type { NDKHighlight } from '@highlighter/nostr';
+    import type { NDKHighlight } from '@kind0/nostr';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import MarginNoteCard from './events/margin-note/MarginNoteCard.svelte';
     import NDK from '@nostr-dev-kit/ndk';
@@ -16,7 +16,7 @@
     export let disableClick: boolean = false;
     export let collapsedQuotes: boolean = true;
     export let quotes: NDKEvent[] = []
-   
+
     let articlePromise = highlight.getArticle();
 
     /**

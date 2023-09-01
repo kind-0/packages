@@ -1,5 +1,5 @@
 {
-  "name": "@highlighter/nostr",
+  "name": "@kind0/nostr",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "format": "prettier --write --ignore-path=../../.prettierignore ."
   },
   "devDependencies": {
-    "@highlighter/eslint-config-custom": "*"
+    "@kind0/eslint-config-custom": "workspace:*"
   },
   "dependencies": {
     "@nostr-dev-kit/ndk": "^0.8.18"

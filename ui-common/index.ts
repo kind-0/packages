@@ -20,6 +20,11 @@ export { default as RelativeTime } from './src/components/RelativeTime.svelte'
 export { default as MainWithRightSidebar } from './src/layouts/MainWithRightSidebar.svelte'
 
 /**
+ * Logos
+ */
+export { default as AtlasNotesLogo } from './src/logos/AtlasNotesLogo.svelte';
+
+/**
  * Modals
  */
 export { default as ModalWrapper } from './src/components/modals/ModalWrapper.svelte'
