@@ -1,6 +1,6 @@
 <script lang="ts">
   import ZapsCard  from './ZapsCard.svelte';
-  import { formatDateCreated } from '@highlighter/utils';
+  import { formatDateCreated } from '@kind0/utils';
   import type { HighlightMetadata } from '../types/HighlightMetadata';
 
   export let highlight: HighlightMetadata;

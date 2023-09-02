@@ -1,1 +1,1 @@
-# `@highlighter/utils`
+# `@kind0/utils`

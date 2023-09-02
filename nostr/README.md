@@ -1,1 +1,1 @@
-# `@highlighter/nostr`
+# `@kind0/packages`

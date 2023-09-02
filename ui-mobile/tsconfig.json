@@ -1,5 +1,5 @@
 {
-    "extends": "@highlighter/tsconfig/base.json",
+    "extends": "@kind0/tsconfig/base.json",
     "include": [
         "."
     ],

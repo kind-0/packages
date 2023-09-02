@@ -1,5 +1,5 @@
 {
-  "name": "tsconfig",
+  "name": "@kind0/tsconfig",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",

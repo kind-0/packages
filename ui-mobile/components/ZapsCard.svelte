@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { formatZapAmount } from '@highlighter/utils';
+  import { formatZapAmount } from '@kind0/utils';
 
   export let zaps: number;
 </script>
