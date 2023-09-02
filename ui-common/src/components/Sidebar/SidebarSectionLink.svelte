@@ -5,7 +5,7 @@
 
 <a
     {href}
-    class="btn w-full justify-start !rounded-box px-6 h-fit"
+    class="btn w-full justify-start !rounded-box px-6 h-fit {$$props.class??""}"
 >
     <div class="flex flex-row gap-5 items-center hover:!bg-transparent text-base">
         <slot name="icon" />
