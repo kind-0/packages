@@ -2,6 +2,7 @@ packages:
   - 'eslint-config-custom/**'
   - 'nostr/**'
   - 'tailwind-config/**'
+  - 'tsconfig/**'
   - 'ui-common/**'
   - 'ui-mobile/**'
   - 'ui-web/**'

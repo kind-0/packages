@@ -18,6 +18,7 @@
   "devDependencies": {
     "@kind0/eslint-config-custom": "workspace:*",
     "@kind0/tailwind-config": "workspace:*",
+    "@kind0/tsconfig": "workspace:*",
     "@types/luxon": "^3.3.1",
     "postcss": "^8.4.28",
     "svelte": "^4.2.0"

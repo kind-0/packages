@@ -464,6 +464,8 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(postcss@8.4.28)
 
+  tsconfig: {}
+
   ui-common:
     dependencies:
       '@kind0/nostr':
@@ -522,6 +524,9 @@ importers:
       '@kind0/tailwind-config':
         specifier: workspace:*
         version: link:../tailwind-config
+      '@kind0/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@types/luxon':
         specifier: ^3.3.1
         version: 3.3.1
