@@ -13,3 +13,4 @@ public/dist
 .turbo
 **/turbo-build.log
 _local_
+.svelte-kit
