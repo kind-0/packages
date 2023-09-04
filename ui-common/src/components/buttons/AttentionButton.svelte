@@ -7,7 +7,7 @@
         <slot />
     </a>
 {:else}
-    <button on:click class="attention-btn btn h-11 bg-base-100 rounded-full btn-rounded-full border-2 border-accent text-base-100-content text-xs font-medium normal-case hover:bg-accent hover:bg-opacity-20 hover:border-accent2 {$$props.class??""}">
+    <button on:click class="attention-btn btn h-11 bg-base-100 rounded-full border-2 border-accent text-base-100-content text-xs font-medium normal-case hover:bg-accent hover:bg-opacity-20 hover:border-accent2 {$$props.class??""}">
         <slot />
     </button>
 {/if}
