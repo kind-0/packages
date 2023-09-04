@@ -42,6 +42,40 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(eslint@8.48.0)(svelte@3.59.2)
 
+  lib-svelte-kit:
+    dependencies:
+      '@nostr-dev-kit/ndk':
+        specifier: workspace:*
+        version: link:../ndk/ndk
+      '@nostr-dev-kit/ndk-svelte':
+        specifier: workspace:*
+        version: link:../ndk/ndk-svelte
+      svelte:
+        specifier: ^4.2.0
+        version: 4.2.0
+    devDependencies:
+      '@kind0/eslint-config-custom':
+        specifier: '*'
+        version: link:../eslint-config-custom
+      '@kind0/tsconfig':
+        specifier: '*'
+        version: link:../tsconfig
+      '@sveltejs/kit':
+        specifier: ^1.24.0
+        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      '@sveltejs/package':
+        specifier: ^2.2.1
+        version: 2.2.1(svelte@4.2.0)(typescript@5.2.2)
+      postcss:
+        specifier: ^8.4.28
+        version: 8.4.28
+      svelte-preprocess:
+        specifier: ^5.0.4
+        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.2.2)
+      typescript:
+        specifier: ^5.1.6
+        version: 5.2.2
+
   ndk/ndk:
     dependencies:
       '@noble/hashes':

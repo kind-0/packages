@@ -1,0 +1,37 @@
+{
+  "name": "@kind0/lib-svelte-kit",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "files": ["dist/**"],
+  "scripts": {
+    "build": "svelte-package",
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore .",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@kind0/eslint-config-custom": "*",
+    "@kind0/tsconfig": "*",
+    "@sveltejs/kit": "^1.24.0",
+    "@sveltejs/package": "^2.2.1",
+    "postcss": "^8.4.28",
+    "svelte-preprocess": "^5.0.4",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@nostr-dev-kit/ndk": "workspace:*",
+    "@nostr-dev-kit/ndk-svelte": "workspace:*",
+    "svelte": "^4.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

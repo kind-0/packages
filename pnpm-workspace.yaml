@@ -13,3 +13,4 @@ packages:
   - 'ndk/ndk-svelte'
   - 'ndk/ndk-svelte-components'
   - 'ndk/packages/*'
+  - 'lib-svelte-kit/**'
