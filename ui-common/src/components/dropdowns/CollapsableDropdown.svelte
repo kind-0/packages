@@ -1,7 +1,8 @@
 <script lang="ts">
     import CloseIcon from "../icons/CloseIcon.svelte";
 
-    export let borderColor: string = "accent2";
+    export let closeInnerClass: string = "";
+    export let closeOutterClass: string = "";
     let hasFocus: boolean = false;
 
     async function toggleDropdown() {
@@ -23,8 +24,8 @@
         <div class="{hasFocus ? 'hidden' : 'transition duration-500 ease-out flex items-center'} transition">
             <slot name="dropdown-button" />
         </div>
-        <div class={`${!hasFocus ? 'hidden' : ''} btn-close-outter btn-circle border border-${borderColor} grid place-items-center`}>
-            <div class="btn-close-inner w-6 h-6 p-1 rounded-full">
+        <div class={`${!hasFocus ? 'hidden' : ''} btn-circle border grid place-items-center ${closeOutterClass}`}>
+            <div class={`w-6 h-6 p-1 rounded-full ${closeInnerClass}`}>
                 <CloseIcon />
             </div>
         </div>
