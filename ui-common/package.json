@@ -14,8 +14,8 @@
     "@kind0/eslint-config-custom": "workspace:*",
     "@kind0/tailwind-config": "workspace:*",
     "daisyui": "^3.6.4",
-    "postcss": "^8.4.20",
-    "svelte": "^4.0.5"
+    "postcss": "^8.4.28",
+    "svelte": "^4.2.0"
   },
   "dependencies": {
     "@kind0/nostr": "workspace:*",
