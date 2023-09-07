@@ -18,8 +18,9 @@
     "svelte": "^4.2.0"
   },
   "dependencies": {
-    "@kind0/nostr": "workspace:*",
+    "@grail-ui/svelte": "^0.10.1",
     "@kind0/lib-svelte-kit": "workspace:*",
+    "@kind0/nostr": "workspace:*",
     "@nostr-dev-kit/ndk": "workspace:*",
     "@nostr-dev-kit/ndk-svelte": "workspace:*",
     "@nostr-dev-kit/ndk-svelte-components": "workspace:*",

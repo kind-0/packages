@@ -1,7 +1,7 @@
 {
   "name": "@kind0/ui-web",
   "version": "0.0.0",
-  "description": "Highlighter web component library",
+  "description": "Kind0 web component library",
   "type": "module",
   "module": "index.ts",
   "svelte": "index.ts",
