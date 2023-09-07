@@ -511,6 +511,9 @@ importers:
 
   ui-common:
     dependencies:
+      '@kind0/lib-svelte-kit':
+        specifier: workspace:*
+        version: link:../lib-svelte-kit
       '@kind0/nostr':
         specifier: workspace:*
         version: link:../nostr

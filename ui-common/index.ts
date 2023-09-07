@@ -14,7 +14,6 @@ export { default as MenuItem } from './src/components/Sidebar/MenuItem.svelte'
 export { default as PopularShelves } from './src/components/lists/PopularShelves.svelte'
 export { default as ElementConnector } from './src/components/ElementConnector.svelte'
 export { default as RelativeTime } from './src/components/RelativeTime.svelte'
-export { default as Avatar } from './src/components/Avatar.svelte'
 export { default as CollapsableDropdown } from './src/components/dropdowns/CollapsableDropdown.svelte'
 
 /**
@@ -41,3 +40,10 @@ export { default as SidebarSectionLink } from './src/components/Sidebar/SidebarS
  * Icons
  */
 export { default as KeyIcon } from './src/components/icons/KeyIcon.svelte'
+
+/**
+ * User
+ */
+export { default as AvatarWithName } from './src/components/User/AvatarWithName.svelte'
+export { default as Avatar } from './src/components/User/Avatar.svelte'
+export { default as Name } from './src/components/User/Name.svelte'

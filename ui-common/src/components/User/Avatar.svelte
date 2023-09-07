@@ -1,9 +1,8 @@
 <script lang="ts">
+    import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
     import {Avatar} from '@nostr-dev-kit/ndk-svelte-components';
-    import NDK from '@nostr-dev-kit/ndk';
 
-    export let ndk: NDK
     export let pubkey: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let klass: string = $$props.class??'';
@@ -30,7 +29,7 @@
 </script>
 
 <Avatar
-    {ndk}
+    ndk={$ndk}
     {pubkey}
     {user}
     class="{shapeClass} {sizeClass} {$$props.class??klass}"

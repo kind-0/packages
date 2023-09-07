@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@kind0/nostr": "workspace:*",
+    "@kind0/lib-svelte-kit": "workspace:*",
     "@nostr-dev-kit/ndk": "workspace:*",
     "@nostr-dev-kit/ndk-svelte": "workspace:*",
     "@nostr-dev-kit/ndk-svelte-components": "workspace:*",
