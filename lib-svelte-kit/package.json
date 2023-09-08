@@ -20,11 +20,13 @@
   "devDependencies": {
     "@kind0/eslint-config-custom": "*",
     "@kind0/tsconfig": "*",
-    "@sveltejs/kit": "^1.24.0",
     "@sveltejs/package": "^2.2.1",
     "postcss": "^8.4.28",
     "svelte-preprocess": "^5.0.4",
     "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.24.0"
   },
   "dependencies": {
     "@nostr-dev-kit/ndk": "workspace:*",
