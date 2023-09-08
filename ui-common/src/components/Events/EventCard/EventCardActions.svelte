@@ -12,7 +12,6 @@
     // import { user } from '$stores/session';
 
     export let event: NDKEvent;
-    export let repliesCount: number;
 
     let zappedAmount: number;
 

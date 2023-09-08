@@ -9,7 +9,7 @@
     import EventCardActions from "./EventCardActions.svelte";
     import Avatar from "../../User/Avatar.svelte";
     import Name from "../../User/Name.svelte";
-    // import EventCardDropdown from "./EventCardDropdown.svelte";
+    import EventCardDropdown from "./EventCardDropdown.svelte";
 
     export let event: NDKEvent;
     export let authorAction: string | undefined = undefined;
@@ -52,10 +52,10 @@
 
                     <div class="flex flex-row items-center gap-4">
                         <div class="md:opacity-10 group-hover:opacity-100">
-                            <!-- <EventCardDropdown
+                            <EventCardDropdown
                                 {event}
                                 on:deleted={() => deleted = true}
-                            /> -->
+                            />
                         </div>
 
                         {#if event.created_at}
