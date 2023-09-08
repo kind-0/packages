@@ -21,6 +21,7 @@ export { default as PopularShelves } from './src/components/lists/PopularShelves
 export { default as ElementConnector } from './src/components/ElementConnector.svelte'
 export { default as RelativeTime } from './src/components/RelativeTime.svelte'
 export { default as CollapsableDropdown } from './src/components/dropdowns/CollapsableDropdown.svelte'
+export { default as Favicon } from './src/components/Favicon.svelte';
 
 /**
  * Form components

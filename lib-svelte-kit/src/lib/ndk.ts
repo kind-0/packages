@@ -57,7 +57,7 @@ const _ndk: NDKSvelte = new NDKSvelte({
         'wss://pablof7z.nostr1.com',
     ],
     enableOutboxModel: false,
-    // cacheAdapter,
+    cacheAdapter,
 }) as NDKSvelte;
 
 export const ndk = writable(_ndk);
