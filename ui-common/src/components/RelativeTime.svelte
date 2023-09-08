@@ -1,10 +1,13 @@
 <script lang="ts">
+    import { NDKEvent } from "@nostr-dev-kit/ndk";
     import Time from "svelte-time";
+
+    export let event: NDKEvent | undefined;
 
     /**
      * Timestamp to display
      */
-    export let timestamp: number;
+    export let timestamp: number = event?.created_at * 1000;
 
     /**
      * Number of seconds to use relative time for.

@@ -1,6 +1,7 @@
 <script lang="ts">
 	// import { rightDrawerContent } from '$lib/stores/right-drawer';
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
+    import RelativeTime from "../../RelativeTime.svelte";
 
     import { ndk } from "@kind0/lib-svelte-kit";
 
@@ -20,13 +21,6 @@
      * will open a thread view
      */
     export let expandible = true;
-
-    function useRelativeTime() {
-        const now = Date.now();
-        const diff = now - event.created_at*1000;
-
-        return diff < 1000*60*60*24;
-    }
 
     function linkToEvent() {
         return `/e/${event.encode()}`;
@@ -66,9 +60,8 @@
 
                         {#if event.created_at}
                             <a href={linkToEvent()}>
-                                <Time
-                                    relative={useRelativeTime()}
-                                    timestamp={event.created_at*1000}
+                                <RelativeTime
+                                    {event}
                                     class="text-sm whitespace-nowrap"
                                 />
                             </a>

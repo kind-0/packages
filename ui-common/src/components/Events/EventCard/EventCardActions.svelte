@@ -3,14 +3,16 @@
 	// import RepliesButton from '$lib/components/events/buttons/replies.svelte';
 	// import BoostButton from '$lib/components/events/buttons/boost.svelte';
 	// import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
-    import { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
+    import NDK, { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
 
     // import HighlightButton from "./buttons/HighlightButton.svelte";
     import { Link } from 'phosphor-svelte';
     import Zaps from "./Buttons/Zaps.svelte";
+    import Comments from "./Buttons/Comments.svelte";
     // import { user } from '$stores/session';
 
     export let event: NDKEvent;
+    export let repliesCount: number;
 
     let zappedAmount: number;
 
@@ -37,11 +39,6 @@
             <BoostButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
         </div>
 
-        <!-- {#if replies}
-            <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
-                <RepliesButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
-            </div>
-        <!-- {/if} -->
     <!-- {/if} -->
 
     <!-- <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
@@ -53,9 +50,11 @@
     </div>
 -->
 
-    <div class="
-        {zappedAmount === 0 ? "transition duration-300" : ""}
-    ">
+    <div>
+        <Comments {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light" />
+    </div>
+
+    <div>
         <Zaps bind:zappedAmount {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-2.5 font-light" />
     </div>
 </div>

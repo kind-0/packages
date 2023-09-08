@@ -40,7 +40,7 @@ export { default as MainWithRightSidebar } from './src/layouts/MainWithRightSide
  */
 export { default as ZapIcon } from './src/icons/ZapIcon.svelte';
 export { default as KeyIcon } from './src/icons/KeyIcon.svelte'
-export { default as ZapIconFilled } from './src/icons/ZapIcon.svelte';
+export { default as CommentIcon } from './src/icons/CommentIcon.svelte';
 
 /**
  * Logos
