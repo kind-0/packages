@@ -6,8 +6,8 @@
 
     import Time from "svelte-time";
     import EventCardActions from "./EventCardActions.svelte";
-    import Avatar from "../User/Avatar.svelte";
-    import Name from "../User/Name.svelte";
+    import Avatar from "../../User/Avatar.svelte";
+    import Name from "../../User/Name.svelte";
     // import EventCardDropdown from "./EventCardDropdown.svelte";
 
     export let event: NDKEvent;

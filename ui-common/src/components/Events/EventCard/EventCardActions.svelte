@@ -7,6 +7,7 @@
 
     // import HighlightButton from "./buttons/HighlightButton.svelte";
     import { Link } from 'phosphor-svelte';
+    import Zaps from "./Buttons/Zaps.svelte";
     // import { user } from '$stores/session';
 
     export let event: NDKEvent;
@@ -27,7 +28,6 @@
     text-base-100-content
     z-10
 ">
-    Action buttons
     <!-- {#if $user}
         <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
             <BookmarkButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
@@ -51,10 +51,11 @@
             </a>
         </div>
     </div>
+-->
 
     <div class="
-        {zappedAmount === 0 ? "md:opacity-0 group-hover:opacity-100 transition duration-300" : ""}
+        {zappedAmount === 0 ? "transition duration-300" : ""}
     ">
-        <ZapsButton bind:zappedAmount {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
-    </div> -->
+        <Zaps bind:zappedAmount {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-2.5 font-light" />
+    </div>
 </div>

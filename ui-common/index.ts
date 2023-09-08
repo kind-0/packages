@@ -9,8 +9,8 @@ export { default as SubtleButton } from './src/components/buttons/SubtleButton.s
 /**
  * Events
  */
-export { default as EventCard } from './src/components/events/EventCard.svelte';
-export { default as EventCardActions } from './src/components/events/EventCardActions.svelte';
+export { default as EventCard } from './src/components/events/EventCard/EventCard.svelte';
+export { default as EventCardActions } from './src/components/events/EventCard/EventCardActions.svelte';
 
 /**
  * Generic Components
@@ -36,6 +36,13 @@ export { default as TopicInput } from './src/components/Form/TopicInput.svelte';
 export { default as MainWithRightSidebar } from './src/layouts/MainWithRightSidebar.svelte'
 
 /**
+ * Icons
+ */
+export { default as ZapIcon } from './src/icons/ZapIcon.svelte';
+export { default as KeyIcon } from './src/icons/KeyIcon.svelte'
+export { default as ZapIconFilled } from './src/icons/ZapIcon.svelte';
+
+/**
  * Logos
  */
 export { default as AtlasNotesLogo } from './src/logos/AtlasNotesLogo.svelte';
@@ -51,13 +58,13 @@ export { default as ModalWrapper } from './src/components/modals/ModalWrapper.sv
 export { default as SidebarSectionLink } from './src/components/Sidebar/SidebarSectionLink.svelte'
 
 /**
- * Icons
- */
-export { default as KeyIcon } from './src/components/icons/KeyIcon.svelte'
-
-/**
  * User
  */
 export { default as AvatarWithName } from './src/components/User/AvatarWithName.svelte'
 export { default as Avatar } from './src/components/User/Avatar.svelte'
 export { default as Name } from './src/components/User/Name.svelte'
+
+/**
+ * Utils
+ */
+export * from './src/utils/bitcoin';
