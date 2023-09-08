@@ -3,7 +3,7 @@ import './styles.css';
 /**
  * Buttons
  */
-export { default as AttentionButton } from './src/components/buttons/AttentionButton.svelte'
+export { default as AttentionButton } from "./src/components/buttons/AttentionButton.svelte";
 export { default as SubtleButton } from './src/components/buttons/SubtleButton.svelte'
 
 /**
@@ -16,7 +16,7 @@ export { default as EventCardActions } from './src/components/events/EventCardAc
  * Generic Components
  */
 export { default as PageTitle } from './src/components/PageTitle.svelte'
-export { default as MenuItem } from './src/components/Sidebar/MenuItem.svelte'
+export { default as MenuItem } from './src/components/Menu/MenuItem.svelte'
 export { default as PopularShelves } from './src/components/lists/PopularShelves.svelte'
 export { default as ElementConnector } from './src/components/ElementConnector.svelte'
 export { default as RelativeTime } from './src/components/RelativeTime.svelte'
@@ -27,6 +27,8 @@ export { default as Favicon } from './src/components/Favicon.svelte';
  * Form components
  */
 export { default as Textarea } from './src/components/Form/Textarea.svelte';
+export { default as Input } from './src/components/Form/Input.svelte';
+export { default as TopicInput } from './src/components/Form/TopicInput.svelte';
 
 /**
  * Layouts

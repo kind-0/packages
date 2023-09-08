@@ -1,14 +1,13 @@
 <script lang="ts">
     export let href: string = '#';
     export let active: boolean = false;
-    export let pathname: string;
 </script>
 
 <li class={$$props.class}>
     <a
         {href}
         class="flex flex-row flex-grow"
-        class:active={pathname.startsWith(href) || active}
+        class:active={active}
         on:click
     >
         <span class="truncate {$$props.innerClass}">
