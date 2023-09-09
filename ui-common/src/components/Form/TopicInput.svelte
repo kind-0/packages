@@ -1,50 +1,31 @@
 <script lang="ts">
-    import MenuItem from '../Menu/MenuItem.svelte';
-    import Input from './Input.svelte';
     import { CaretDown, Hash } from 'phosphor-svelte';
+    import TopicSelectionForm from './TopicSelectionForm.svelte';
+    import AttentionButton from '../buttons/AttentionButton.svelte';
 
-    export let values: string[] = [];
+    export let selectedTopics: string[] = [];
+    export let availableTopics: string[] = [];
+    export let suggestedTopics: string[] = [];
 
-    function addTopic(name: string) {
-        name = name.replace(/^#/, '').trim();
+    let summary: HTMLElement;
 
-        if (values.includes(name)) return;
-        values.push(name);
-        values = values;
+    function close() {
+        summary.attributes.removeNamedItem('open');
     }
-
-    function toggleTopic(name: string) {
-        if (values.includes(name)) {
-            values = values.filter(t => t !== name);
-        } else {
-            addTopic(name);
-        }
-
-        values = values;
-    }
-
-    function keyDown(e: KeyboardEvent) {
-        if (e.key === 'Enter') {
-            addTopic(value);
-            value = '';
-        }
-    }
-
-    let value: string = '';
 </script>
 
-<div class="dropdown dropdown-start">
+<details class="dropdown dropdown-end" bind:this={summary}>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <!-- svelte-ignore a11y-label-has-associated-control -->
-    <label tabindex="0" class="btn m-1 {$$props.class??''}">
+    <summary class="btn border-0 m-1 {$$props.class??''}">
         <div class="flex flex-row items-center gap-2 font-normal whitespace-nowrap">
             <Hash class="w-6 h-6" />
-            {#if values.length > 0}
+            {#if selectedTopics.length > 0}
                 <span class="truncate">
-                    {#if values.length > 3}
-                        {values.length} topics
+                    {#if selectedTopics.length > 3}
+                        {selectedTopics.length} topics
                     {:else}
-                        {values.slice(0, 3).join(', ')}
+                        {selectedTopics.slice(0, 3).join(', ')}
                     {/if}
                 </span>
             {:else}
@@ -52,23 +33,28 @@
                 <CaretDown class="w-4 h-4" />
             {/if}
         </div>
-    </label>
-    <div class="menu overflow-x-hidden z-[1] p-2 shadow rounded-box bg-base-300 overflow-y-auto max-h-96 dropdown-content ">
-        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <ul tabindex="0" class="">
-                <Input
-                    placeholder="Add topic"
-                    autofocus={true}
-                    on:keydown={keyDown}
-                    bind:value
-                />
-            {#each values as topic}
-                <MenuItem
-                    on:click={(e) => { e.preventDefault(); toggleTopic(topic); }}
-                >
-                    {topic}
-                </MenuItem>
-            {/each}
-        </ul>
+    </summary>
+    <div class="overflow-x-hidden z-[1] p-2 shadow rounded-box bg-base-200 dropdown-content z-50 !shadow-base-100 border-2 border-base-300 p-4 flex flex-col gap-4 justify-stretch">
+        <TopicSelectionForm
+            bind:availableTopics
+            bind:suggestedTopics
+            bind:selectedTopics
+        />
+
+        <AttentionButton
+            class="w-full flex flex-row gap-8 items-center !px-10"
+            on:click={close}
+        >
+            {#if selectedTopics.length > 0}
+                <div class="text-lg">Save</div>
+                <div class="text-sm font-thin opacity-80">
+                    Under
+                    {selectedTopics.length}
+                    topics
+                </div>
+            {:else}
+                <div class="text-lg">Close</div>
+            {/if}
+        </AttentionButton>
     </div>
-</div>
+</details>

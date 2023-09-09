@@ -1,7 +1,8 @@
 <script lang="ts">
     import { openModal } from 'svelte-modals'
 
-    import { getContext, onDestroy } from 'svelte';
+    import { user } from "../../../../../index";
+    import { onDestroy } from 'svelte';
     import { type NDKEvent, zapInvoiceFromEvent, NDKUser } from '@nostr-dev-kit/ndk';
     import { nicelyFormattedMilliSatNumber } from "../../../../utils/bitcoin";
     // import { user } from '$stores/session';
@@ -14,10 +15,6 @@
     let eventId: string;
     let zaps: NDKEventStore<NDKEvent>;
     export let zappedAmount: number = 1000;
-
-    let user: NDKUser | undefined;
-
-    $: user = getContext('user');
 
     onDestroy(() => {
         if (zaps) zaps.unsubscribe();
@@ -40,7 +37,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === user?.hexpubkey) {
+            if (zapInvoice.zappee === $user?.hexpubkey) {
                 zappedByCurrentUser = true;
             }
 
@@ -49,7 +46,7 @@
     }
 
     let tooltip: string;
-    $: tooltip = user ? 'Zap' : 'You are not logged in';
+    $: tooltip = $user ? 'Zap' : 'You are not logged in';
 
 </script>
 

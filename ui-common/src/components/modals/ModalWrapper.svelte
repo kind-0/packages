@@ -5,7 +5,6 @@
 
     export let title: string | undefined;
     export let subtitle: string | undefined = undefined;
-    export let bodyClass: string | undefined = undefined;
 </script>
 
 <div class="
@@ -50,7 +49,7 @@
                     </div>
                 {/if}
             </div>
-            <div class="card-body {bodyClass}">
+            <div class="card-body {$$props.bodyClass}">
                 <slot />
             </div>
         </div>

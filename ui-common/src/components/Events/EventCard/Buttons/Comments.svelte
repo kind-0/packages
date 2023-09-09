@@ -1,24 +1,19 @@
 <script lang="ts">
     import { openModal } from 'svelte-modals'
 
-    import { getContext, onDestroy } from 'svelte';
+    import { user } from "../../../../../index";
+    import { onDestroy } from 'svelte';
     import { type NDKEvent, zapInvoiceFromEvent, NDKUser } from '@nostr-dev-kit/ndk';
-    import { nicelyFormattedMilliSatNumber } from "../../../../utils/bitcoin";
     // import { user } from '$stores/session';
     import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
-    import ZapIcon from '../../../../icons/ZapIcon.svelte';
     import ZapModal from '../../../../modals/ZapModal/ZapModal.svelte';
-  import CommentIcon from '../../../../icons/CommentIcon.svelte';
+    import CommentIcon from '../../../../icons/CommentIcon.svelte';
 
     export let event: NDKEvent;
     let eventId: string;
     let comments: NDKEventStore<NDKEvent>;
     export let commentCount: number = 1000;
-
-    let user: NDKUser | undefined;
-
-    $: user = getContext('user');
 
     onDestroy(() => {
         if (comments) comments.unsubscribe();
@@ -41,7 +36,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === user?.hexpubkey) {
+            if (zapInvoice.zappee === $user?.hexpubkey) {
                 zappedByCurrentUser = true;
             }
 
@@ -50,7 +45,7 @@
     }
 
     let tooltip: string;
-    $: tooltip = user ? 'Zap' : 'You are not logged in';
+    $: tooltip = $user ? 'Zap' : 'You are not logged in';
 
 </script>
 
@@ -65,7 +60,7 @@
                 w-4 h-4
                 {zappedByCurrentUser ? 'text-primary-500' : ''}
                 " />
-            {#if commentCount >= 0}
+            {#if commentCount > 0}
                 <div class="
                 text-sm
                 {zappedByCurrentUser ? 'text-primary-500' : ''}

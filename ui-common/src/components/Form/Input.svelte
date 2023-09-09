@@ -9,6 +9,7 @@
     on:keydown
     on:keyup
     on:change
+    on:blur
     class="
         input input-bordered
     {$$props.class??""}

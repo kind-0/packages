@@ -6,9 +6,9 @@
     import NDK, { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
 
     // import HighlightButton from "./buttons/HighlightButton.svelte";
-    import { Link } from 'phosphor-svelte';
     import Zaps from "./Buttons/Zaps.svelte";
     import Comments from "./Buttons/Comments.svelte";
+    import Bookmark from "./Buttons/Bookmark.svelte";
     // import { user } from '$stores/session';
 
     export let event: NDKEvent;
@@ -30,9 +30,7 @@
     z-10
 ">
     <!-- {#if $user}
-        <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
-            <BookmarkButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
-        </div>
+
 
         <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
             <BoostButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
@@ -55,5 +53,9 @@
 
     <div>
         <Zaps bind:zappedAmount {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-2.5 font-light" />
+    </div>
+
+    <div>
+        <Bookmark {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light" />
     </div>
 </div>
