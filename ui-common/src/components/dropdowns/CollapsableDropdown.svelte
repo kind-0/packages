@@ -1,36 +1,47 @@
 <script lang="ts">
-    import CloseIcon from "../../icons/CloseIcon.svelte";
+    import CloseIcon from '../../icons/CloseIcon.svelte';
 
-    export let closeInnerClass: string = "";
-    export let closeOutterClass: string = "";
-    let hasFocus: boolean = false;
+    let isOpen: boolean = false;
 
-    async function toggleDropdown() {
-        if (hasFocus) {
-            // Close dropdown
-            if (document.activeElement instanceof HTMLElement) {
-                document.activeElement.blur();
-                hasFocus = false;
+    function clickOutside(node) {
+        const handleClick = (event) => {
+            if (!node.contains(event.target)) {
+                node.dispatchEvent(new CustomEvent('outclick'));
             }
-            return
-        }
-        hasFocus = true;
+        };
+
+        document.addEventListener('click', handleClick, true);
+
+        return {
+            destroy() {
+                document.removeEventListener('click', handleClick, true);
+            }
+        };
     }
 
 </script>
 
-<div class="dropdown {hasFocus ? 'dropdown-open': ''} dropdown-end">
-    <label tabindex="0" on:click={toggleDropdown} >
-        <div class="{hasFocus ? 'hidden' : 'transition duration-500 ease-out flex items-center'} transition">
-            <slot name="dropdown-button" />
+<div class="relative">
+    {#if !isOpen}
+    <button on:click={() => (isOpen = true)}>
+        <slot name="dropdown-btn-open" />
+    </button>
+
+    {:else}
+        <button on:click={() => (isOpen = false)} >
+            <slot name="dropdown-btn-close">
+                <button class="btn btn-circle border grid place-items-center border-accent hover:border-accent">
+                    <div class={"w-6 h-6 p-1 rounded-full"}>
+                        <CloseIcon />
+                    </div>
+                </button>
+            </slot>
+        </button>
+        <div 
+            use:clickOutside 
+            on:outclick={() => (isOpen = false)}
+        >
+            <slot name="dropdown-content" />
         </div>
-        <div class={`${!hasFocus ? 'hidden' : ''} btn-circle border grid place-items-center ${closeOutterClass}`}>
-            <div class={`w-6 h-6 p-1 rounded-full ${closeInnerClass}`}>
-                <CloseIcon />
-            </div>
-        </div>
-    </label>
-    <div tabindex="0" class="dropdown-content z-[1] mt-2">
-        <slot />
-    </div>
+    {/if}
 </div>
