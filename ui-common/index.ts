@@ -56,6 +56,12 @@ export { default as BookmarkIcon } from './src/icons/BookmarkIcon.svelte';
 export { default as HashtagIcon } from './src/icons/HashtagIcon.svelte';
 export { default as Shipyard } from './src/icons/Shipyard.svelte';
 export { default as PuzzleIcon } from './src/icons/PuzzleIcon.svelte';
+export { default as CalendarIcon } from './src/icons/CalendarIcon.svelte';
+export { default as PauseIcon } from './src/icons/PauseIcon.svelte';
+export { default as PencilSimpleIcon } from './src/icons/PencilSimpleIcon.svelte';
+export { default as PostIcon } from './src/icons/PostIcon.svelte';
+export { default as RepostIcon } from './src/icons/RepostIcon.svelte';
+export { default as TrashIcon } from './src/icons/TrashIcon.svelte';
 
 /**
  * Logos
