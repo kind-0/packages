@@ -12,6 +12,12 @@ export { default as AttentionButton } from "./src/components/buttons/AttentionBu
 export { default as SubtleButton } from './src/components/buttons/SubtleButton.svelte'
 
 /**
+ * Dropdowns
+ */
+export { default as CollapsableDropdown } from './src/components/dropdowns/CollapsableDropdown.svelte'
+export { default as LoginDropdown } from './src/components/dropdowns/LoginDropdown.svelte'
+
+/**
  * Events
  */
 export { default as EventCard } from './src/components/events/EventCard/EventCard.svelte';
@@ -25,7 +31,6 @@ export { default as MenuItem } from './src/components/Menu/MenuItem.svelte'
 export { default as PopularShelves } from './src/components/lists/PopularShelves.svelte'
 export { default as ElementConnector } from './src/components/ElementConnector.svelte'
 export { default as RelativeTime } from './src/components/RelativeTime.svelte'
-export { default as CollapsableDropdown } from './src/components/dropdowns/CollapsableDropdown.svelte'
 export { default as Favicon } from './src/components/Favicon.svelte';
 
 /**
