@@ -19,9 +19,15 @@ process_file() {
   local filename="${file##*/}"
   local filename_without_extension="${filename%.*}"
   local full_file_path="${file#./}"
+  local file_extension="${filename##*.}"
 
-  echo "export { default as $filename_without_extension } from './$full_file_path'" >> "$export_file"
+  if [ "$file_extension" = "ts" ]; then
+    echo "export * from './${full_file_path%.ts}.js'" >> "$export_file"
+  else
+    echo "export { default as $filename_without_extension } from './$full_file_path'" >> "$export_file"
+  fi
 }
+
 
 echo "import './styles.css';" > "$export_file"
 

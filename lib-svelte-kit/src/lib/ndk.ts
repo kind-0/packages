@@ -53,9 +53,9 @@ const _ndk: NDKSvelte = new NDKSvelte({
     outboxRelayUrls: [
         'wss://purplepag.es'
     ],
-    devWriteRelayUrls: [
-        'wss://pablof7z.nostr1.com',
-    ],
+    // devWriteRelayUrls: [
+    //     'wss://pablof7z.nostr1.com',
+    // ],
     enableOutboxModel: false,
     cacheAdapter,
 }) as NDKSvelte;

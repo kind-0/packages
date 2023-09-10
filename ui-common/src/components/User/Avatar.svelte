@@ -1,10 +1,11 @@
 <script lang="ts">
     import { ndk } from "@kind0/lib-svelte-kit";
-    import type { NDKUser } from '@nostr-dev-kit/ndk';
+    import type { NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
     import {Avatar} from '@nostr-dev-kit/ndk-svelte-components';
 
     export let pubkey: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
+    export let userProfile: NDKUserProfile | undefined = undefined;
     export let klass: string = $$props.class??'';
     export let size: 'small' | 'large' | undefined = undefined;
     export let type: 'square' | 'circle' = 'circle';
@@ -32,5 +33,6 @@
     ndk={$ndk}
     {pubkey}
     {user}
+    {userProfile}
     class="{shapeClass} {sizeClass} {$$props.class??klass}"
 />
