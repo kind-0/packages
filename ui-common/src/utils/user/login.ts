@@ -20,7 +20,6 @@ export async function loginAsGuest(profile?: NDKUserProfile) {
     return u;
 }
 
-
 export async function setupPlaceholderProfile(profile?: NDKUserProfile) {
     const $user = getStore(user);
     const $ndk = getStore(ndk);

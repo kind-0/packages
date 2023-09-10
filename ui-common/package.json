@@ -13,7 +13,7 @@
   "devDependencies": {
     "@kind0/eslint-config-custom": "workspace:*",
     "@kind0/tailwind-config": "workspace:*",
-    "daisyui": "^3.6.4",
+    "daisyui": "^3.7.3",
     "postcss": "^8.4.28",
     "svelte": "^4.2.0"
   },

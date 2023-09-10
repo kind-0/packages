@@ -10,5 +10,3 @@
         <slot name="right-sidebar" />
     </aside>
 </div>
-
-
