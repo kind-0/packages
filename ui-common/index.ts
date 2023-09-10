@@ -55,6 +55,7 @@ export { default as CommentIcon } from './src/icons/CommentIcon.svelte';
 export { default as BookmarkIcon } from './src/icons/BookmarkIcon.svelte';
 export { default as HashtagIcon } from './src/icons/HashtagIcon.svelte';
 export { default as Shipyard } from './src/icons/Shipyard.svelte';
+export { default as PuzzleIcon } from './src/icons/PuzzleIcon.svelte';
 
 /**
  * Logos
