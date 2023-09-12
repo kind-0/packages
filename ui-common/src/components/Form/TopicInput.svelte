@@ -7,6 +7,8 @@
     export let availableTopics: string[] = [];
     export let suggestedTopics: string[] = [];
 
+    availableTopics = [...new Set([...availableTopics, ...selectedTopics])];
+
     let summary: HTMLElement;
 
     function close() {

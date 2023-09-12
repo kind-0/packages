@@ -10,6 +10,15 @@
     export let value = '';
     export let element: HTMLTextAreaElement | null = null;
 
+    function keydown(event) {
+        if (event.key === 'Enter' && event.metaKey) {
+            event.preventDefault();
+            dispatch('submit', { value });
+        }
+
+        dispatch('keydown', event);
+    }
+
     function dropTextarea(node) {
         let textarea = node;
 
@@ -61,7 +70,7 @@
     use:useTextareaAutosize
     bind:value
     bind:this={element}
-    on:keydown
+    on:keydown={keydown}
     on:keyup
     on:change
     use:dropTextarea

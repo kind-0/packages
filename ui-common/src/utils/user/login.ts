@@ -28,9 +28,9 @@ export async function setupPlaceholderProfile(profile?: NDKUserProfile) {
     $user.ndk = $ndk;
 
     const images = [
-        "https://cdn.satellite.earth/33e2ba09cc47db5c007ec1707724677f8afccd0753ed64d18a36eda6c9903824.png",
-        "https://cdn.satellite.earth/19d3a9be9ba8c3d6a9fa4943f168beb014be7ec0d57aceaf2e3c8831f4cb72ee.png",
-        "https://cdn.satellite.earth/6dace7f5d9afaeb84e64efef024b75b79fa5d3e7c6884a4ad0157e450d5596ec.png"
+        "https://cdn.satellite.earth/aaf65dd621667c75162ce3ee845a8202bdf2aee8d70ec0f1d25fe92ecd881675.png",
+        "https://cdn.satellite.earth/c50267d41d5874cb4e949e7bd472c2d06e1b297ffffac19b2f53c291a3e052d2.png",
+        "https://cdn.satellite.earth/011dc8958f86dc12c5c3a477de3551c3077fb8e71a730b7cec4a678f5c021550.png",
     ]
 
     const randImage = images[Math.floor(Math.random() * images.length)];
