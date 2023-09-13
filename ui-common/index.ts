@@ -64,6 +64,7 @@ export { default as PostIcon } from './src/icons/PostIcon.svelte';
 export { default as RepostIcon } from './src/icons/RepostIcon.svelte';
 export { default as TrashIcon } from './src/icons/TrashIcon.svelte';
 export { default as LongFormIcon } from './src/icons/LongFormIcon.svelte';
+export { default as QueueIcon } from './src/icons/QueueIcon.svelte';
 export { default as UrlIcon } from './src/icons/UrlIcon.svelte';
 
 /**
