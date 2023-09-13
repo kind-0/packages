@@ -1,0 +1,49 @@
+<script lang="ts">
+    import { type Hexpubkey, NDKDVMRequest, NDKEvent } from "@nostr-dev-kit/ndk";
+    import { onDestroy } from "svelte";
+    import { derived } from "svelte/store";
+    import type { Readable } from "svelte/store";
+    // import DvmResultCard from "./DvmResultCard.svelte";
+    import { ndk } from "../../../../../stores/ndk.js";
+
+    /**
+     * Job request's results to display
+     */
+    export let jobRequest: NDKDVMRequest;
+
+    /**
+     * All events tagging the job request grouped by DVM pubkey
+    */
+    let dvms: Record<Hexpubkey, Readable<NDKEvent[]>> = {};
+
+    const results = $ndk.storeSubscribe(
+        {
+            kinds: [7, 5, 65000 as number, 65001 as number],
+            ...jobRequest.filter(),
+        },
+        { closeOnEose: false, groupableDelay: 1000 },
+    );
+
+    onDestroy(() => {
+        results.unsubscribe();
+    })
+
+    $: for (const result of $results) {
+		const key = result.pubkey;
+		if (!dvms[key]) {
+			dvms[key] = derived(results, (results) => results.filter((e) => e.pubkey === key));
+		}
+	}
+</script>
+
+{#if Object.keys(dvms).length > 0}
+	<div class="indented flex flex-col gap-4">
+		<div class="section-title text-base-100-content">
+			{Object.keys(dvms).length} {Object.keys(dvms).length === 1 ? 'DVM' : 'DVMs'}
+			replied
+		</div>
+		{#each Object.entries(dvms) as [dvmPubkey, events]}
+			<!-- <DvmResultCard {jobRequest} {dvmPubkey} {events} parentElement={currentElement} /> -->
+		{/each}
+	</div>
+{/if}

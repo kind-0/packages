@@ -1,6 +1,5 @@
 packages:
   - 'eslint-config-custom/**'
-  - 'nostr/**'
   - 'tailwind-config/**'
   - 'tsconfig/**'
   - 'ui-common/**'
@@ -13,4 +12,3 @@ packages:
   - 'ndk/ndk-svelte'
   - 'ndk/ndk-svelte-components'
   - 'ndk/packages/*'
-  - 'lib-svelte-kit/**'
