@@ -3,7 +3,7 @@
     import { onDestroy } from "svelte";
     import { derived } from "svelte/store";
     import type { Readable } from "svelte/store";
-    // import DvmResultCard from "./DvmResultCard.svelte";
+    import DvmResultCard from "./DvmResultCard.svelte";
     import { ndk } from "../../../../../stores/ndk.js";
 
     /**
@@ -43,7 +43,7 @@
 			replied
 		</div>
 		{#each Object.entries(dvms) as [dvmPubkey, events]}
-			<!-- <DvmResultCard {jobRequest} {dvmPubkey} {events} parentElement={currentElement} /> -->
+			<DvmResultCard {jobRequest} {dvmPubkey} {events} />
 		{/each}
 	</div>
 {/if}

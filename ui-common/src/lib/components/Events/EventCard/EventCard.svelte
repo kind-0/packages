@@ -1,11 +1,9 @@
 <script lang="ts">
-	// import { rightDrawerContent } from '$lib/stores/right-drawer';
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
     import RelativeTime from "../../RelativeTime.svelte";
 
     import { ndk } from "../../../stores/ndk.js";
 
-    import Time from "svelte-time";
     import EventCardActions from "./EventCardActions.svelte";
     import Avatar from "../../User/Avatar.svelte";
     import Name from "../../User/Name.svelte";
