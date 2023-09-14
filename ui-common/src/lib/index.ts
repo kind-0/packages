@@ -75,6 +75,7 @@ export { default as TrashIcon } from './icons/TrashIcon.svelte';
 export { default as LongFormIcon } from './icons/LongFormIcon.svelte';
 export { default as UrlIcon } from './icons/UrlIcon.svelte';
 export { default as DvmIcon } from './icons/DvmIcon.svelte';
+export { default as QueueIcon } from './icons/QueueIcon.svelte';
 
 /**
  * Logos
