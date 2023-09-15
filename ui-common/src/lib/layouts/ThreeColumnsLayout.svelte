@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Toaster from "../components/Toaster/Toaster.svelte";
 </script>
 
 <div class="w-fit mx-auto flex flex-col gap-32 min-h-screen">
@@ -24,3 +25,5 @@
         </div>
     </div>
 </div>
+
+<Toaster />

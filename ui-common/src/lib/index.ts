@@ -10,6 +10,7 @@ export const userLabels = writable<Set<string>>(new Set());
  */
 export * from './stores/nip89.js';
 export * from './stores/ndk.js';
+export * from './stores/toaster.js';
 
 /**
  * Buttons
@@ -41,6 +42,7 @@ export { default as PopularShelves } from './components/lists/PopularShelves.sve
 export { default as ElementConnector } from './components/ElementConnector.svelte'
 export { default as RelativeTime } from './components/RelativeTime.svelte'
 export { default as Favicon } from './components/Favicon.svelte';
+export { default as Toaster } from './components/Toaster/Toaster.svelte';
 
 /**
  * Form components
