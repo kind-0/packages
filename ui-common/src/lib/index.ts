@@ -29,6 +29,7 @@ export { default as LoginDropdown } from './components/dropdowns/LoginDropdown.s
  */
 export { default as EventCard } from './components/Events/EventCard/EventCard.svelte';
 export { default as EventCardActions } from './components/Events/EventCard/EventCardActions.svelte';
+export { default as ArticleWideCard } from './components/Events/Kinds/Article/ArticleWideCard.svelte';
 
 // DVMs
 export { default as DvmJobResultsFeed } from "./components/Events/Kinds/Dvms/JobResultsFeed/DvmJobResultsFeed.svelte";
@@ -78,6 +79,7 @@ export { default as LongFormIcon } from './icons/LongFormIcon.svelte';
 export { default as UrlIcon } from './icons/UrlIcon.svelte';
 export { default as DvmIcon } from './icons/DvmIcon.svelte';
 export { default as QueueIcon } from './icons/QueueIcon.svelte';
+export { default as HighlightIcon } from './icons/HighlightIcon.svelte';
 
 /**
  * Logos

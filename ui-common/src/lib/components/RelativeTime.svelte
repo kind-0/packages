@@ -2,7 +2,7 @@
     import { NDKEvent } from "@nostr-dev-kit/ndk";
     import Time from "svelte-time";
 
-    export let event: NDKEvent | undefined;
+    export let event: NDKEvent | undefined = undefined;
 
     /**
      * Timestamp to display
