@@ -1,7 +1,7 @@
 <script lang="ts">
     export let title: string;
-    export let group: string;
-    export let value: string;
+    export let group: string | number;
+    export let value: string | number;
 
     let onClick = () => {
         group = value

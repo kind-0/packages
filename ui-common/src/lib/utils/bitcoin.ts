@@ -9,10 +9,14 @@ export function nicelyFormattedSatNumber(amount: number) {
     if (amount < 1000) return amount;
 
     // if the number is less than 1 million, return it with a k, if the comma is not needed remove it
-    if (amount < 1000000) return `${(amount / 1000).toFixed(0)}k`;
+    if (amount < 1_000_000) return `${(amount / 1000).toFixed(0)}k`;
 
-    // if the number is less than 1 billion, return it with an m
-    if (amount < 1000000000) return `${(amount / 1000000).toFixed(1)}m`;
+    // if the number is less than 10 million, return it with an m
+    if (amount < 10_000_000) {
+        let val =`${(amount / 1000000).toFixed(1)}M`;
+        if (val.endsWith('.0M')) val = `${(amount / 1000000).toFixed(0)}M`;
+        return val;
+    }
 
     return `${(amount / 100_000_000).toFixed(2)} btc`;
 }

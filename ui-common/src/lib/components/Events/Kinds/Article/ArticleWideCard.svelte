@@ -31,16 +31,17 @@
     }
 </script>
 
-<div class="card lg:card-side lg:gap-4 {$$props.class}">
-    <figure class="lg:!w-[100px] bg-base-300 flex-grow">
+<div class="flex flex-row gap-4 bg-base-200 rounded-box justify-start {$$props.class}">
+    <figure class="rounded-lg bg-base-300 {$$props.imageClass}">
         <LazyLoadedImage
             image={article.image}
+            class=" {$$props.imageClass}"
         />
     </figure>
 
-    <div class="card-body flex flex-col justify-between gap-6 flex-grow">
+    <div class="body flex flex-col justify-between gap-6">
         <div class="flex flex-col gap-9">
-            <h1 class="text-3xl card-title">{article.title}</h1>
+            <h1 class="text-3xl card-title {$$props.titleClass}">{article.title}</h1>
             {#if article.summary}
                 <div class="summary">{article.summary}</div>
             {:else}
@@ -95,20 +96,13 @@
 </div>
 
 <style lang="postcss">
-    .byline-container {
-
+    figure {
+        width: 150px;
     }
 
-    img {
-        @apply max-h-64;
-    }
-
-    .card {
-        @apply card-compact;
-    }
-
-    .card-body {
-        @apply !py-4;
+    .body {
+        @apply !py-4 w-full col-span-3 w-full;
+        /* width: calc(700px - 320px) !important; */
     }
 
     .summary {

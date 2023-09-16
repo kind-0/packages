@@ -2,10 +2,20 @@
     import { Name } from "@nostr-dev-kit/ndk-svelte-components";
     import Avatar from "../../components/User/Avatar.svelte";
     import { ndk } from "../../stores/ndk.js";
+    import { nicelyFormattedSatNumber } from "../../utils/bitcoin";
 
     export let pubkey: string | undefined = undefined;
     export let split: number = 60;
+    export let totalSplitValue: number;
+    export let totalSatsAvailable: number;
+    export let satSplit: number = 0;
 
+    const maxRange = totalSplitValue * 10;
+
+    let percentage: number;
+
+    $: percentage = (split / totalSplitValue)*100;
+    $: satSplit = Math.floor((percentage * totalSatsAvailable)/100);
 </script>
 
 <div class="flex flex-row gap-2 justify-between items-center">
@@ -13,12 +23,14 @@
         <Avatar {pubkey} class="w-12 h-12" />
         <div class="w-0 flex flex-col flex-grow">
             <span class="truncate whitespace-nowrap">
-                <Name ndk={$ndk} {pubkey} class="text-base-100-content font-normal text-xs leading-[18px] capitalize"/>
+                <Name ndk={$ndk} {pubkey} class="text-base-100-content font-normal text-normal"/>
             </span>
-            <span class="text-xs font-normal">{split}%</span>
+            <span class="text-sm font-normal text-accent2">
+                {nicelyFormattedSatNumber(satSplit)} sats
+            </span>
         </div>
     </div>
     <div class="w-1/2">
-        <input bind:value={split} type="range" min="0" max="100" class="range range-accent range-xs" />
+        <input bind:value={split} type="range" min="0" max={maxRange} class="range range-accent range-xs" />
     </div>
 </div>

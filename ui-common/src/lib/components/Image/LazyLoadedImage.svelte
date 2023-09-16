@@ -38,7 +38,7 @@
 >
     <img
         use:lazyLoad={image}
-        class="object-cover rounded-xl {aspectRatio <= 1 ? 'w-full': 'h-full'}"
+        class="object-cover {aspectRatio <= 1 ? 'w-full': 'h-full'} {$$props.class??""}"
         class:hidden={!loaded}
     />
 </div>

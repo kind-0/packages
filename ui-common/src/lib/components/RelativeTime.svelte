@@ -10,6 +10,11 @@
     export let timestamp: number = event?.created_at * 1000;
 
     /**
+     * Force-correct events/timestamps that are using milliseconds
+     */
+    if (timestamp > 169488768270000) timestamp /= 1000;
+
+    /**
      * Number of seconds to use relative time for.
      */
     export let timeAgoCutoff: number = 60*60*24;
