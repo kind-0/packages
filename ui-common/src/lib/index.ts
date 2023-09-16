@@ -44,6 +44,7 @@ export { default as ElementConnector } from './components/ElementConnector.svelt
 export { default as RelativeTime } from './components/RelativeTime.svelte'
 export { default as Favicon } from './components/Favicon.svelte';
 export { default as Toaster } from './components/Toaster/Toaster.svelte';
+export { default as LazyLoadedImage } from './components/Image/LazyLoadedImage.svelte';
 
 /**
  * Form components
