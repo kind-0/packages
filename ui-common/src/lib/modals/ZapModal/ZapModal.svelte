@@ -15,7 +15,7 @@
     import ZapUserSplit from "./ZapUserSplit.svelte";
     import CircularIconButton from "../../components/buttons/CircularIconButton.svelte";
     import AttentionButton from "../../components/buttons/AttentionButton.svelte";
-  import { nicelyFormattedSatNumber } from "../../utils/bitcoin.js";
+    import { nicelyFormattedSatNumber } from "../../utils/bitcoin.js";
 
     export let event: NDKEvent;
 
@@ -63,7 +63,6 @@
     }
 
     let clearCustomAmount = () => {
-        console.log({isValidCustomAmount})
         if (!isValidCustomAmount) {
             customAmount = ''
             isValidCustomAmount = true
@@ -74,34 +73,50 @@
     async function zap() {
         // closeModal();
 
+        const prs: string[] = await Promise.all([
+            zapSplits.map(zapSplit =>
+                event.zap(
+                    zapSplit[2] * 1000,
+                    comment,
+                    [],
+                    $ndk.getUser({hexpubkey: zapSplit[0]})
+                )
+            )
+        ]);
+
         event.ndk = $ndk;
         zapping = true;
-        let pr = await event.zap(amount*1000, comment);
 
-        if (!pr) {
-            console.log('no payment request');
-            return;
-        }
+        for (const pr of prs) {
+            if (!pr) {
+                console.log('no payment request');
+                continue
+            }
 
-        try {
-            const webln = await requestProvider();
-            await webln.sendPayment(pr);
-            zapping = false;
-            zapSent = true;
-            // TODO we should check here if the payment was successful, with a timer
-            // that is canceled here; if the timer doesn't come back, show the modal again
-            // or instruct the user to do something with the failed payment
-        } catch (err: any) {
-            zapping = false;
-            return;
+            try {
+                const webln = await requestProvider();
+                await webln.sendPayment(pr);
+                zapping = false;
+                zapSent = true;
+                // TODO we should check here if the payment was successful, with a timer
+                // that is canceled here; if the timer doesn't come back, show the modal again
+                // or instruct the user to do something with the failed payment
+            } catch (err: any) {
+                zapping = false;
+                return;
+            }
         }
     }
 
-    type Split = [Hexpubkey, number]
+    type Split = [Hexpubkey, number, number]
     const zapSplits: Split[] = event.getMatchingTags("zap")
         .map((zapTag: NDKTag) => {
-            return [zapTag[1], parseInt(zapTag[2]??"1")]
+            return [zapTag[1], parseInt(zapTag[2]??"1"), 0]
         });
+
+    if (zapSplits.length === 0) {
+        zapSplits.push([event.pubkey, 1, 0]);
+    }
 
     let totalSplitValue: number;
 
@@ -127,14 +142,19 @@
     {:else}
         <div class="flex flex-col gap-8">
             <div class="flex flex-col gap-4">
-                <div class="text-base-300-content text-sm font-semibold tracking-widest">SPLITS</div>
+                <div
+                    class="text-base-300-content text-sm font-semibold tracking-widest"
+                    class:hidden={zapSplits.length === 1}
+                >SPLITS</div>
                 {#if zapSplits}
                     {#each zapSplits as zapSplit}
                         <ZapUserSplit
                             pubkey={zapSplit[0]}
                             bind:split={zapSplit[1]}
+                            bind:satSplit={zapSplit[2]}
                             {totalSplitValue}
                             totalSatsAvailable={amount}
+                            hideRange={zapSplits.length === 1}
                         />
                     {/each}
                 {/if}
