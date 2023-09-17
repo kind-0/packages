@@ -3,7 +3,7 @@
 
     import { user } from "../../../../index.js";
     import { onDestroy } from 'svelte';
-    import { type NDKEvent, zapInvoiceFromEvent, NDKUser } from '@nostr-dev-kit/ndk';
+    import { type NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
     // import { user } from '$stores/session';
     import { ndk } from "../../../../stores/ndk.js";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
@@ -29,19 +29,8 @@
         );
     }
 
-    let zappedByCurrentUser: boolean = false;
-
     $: if ($comments) {
-        commentCount = $comments.reduce((acc: number, zap: NDKEvent) => {
-            const zapInvoice = zapInvoiceFromEvent(zap);
-            if (!zapInvoice) return acc;
-
-            if (zapInvoice.zappee === $user?.hexpubkey) {
-                zappedByCurrentUser = true;
-            }
-
-            return acc + zapInvoice.amount;
-        }, 0);
+        commentCount = $comments.length;
     }
 
     let tooltip: string;
@@ -58,13 +47,9 @@
         >
             <CommentIcon class="
                 w-4 h-4
-                {zappedByCurrentUser ? 'text-primary-500' : ''}
                 " />
             {#if commentCount > 0}
-                <div class="
-                text-sm
-                {zappedByCurrentUser ? 'text-primary-500' : ''}
-                ">{commentCount}</div>
+                <div class="text-sm">{commentCount}</div>
             {/if}
         </button>
     </div>
