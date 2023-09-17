@@ -8,7 +8,8 @@
     export let split: number = 60;
     export let totalSplitValue: number;
     export let totalSatsAvailable: number;
-    export let satSplit: number = 0;
+    export let satSplit: number;
+    export let hideRange: boolean;
 
     const maxRange = totalSplitValue * 10;
 
@@ -19,7 +20,9 @@
 </script>
 
 <div class="flex flex-row gap-2 justify-between items-center">
-    <div class="flex flex-row justiry-start items-center w-1/2 gap-3">
+    <div
+        class="flex flex-row justiry-start items-center gap-3 {!hideRange ? "w-1/2" : "w-full"}"
+    >
         <Avatar {pubkey} class="w-12 h-12" />
         <div class="w-0 flex flex-col flex-grow">
             <span class="truncate whitespace-nowrap">
@@ -30,7 +33,10 @@
             </span>
         </div>
     </div>
-    <div class="w-1/2">
+    <div
+        class="w-1/2"
+        class:hidden={hideRange}
+    >
         <input bind:value={split} type="range" min="0" max={maxRange} class="range range-accent range-xs" />
     </div>
 </div>
