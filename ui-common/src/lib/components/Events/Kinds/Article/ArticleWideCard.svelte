@@ -35,7 +35,7 @@
     <figure class="rounded-lg bg-base-300 {$$props.imageClass}">
         <LazyLoadedImage
             image={article.image}
-            class=" {$$props.imageClass}"
+            class="{$$props.imageClass}"
         />
     </figure>
 

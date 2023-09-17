@@ -13,6 +13,7 @@
         const observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
                 image.src = src
+                console.log(image)
                 // check if instantly loaded
                 if (image.complete) {
                     imgLoaded()
@@ -39,6 +40,5 @@
     <img
         use:lazyLoad={image}
         class="object-cover {aspectRatio <= 1 ? 'w-full': 'h-full'} {$$props.class??""}"
-        class:hidden={!loaded}
     />
 </div>
