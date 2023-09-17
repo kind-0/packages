@@ -41,7 +41,7 @@
 
     <div class="body flex flex-col justify-between gap-6">
         <div class="flex flex-col gap-9">
-            <h1 class="text-3xl card-title {$$props.titleClass}">{article.title}</h1>
+            <h1 class="text-3xl card-title {$$props.titleClass}">{article.title??"Untitled"}</h1>
             {#if article.summary}
                 <div class="summary">{article.summary}</div>
             {:else}
@@ -60,11 +60,12 @@
                 <AvatarWithName
                     pubkey={article.author.hexpubkey}
                     avatarClass="w-8 h-8 rounded-lg"
-                    nameClass="text-lg"
+                    nameClass="text-normal"
                 />
 
                 <RelativeTime
                     timestamp={article.published_at * 1000}
+                    class="text-sm"
                 />
             </div>
 
@@ -72,10 +73,10 @@
                 <div class="flex flex-row items-center gap-2">
                     <Zaps
                         event={article}
-                        class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light"
+                        class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light !text-xs"
                     />
                     <button
-                        class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light"
+                        class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light !text-xs"
                     >
                         <HighlightIcon class="w-4 h-4" />
                         {highlightCount}
@@ -97,12 +98,11 @@
 
 <style lang="postcss">
     figure {
-        width: 150px;
+        width: 250px;
     }
 
     .body {
-        @apply !py-4 w-full col-span-3 w-full;
-        /* width: calc(700px - 320px) !important; */
+        @apply !py-0 w-full col-span-3 w-full;
     }
 
     .summary {

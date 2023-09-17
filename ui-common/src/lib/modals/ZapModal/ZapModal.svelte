@@ -73,16 +73,18 @@
     async function zap() {
         // closeModal();
 
-        const prs: string[] = await Promise.all([
-            zapSplits.map(zapSplit =>
+        const prs: string[] = await Promise.all(
+            zapSplits.map((zapSplit) =>
                 event.zap(
                     zapSplit[2] * 1000,
                     comment,
                     [],
-                    $ndk.getUser({hexpubkey: zapSplit[0]})
+                    $ndk.getUser({ hexpubkey: zapSplit[0] })  // if this is async, use await
                 )
             )
-        ]);
+        );
+
+        console.log({prs});
 
         event.ndk = $ndk;
         zapping = true;
@@ -111,7 +113,7 @@
     type Split = [Hexpubkey, number, number]
     const zapSplits: Split[] = event.getMatchingTags("zap")
         .map((zapTag: NDKTag) => {
-            return [zapTag[1], parseInt(zapTag[2]??"1"), 0]
+            return [zapTag[1], parseInt(zapTag[3]??"1"), 0]
         });
 
     if (zapSplits.length === 0) {

@@ -7,12 +7,12 @@
     /**
      * Timestamp to display
      */
-    export let timestamp: number = event?.created_at * 1000;
+    export let timestamp: number| undefined = event?.created_at * 1000;
 
     /**
      * Force-correct events/timestamps that are using milliseconds
      */
-    if (timestamp > 169488768270000) timestamp /= 1000;
+    if (timestamp > 1494887682700000) timestamp /= 1000;
 
     /**
      * Number of seconds to use relative time for.

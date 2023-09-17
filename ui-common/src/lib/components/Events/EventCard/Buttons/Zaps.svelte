@@ -63,7 +63,6 @@
                 " />
             {#if zappedAmount > 0}
                 <div class="
-                text-sm
                 {zappedByCurrentUser ? 'text-primary-500' : ''}
                 ">{nicelyFormattedMilliSatNumber(zappedAmount)}</div>
             {/if}
