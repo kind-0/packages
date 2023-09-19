@@ -59,6 +59,7 @@ export { default as AddTopicInput } from './components/Form/AddTopicInput.svelte
  */
 export { default as MainWithRightSidebar } from './layouts/MainWithRightSidebar.svelte'
 export { default as ThreeColumnsLayout } from './layouts/ThreeColumnsLayout.svelte'
+export { default as SidebarLayout } from './layouts/SidebarLayout.svelte'
 
 /**
  * Icons
