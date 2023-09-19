@@ -83,6 +83,7 @@ export { default as DvmIcon } from './icons/DvmIcon.svelte';
 export { default as QueueIcon } from './icons/QueueIcon.svelte';
 export { default as HighlightIcon } from './icons/HighlightIcon.svelte';
 export { default as PublishingIcon } from './icons/PublishingIcon.svelte';
+export { default as ShelvesIcon } from './icons/ShelvesIcon.svelte';
 
 /**
  * Logos

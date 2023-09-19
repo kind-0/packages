@@ -8,6 +8,7 @@
     import Zaps from "../../EventCard/Buttons/Zaps.svelte";
     import LazyLoadedImage from "../../../Image/LazyLoadedImage.svelte";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
+  import LinkToProfile from "../../../User/LinkToProfile.svelte";
 
     export let article: NDKArticle;
     export let highlightCount: number;
@@ -40,7 +41,7 @@
     </figure>
 
     <div class="body flex flex-col justify-between gap-6">
-        <div class="flex flex-col gap-9">
+        <div class="flex flex-col gap-2">
             <h1 class="text-3xl card-title {$$props.titleClass}">{article.title??"Untitled"}</h1>
             {#if article.summary}
                 <div class="summary">{article.summary}</div>
@@ -57,14 +58,13 @@
 
         <div class="flex lg:flex-row items-center justify-between">
             <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-                here
-                <a href="/u/{article.author.npub}">
+                <LinkToProfile user={article.author}>
                     <AvatarWithName
                         pubkey={article.author.hexpubkey}
                         avatarClass="w-8 h-8 rounded-lg"
                         nameClass="text-normal"
                     />
-                </a>
+                </LinkToProfile>
 
                 <RelativeTime
                     timestamp={article.published_at * 1000}
@@ -109,7 +109,7 @@
     }
 
     .summary {
-        @apply text-lg opacity-60;
+        @apply text-base opacity-60;
     }
 
     .sm:card-wide {
