@@ -107,6 +107,7 @@ export { default as SidebarSectionLink } from './components/Sidebar/SidebarSecti
 export { default as AvatarWithName } from './components/User/AvatarWithName.svelte'
 export { default as Avatar } from './components/User/Avatar.svelte'
 export { default as Name } from './components/User/Name.svelte'
+export { default as LinkToProfile } from './components/User/LinkToProfile.svelte'
 
 /**
  * Utils

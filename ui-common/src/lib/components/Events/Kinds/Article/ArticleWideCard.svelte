@@ -57,11 +57,14 @@
 
         <div class="flex lg:flex-row items-center justify-between">
             <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-                <AvatarWithName
-                    pubkey={article.author.hexpubkey}
-                    avatarClass="w-8 h-8 rounded-lg"
-                    nameClass="text-normal"
-                />
+                here
+                <a href="/u/{article.author.npub}">
+                    <AvatarWithName
+                        pubkey={article.author.hexpubkey}
+                        avatarClass="w-8 h-8 rounded-lg"
+                        nameClass="text-normal"
+                    />
+                </a>
 
                 <RelativeTime
                     timestamp={article.published_at * 1000}
