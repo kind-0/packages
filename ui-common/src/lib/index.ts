@@ -60,6 +60,7 @@ export { default as AddTopicInput } from './components/Form/AddTopicInput.svelte
 export { default as MainWithRightSidebar } from './layouts/MainWithRightSidebar.svelte'
 export { default as ThreeColumnsLayout } from './layouts/ThreeColumnsLayout.svelte'
 export { default as SidebarLayout } from './layouts/SidebarLayout.svelte'
+export { default as ResponsiveColumnsLayout } from './layouts/ResponsiveColumnsLayout.svelte'
 
 /**
  * Icons
@@ -96,6 +97,11 @@ export { default as AtlasNotesLogo } from './logos/AtlasNotesLogo.svelte';
 export { default as ModalWrapper } from './components/modals/ModalWrapper.svelte'
 export { default as ZapModal } from './modals/ZapModal/ZapModal.svelte';
 export { default as LabelModal } from './modals/LabelModal/LabelModal.svelte';
+
+/**
+ * Navigation
+ */
+export { default as ResponsiveLogoNavbar } from './components/Navigation/ResponsiveLogoNavbar.svelte';
 
 /**
  * Sidebar
