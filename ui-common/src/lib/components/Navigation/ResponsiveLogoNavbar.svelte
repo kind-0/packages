@@ -3,7 +3,7 @@
     export let homeLink = '/'
 </script>
 
-<nav class="sticky top-0 z-20 flex flex-row flex-wrap min-h-16 px-4 justify-start items-center bg-base-100/80 backdrop-blur-sm">
+<nav class="sticky top-0 z-20 flex flex-row flex-wrap min-h-16 w-full px-4 justify-start items-center bg-base-100/80 backdrop-blur-sm">
     <div class="flex flex-row basis-1/4 justify-between">
         <div class="flex basis-1/2">
             <label
@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    <div class="flex flex-row w-full">
+    <div class="flex flex-row flex-1">
         <slot name="main" />
     </div>
 </nav>
