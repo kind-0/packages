@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    <div class="flex flex-row flex-1">
+    <div class="flex flex-row basis-3/4">
         <slot name="main" />
     </div>
 </nav>
