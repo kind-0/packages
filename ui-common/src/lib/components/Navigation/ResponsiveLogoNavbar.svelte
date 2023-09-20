@@ -1,7 +1,6 @@
 <script lang="ts">
     export let isHiddenDrawerBtn = false;
     export let homeLink = '/'
-    export let logo: any = undefined
 </script>
 
 <nav class="sticky top-0 z-20 flex flex-row flex-wrap min-h-16 px-4 justify-start items-center bg-base-100/80 backdrop-blur-sm">
@@ -35,7 +34,7 @@
             </a>
         </div>
     </div>
-    <div class="flex flex-row basis-1/2">
+    <div class="flex flex-row w-full">
         <slot name="main" />
     </div>
 </nav>
