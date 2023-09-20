@@ -84,8 +84,6 @@
             )
         );
 
-        console.log({prs});
-
         event.ndk = $ndk;
         zapping = true;
 
