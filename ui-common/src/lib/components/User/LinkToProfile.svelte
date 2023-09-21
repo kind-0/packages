@@ -26,6 +26,10 @@
 
 {#if link}
     <a href={link} class={$$props.class}>
-        <AvatarWithName {user} />
+        {#if !$$slots.default}
+            <AvatarWithName {user} />
+        {:else}
+            <slot />
+        {/if}
     </a>
 {/if}

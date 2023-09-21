@@ -17,6 +17,7 @@ export * from './stores/toaster.js';
  */
 export { default as AttentionButton } from "./components/buttons/AttentionButton.svelte";
 export { default as SubtleButton } from './components/buttons/SubtleButton.svelte'
+export { default as CommentsButton } from './components/Events/EventCard/Buttons/Comments.svelte';
 
 /**
  * Dropdowns
@@ -34,6 +35,11 @@ export { default as ArticleWideCard } from './components/Events/Kinds/Article/Ar
 // DVMs
 export { default as DvmJobResultsFeed } from "./components/Events/Kinds/Dvms/JobResultsFeed/DvmJobResultsFeed.svelte";
 
+// Highlights
+export { default as HighlightCard } from "./components/Events/Kinds/Highlight/HighlightCard.svelte";
+export { default as HighlightCardHeader } from "./components/Events/Kinds/Highlight/HighlightCardHeader.svelte";
+export { default as HighlightContent } from "./components/Events/Kinds/Highlight/HighlightContent.svelte";
+
 /**
  * Generic Components
  */
@@ -45,6 +51,7 @@ export { default as RelativeTime } from './components/RelativeTime.svelte'
 export { default as Favicon } from './components/Favicon.svelte';
 export { default as Toaster } from './components/Toaster/Toaster.svelte';
 export { default as LazyLoadedImage } from './components/Image/LazyLoadedImage.svelte';
+export { default as ThreadView } from './components/Events/ThreadView/ThreadView.svelte';
 
 /**
  * Form components
@@ -97,6 +104,7 @@ export { default as AtlasNotesLogo } from './logos/AtlasNotesLogo.svelte';
 export { default as ModalWrapper } from './components/modals/ModalWrapper.svelte'
 export { default as ZapModal } from './modals/ZapModal/ZapModal.svelte';
 export { default as LabelModal } from './modals/LabelModal/LabelModal.svelte';
+export { default as ReplyModal } from './modals/ReplyModal/ReplyModal.svelte';
 
 /**
  * Navigation
@@ -121,3 +129,4 @@ export { default as LinkToProfile } from './components/User/LinkToProfile.svelte
  */
 export * from './utils/bitcoin';
 export * from './utils/user/login';
+export { default as linkToArticle } from './components/Events/Kinds/Highlight/link-to-article.js';

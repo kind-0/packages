@@ -7,10 +7,15 @@
     // import { user } from '$stores/session';
     import { ndk } from "../../../../stores/ndk.js";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
-    import ZapModal from '../../../../modals/ZapModal/ZapModal.svelte';
+    import ReplyModal from '../../../../modals/ReplyModal/ReplyModal.svelte';
     import CommentIcon from '../../../../icons/CommentIcon.svelte';
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let event: NDKEvent;
+    export let emit = false;
+
     let eventId: string;
     let comments: NDKEventStore<NDKEvent>;
     export let commentCount: number = 1000;
@@ -33,8 +38,16 @@
         commentCount = $comments.length;
     }
 
+    function handleClick() {
+        if (emit) {
+            dispatch('click');
+        } else {
+            openModal(ReplyModal, { event })
+        }
+    }
+
     let tooltip: string;
-    $: tooltip = $user ? 'Zap' : 'You are not logged in';
+    $: tooltip = $user ? 'Reply' : 'You are not logged in';
 
 </script>
 
@@ -43,11 +56,9 @@
         <button
             class="flex flex-row items-center gap-2
             {$$props.class}"
-            on:click={() => { openModal(ZapModal, { event }) }}
+            on:click={handleClick}
         >
-            <CommentIcon class="
-                w-4 h-4
-                " />
+            <CommentIcon class="w-4 h-4" />
             {#if commentCount > 0}
                 <div class="text-sm">{commentCount}</div>
             {/if}

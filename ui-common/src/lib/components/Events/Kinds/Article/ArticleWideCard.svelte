@@ -8,13 +8,20 @@
     import Zaps from "../../EventCard/Buttons/Zaps.svelte";
     import LazyLoadedImage from "../../../Image/LazyLoadedImage.svelte";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
-  import LinkToProfile from "../../../User/LinkToProfile.svelte";
+    import LinkToProfile from "../../../User/LinkToProfile.svelte";
 
     export let article: NDKArticle;
     export let highlightCount: number;
     export let usersWithInteractions: Hexpubkey[];
 
     let image = article.image;
+
+    if (!image) {
+        article.author?.fetchProfile().then(profile => {
+            console.log(profile)
+            image = profile.banner;
+        });
+    }
 
     function chooseRandomImage() {
         const images = [
@@ -34,10 +41,12 @@
 
 <div class="flex flex-row gap-4 bg-base-200 rounded-box justify-start {$$props.class}">
     <figure class="rounded-lg bg-base-300 {$$props.imageClass}">
-        <LazyLoadedImage
-            image={article.image}
-            class="{$$props.imageClass}"
-        />
+        {#key image}
+            <LazyLoadedImage
+                image={image}
+                class="{$$props.imageClass}"
+            />
+        {/key}
     </figure>
 
     <div class="body flex flex-col justify-between gap-6">
@@ -72,7 +81,7 @@
                 />
             </div>
 
-            <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 items-end">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-end gap-4 lg:gap-8 items-end">
                 <div class="flex flex-row items-center gap-2">
                     <Zaps
                         event={article}
