@@ -27,9 +27,11 @@
     }
 </script>
 
-<Time
-    relative={useRelativeTime()}
-    live={true}
-    {timestamp}
-    class={$$props.class}
-/>
+{#if !Number.isNaN(timestamp)}
+    <Time
+        relative={useRelativeTime()}
+        live={true}
+        {timestamp}
+        class={$$props.class}
+    />
+{/if}
