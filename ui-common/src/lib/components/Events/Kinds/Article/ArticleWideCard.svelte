@@ -65,8 +65,8 @@
             {/if}
         </div>
 
-        <div class="flex lg:flex-row items-center justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
+        <div class="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-0">
+            <div class="flex flex-row flex-wrap items-center gap-2 lg:gap-8">
                 <LinkToProfile user={article.author}>
                     <AvatarWithName
                         pubkey={article.author.hexpubkey}
