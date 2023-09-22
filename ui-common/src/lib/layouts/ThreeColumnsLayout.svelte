@@ -9,16 +9,16 @@
         </div>
     {/if}
 
-    <div class="flex flex-row gap-32 flex-grow">
-        <div class="w-sidebar sticky max-h-[90vh] overflow-y-auto top-0">
+    <div class="flex flex-row">
+        <div class="hidden lg:block w-auto lg:w-sidebar sticky max-h-[90vh] overflow-y-auto top-0">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />
             {/if}
         </div>
-        <div class="w-main flex flex-col justify-stretch">
+        <div class="w-screen lg:w-main flex flex-col justify-start lg:justify-stretch">
             <slot />
         </div>
-        <div class="w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto">
+        <div class="hidden lg:block w-auto lg:w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto">
             {#if $$slots.rightSidebar}
                 <slot name="rightSidebar" />
             {/if}
