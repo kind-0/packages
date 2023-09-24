@@ -9,7 +9,7 @@
         </div>
     {/if}
 
-    <div class="flex flex-row px-4 gap-4">
+    <div class="flex flex-row px-4 gap-4 mx-auto">
         <div class="hidden lg:block w-auto lg:w-sidebar sticky max-h-[90vh] overflow-y-auto top-0">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />

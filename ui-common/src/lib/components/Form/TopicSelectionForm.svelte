@@ -24,9 +24,9 @@
     }
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4 w-fit">
     <div class="flex flex-row overflow-y-auto flex-grow max-h-64">
-        <div class="w-1/2 w-56">
+        <div class="w-1/2">
             <TopicSelectionList
                 title="TOPICS"
                 topics={availableTopics}
@@ -34,7 +34,7 @@
             />
         </div>
         {#if suggestedTopics.length > 0}
-            <div class="w-1/2 w-56">
+            <div class="w-1/2">
                 <TopicSelectionList
                     title="SUGGESTIONS"
                     topics={suggestedTopics}

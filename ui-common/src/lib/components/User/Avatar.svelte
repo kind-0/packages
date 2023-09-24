@@ -7,13 +7,16 @@
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
     export let klass: string = $$props.class??'';
-    export let size: 'small' | 'large' | undefined = undefined;
+    export let size: 'tiny' | 'small' | 'large' | undefined = undefined;
     export let type: 'square' | 'circle' = 'circle';
 
     let sizeClass = '';
     let shapeClass = '';
 
     switch (size) {
+        case 'tiny':
+            sizeClass = 'w-6 h-6';
+            break;
         case 'small':
             sizeClass = 'w-8 h-8';
             break;

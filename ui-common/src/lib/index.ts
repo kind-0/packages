@@ -18,6 +18,7 @@ export * from './stores/toaster.js';
 export { default as AttentionButton } from "./components/buttons/AttentionButton.svelte";
 export { default as SubtleButton } from './components/buttons/SubtleButton.svelte'
 export { default as CommentsButton } from './components/Events/EventCard/Buttons/Comments.svelte';
+export { default as ZapsButton } from "./components/Events/EventCard/Buttons/Zaps.svelte";
 
 /**
  * Dropdowns
@@ -30,7 +31,6 @@ export { default as LoginDropdown } from './components/dropdowns/LoginDropdown.s
  */
 export { default as EventCard } from './components/Events/EventCard/EventCard.svelte';
 export { default as EventCardActions } from './components/Events/EventCard/EventCardActions.svelte';
-export { default as ArticleWideCard } from './components/Events/Kinds/Article/ArticleWideCard.svelte';
 
 // DVMs
 export { default as DvmJobResultsFeed } from "./components/Events/Kinds/Dvms/JobResultsFeed/DvmJobResultsFeed.svelte";

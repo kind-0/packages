@@ -59,7 +59,7 @@
         class="flex flex-row items-center gap-2 back
         {$$props.class}"
         class:active={userLabelEvents?.length > 0}
-        on:click={open}
+        on:click|stopPropagation|preventDefault={open}
     >
         <BookmarkIcon class="
             w-4 h-4

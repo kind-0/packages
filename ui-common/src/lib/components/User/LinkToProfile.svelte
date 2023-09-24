@@ -6,9 +6,11 @@
     export let user: NDKUser;
     export let prefix = "/p/";
 
-    let link: string | undefined;
+    let link: string | undefined = `${prefix}${user.npub}`;
 
     user.fetchProfile().then(profile => {
+        if (!profile) return;
+
         link = `${prefix}${user.npub}`;
 
         const { nip05 } = profile;

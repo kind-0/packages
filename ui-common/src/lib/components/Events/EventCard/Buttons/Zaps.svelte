@@ -51,11 +51,11 @@
 </script>
 
 {#if event?.id}
-    <div class="tooltip flex flex-row items-center" data-tip={tooltip}>
+    <div class="tooltip tooltip-bottom flex flex-row items-center" data-tip={tooltip}>
         <button
             class="flex flex-row items-center gap-1
             {$$props.class}"
-            on:click={() => { openModal(ZapModal, { event }) }}
+            on:click|stopPropagation|preventDefault={() => { openModal(ZapModal, { event }) }}
         >
             <ZapIcon class="
                 w-4 h-4

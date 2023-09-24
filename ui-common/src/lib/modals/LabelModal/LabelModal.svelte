@@ -90,12 +90,14 @@
     }
 </script>
 
-<ModalWrapper title="Bookmark">
+<ModalWrapper class="w-fit" title="Bookmark">
     <TopicSelectionForm
         bind:availableTopics
         bind:suggestedTopics
         bind:selectedTopics
     />
+
+    <div class="divider"></div>
 
     <AttentionButton
         class="w-full flex flex-row gap-8 items-center !px-10"

@@ -3,7 +3,7 @@
 
     import { user } from "../../../../index.js";
     import { onDestroy } from 'svelte';
-    import { type NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
+    import { type NDKEvent } from '@nostr-dev-kit/ndk';
     // import { user } from '$stores/session';
     import { ndk } from "../../../../stores/ndk.js";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
@@ -15,10 +15,10 @@
 
     export let event: NDKEvent;
     export let emit = false;
+    export let commentCount: number = 0;
 
     let eventId: string;
     let comments: NDKEventStore<NDKEvent>;
-    export let commentCount: number = 1000;
 
     onDestroy(() => {
         if (comments) comments.unsubscribe();
