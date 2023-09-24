@@ -31,18 +31,18 @@ if (relays) {
 }
 
 export const defaultRelays = [
-    // 'wss://pablof7z.nostr1.com',
-    // 'wss://purplepag.es',
-    'ws://localhost:8080',
+    'wss://pablof7z.nostr1.com',
+    'wss://purplepag.es',
+    // 'ws://localhost:8080',
 
-    // 'wss://nos.lol',
-    // 'wss://relay.f7z.io',
-    // 'wss://relay.damus.io',
-    // 'wss://relay.snort.social',
+    'wss://nos.lol',
+    'wss://relay.f7z.io',
+    'wss://relay.damus.io',
+    'wss://relay.snort.social',
     // // // 'wss://offchain.pub/',
-    // "wss://relay.noswhere.com",
-    // "wss://relay.nostr.band/",
-    // 'wss://nostr.mom',
+    "wss://relay.noswhere.com",
+    "wss://relay.nostr.band/",
+    'wss://nostr.mom',
     // 'wss://nostr-pub.wellorder.net'
 ];
 
