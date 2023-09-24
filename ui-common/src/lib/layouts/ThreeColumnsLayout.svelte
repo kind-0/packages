@@ -2,14 +2,14 @@
     import Toaster from "../components/Toaster/Toaster.svelte";
 </script>
 
-<div class="w-screen lg:w-fit mx-auto flex flex-col gap-8 min-h-screen">
+<div class="w-screen lg:w-fit lg:mx-auto flex flex-col gap-8 min-h-screen">
     {#if $$slots.navbar}
         <div class="flex flex-row gap-32 sticky top-0 z-50">
             <slot name="navbar" />
         </div>
     {/if}
 
-    <div class="flex flex-row px-4 gap-4 mx-auto">
+    <div class="flex flex-row px-0 lg:px-4 gap-4 lg:mx-auto">
         <div class="hidden lg:block w-auto lg:w-sidebar sticky max-h-[90vh] overflow-y-auto top-0">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />
