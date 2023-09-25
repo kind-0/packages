@@ -49,7 +49,7 @@
                     </div>
                 {/if}
             </div>
-            <div class="card-body {$$props.bodyClass}">
+            <div class="card-body {$$props.bodyClass || ""}">
                 <slot />
             </div>
         </div>
