@@ -2,7 +2,7 @@
     import Toaster from "../components/Toaster/Toaster.svelte";
 </script>
 
-<div class="w-screen lg:w-fit lg:mx-auto flex flex-col gap-8 min-h-screen">
+<div class="w-screen lg:w-fit mx-0 lg:mx-auto flex flex-col gap-8 min-h-screen">
     {#if $$slots.navbar}
         <div class="flex flex-row gap-32 sticky top-0 z-50">
             <slot name="navbar" />
