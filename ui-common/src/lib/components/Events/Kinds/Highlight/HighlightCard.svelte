@@ -84,7 +84,7 @@
         <a href={linkToArticle(highlight)} on:click={onContentClick} class="
             h-full flex flex-col
             overflow-auto
-            {$$props.class || ``}
+            {$$props.class}
         ">
             <HighlightContent
                 {highlight}

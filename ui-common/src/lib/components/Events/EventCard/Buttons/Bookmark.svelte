@@ -57,7 +57,7 @@
 <div class="tooltip flex flex-row items-center" data-tip={tooltip}>
     <button
         class="flex flex-row items-center gap-2 back
-        {$$props.class || ``}"
+        {$$props.class}"
         class:active={userLabelEvents?.length > 0}
         on:click|stopPropagation|preventDefault={open}
     >

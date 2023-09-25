@@ -45,15 +45,15 @@
     }
 </script>
 
-<div class="flex flex-col gap-4 my-2" transition:fade={{ duration: 500 }}>
+<div class="flex flex-col gap-4 my-2 w-96" transition:fade={{ duration: 500 }}>
     {#if !skipEvent}
-        <EventCard {event} class="border border-base-300">
+        <EventCard {event} class="border border-base-300 w-full">
             <EventContent ndk={$ndk} {event} />
         </EventCard>
     {/if}
 
     {#if $actualReplies?.length > 0}
-        <div class="flex flex-col gap-4 pl-12">
+        <div class="flex flex-col gap-4 max-lg:pl-4 lg:pl-12">
             {#each $actualReplies as reply}
                 <svelte:self event={reply} skipEvent={false} />
             {/each}

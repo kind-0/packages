@@ -55,7 +55,7 @@
     <div class="tooltip flex flex-row items-center" data-tip={tooltip}>
         <button
             class="flex flex-row items-center gap-2
-            {$$props.class || ``}"
+            {$$props.class}"
             on:click={handleClick}
         >
             <CommentIcon class="w-4 h-4" />
