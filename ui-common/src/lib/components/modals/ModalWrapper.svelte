@@ -9,7 +9,7 @@
 
 <div class="
     fixed
-    h-screen top-0 bottom-0
+    h-screen top-0 bottom-0 px-2 lg:px-0
     flex justify-center items-center
     z-50
     w-screen
