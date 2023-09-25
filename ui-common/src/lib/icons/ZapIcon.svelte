@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="9" height="12" viewBox="0 0 9 12" fill="currentColor" class={$$props.class}>
+<svg xmlns="http://www.w3.org/2000/svg" width="9" height="12" viewBox="0 0 9 12" fill="currentColor" class={$$props.class || ``}>
     <path d="M8.34578 4.82305H5.69592L5.76139 0.436924C5.76794 -0.00168888 5.19067 -0.161184 4.93688 0.197681L0.164761 6.45788C-0.0464261 6.737 0.154047 7.17561 0.526684 7.17561H3.17655L3.11107 11.5617C3.10452 12.0004 3.6818 12.1598 3.93558 11.801L8.6663 5.54078C8.91948 5.22179 8.71842 4.82305 8.34578 4.82305Z" fill="currentColor" />
 </svg>

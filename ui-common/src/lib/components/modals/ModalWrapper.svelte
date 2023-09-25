@@ -22,7 +22,7 @@
         flex flex-col
         relative
         overflow-y-auto
-        {$$props.class}
+        {$$props.class || ``}
     " style="pointer-events: auto; max-height: 80vh;" on:click|stopPropagation={()=>{}}>
         <div class="flex flex-col divide-y divide-neutral-800">
             <div class="relative flex w-full justify-center items-center">
@@ -49,7 +49,7 @@
                     </div>
                 {/if}
             </div>
-            <div class="card-body {$$props.bodyClass || ""}">
+            <div class="card-body {$$props.bodyClass || ``}">
                 <slot />
             </div>
         </div>

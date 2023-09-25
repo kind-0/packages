@@ -37,7 +37,7 @@
 </script>
 
 <div
-    class={$$props.class}
+    class={$$props.class || ``}
     bind:this={container}
 >
     <div class="

@@ -73,7 +73,7 @@
         event={highlight}
         authorAction={"highlighted by"}
         skipHeader={skipTitle}
-        class={$$props.class}
+        class={$$props.class || ``}
     >
         <div slot="header" class="w-full truncate">
             {#if !skipTitle}
@@ -84,7 +84,7 @@
         <a href={linkToArticle(highlight)} on:click={onContentClick} class="
             h-full flex flex-col
             overflow-auto
-            {$$props.class}
+            {$$props.class || ``}
         ">
             <HighlightContent
                 {highlight}

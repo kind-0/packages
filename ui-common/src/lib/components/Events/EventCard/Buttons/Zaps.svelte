@@ -54,7 +54,7 @@
     <div class="tooltip tooltip-bottom flex flex-row items-center" data-tip={tooltip}>
         <button
             class="flex flex-row items-center gap-1
-            {$$props.class}"
+            {$$props.class || ``}"
             on:click|stopPropagation|preventDefault={() => { openModal(ZapModal, { event }) }}
         >
             <ZapIcon class="

@@ -14,6 +14,6 @@
     {pubkey}
     {user}
     {userProfile}
-    class={$$props.class}
+    class={$$props.class || ``}
     on:click
 />

@@ -4,7 +4,7 @@
   export let timestamp: number | undefined | null = undefined;
 </script>
 
-<div class="flex flex-row items-start justify-stretch w-full {$$props.class}">
+<div class="flex flex-row items-start justify-stretch w-full {$$props.class || ``}">
   <div class="min-w-0 flex-1 flex flex-col md:flex-row items-end justify-between flew-wrap gap-1">
     <h1 class="text-2xl font-bold leading-7 sm:truncate sm:text-4xl sm:tracking-tight">
       {title}

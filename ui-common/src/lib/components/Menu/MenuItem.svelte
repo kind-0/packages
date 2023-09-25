@@ -3,7 +3,7 @@
     export let active: boolean = false;
 </script>
 
-<li class={$$props.class}>
+<li class={$$props.class || ``}>
     <a
         {href}
         class="flex flex-row flex-grow"

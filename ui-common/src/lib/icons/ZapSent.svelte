@@ -1,4 +1,4 @@
-<svg width="365" height="411" viewBox="55 80 255 250" fill="none" xmlns="http://www.w3.org/2000/svg" class={$$props.class}>
+<svg width="365" height="411" viewBox="55 80 255 250" fill="none" xmlns="http://www.w3.org/2000/svg" class={$$props.class || ``}>
     <defs>
         <!-- Glow Filter -->
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">

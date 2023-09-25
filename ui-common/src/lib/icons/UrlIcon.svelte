@@ -2,7 +2,7 @@
     let rand = Math.floor(Math.random() * 1000000000);
   </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"  fill="currentColor" class={$$props.class}>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"  fill="currentColor" class={$$props.class || ``}>
     <g clip-path="url(#clip0_1805_3031{rand})">
       <g filter="url(#filter0_b_1805_3031{rand})">
         <path d="M19.9818 28H8.01818C3.56364 28 0 24.4364 0 19.9818V8.01818C0 3.56364 3.56364 0 8.01818 0H19.9818C24.4364 0 28 3.56364 28 8.01818V19.9818C27.9364 24.4364 24.3727 28 19.9818 28Z" fill="#111111" fill-opacity="0.66"/>

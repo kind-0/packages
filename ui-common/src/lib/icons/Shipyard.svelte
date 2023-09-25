@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="209" height="209" viewBox="0 0 209 209" fill="none" class={$$props.class}>
+<svg xmlns="http://www.w3.org/2000/svg" width="209" height="209" viewBox="0 0 209 209" fill="none" class={$$props.class || ``}>
   <g clip-path="url(#clip0_1745_2841)">
     <path d="M0.0996094 56.8001C0.0996094 25.6001 25.5996 0.100098 56.7996 0.100098H151.7C182.9 0.100098 208.4 25.6001 208.4 56.8001V151.7C208.4 182.9 182.9 208.4 151.7 208.4H56.7996C25.5996 208.4 0.0996094 182.9 0.0996094 151.7V56.8001Z" fill="black"/>
     <g opacity="0.16">

@@ -79,5 +79,5 @@
         textarea textarea-bordered
         text-lg
         resize-none
-        {$$props.class}
+        {$$props.class || ``}
 "></textarea>

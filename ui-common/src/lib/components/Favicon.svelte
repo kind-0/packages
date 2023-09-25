@@ -35,6 +35,6 @@
     />
 
     {#if faviconUrl !== null}
-        <img src={faviconUrl} alt="" class={$$props.class} />
+        <img src={faviconUrl} alt="" class={$$props.class || ``} />
     {/if}
 {/if}

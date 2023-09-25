@@ -27,7 +27,7 @@
 </script>
 
 {#if link}
-    <a href={link} class={$$props.class}>
+    <a href={link} class={$$props.class || ``}>
         {#if !$$slots.default}
             <AvatarWithName {user} />
         {:else}

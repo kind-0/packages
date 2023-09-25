@@ -32,6 +32,6 @@
         relative={useRelativeTime()}
         live={true}
         {timestamp}
-        class={$$props.class}
+        class={$$props.class || ``}
     />
 {/if}
