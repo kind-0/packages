@@ -35,7 +35,7 @@
 </script>
 
 <div
-    class="h-full w-full {!loaded ? loadingClass : ''}"
+    class="h-full w-full rounded-xl {!loaded ? loadingClass : ''}"
 >
     <img
         use:lazyLoad={image}

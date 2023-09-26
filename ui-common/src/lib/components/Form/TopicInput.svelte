@@ -6,6 +6,7 @@
     export let selectedTopics: string[] = [];
     export let availableTopics: string[] = [];
     export let suggestedTopics: string[] = [];
+    export let dropdownClass: string = ``
 
     availableTopics = [...new Set([...availableTopics, ...selectedTopics])];
 
@@ -16,7 +17,7 @@
     }
 </script>
 
-<details class="dropdown dropdown-end" bind:this={summary}>
+<details class="dropdown {dropdownClass || `dropdown-end`}" bind:this={summary}>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <summary class="btn border-0 m-1 {$$props.class??''}">
