@@ -4,7 +4,6 @@ packages:
   - 'tsconfig/**'
   - 'ui-common/**'
   - 'ui-mobile/**'
-  - 'ui-web/**'
   - 'utils/**'
   - 'ndk/ndk'
   - 'ndk/ndk-cache-redis'
