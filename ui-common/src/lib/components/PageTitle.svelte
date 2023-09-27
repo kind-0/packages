@@ -5,13 +5,13 @@
 </script>
 
 <div class="flex flex-row items-start justify-stretch w-full {$$props.class}">
-  <div class="min-w-0 flex-1 flex flex-col md:flex-row items-end justify-between flew-wrap gap-1">
+  <div class="min-w-0 flex-1 flex flex-col md:flex-row items-center justify-between flew-wrap gap-4">
     <h1 class="text-2xl font-bold leading-7 sm:truncate sm:text-4xl sm:tracking-tight">
       {title}
     </h1>
-    <div class="flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
+    <div class="flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 items-center">
       {#if subtitle}
-        <h2 class="flex items-center font-light text-base">
+        <h2 class="flex items-center font-light text-base opacity-60">
           {subtitle || ''}
         </h2>
       {/if}
@@ -35,7 +35,7 @@
       {/if}
     </div>
   </div>
-  <div class="flex">
+  <div class="flex items-center justify-center h-full">
     <slot />
   </div>
 </div>
