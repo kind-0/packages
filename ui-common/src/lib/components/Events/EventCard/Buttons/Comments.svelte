@@ -39,9 +39,7 @@
     }
 
     function handleClick() {
-        if (emit) {
-            dispatch('click');
-        } else {
+        if (dispatch('click', event, { cancelable: true })) {
             openModal(ReplyModal, { event })
         }
     }

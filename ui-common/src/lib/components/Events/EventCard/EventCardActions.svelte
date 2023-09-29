@@ -1,26 +1,21 @@
 <script lang="ts">
-	// import ZapsButton from '$lib/components/events/buttons/zaps.svelte';
-	// import RepliesButton from '$lib/components/events/buttons/replies.svelte';
-	// import BoostButton from '$lib/components/events/buttons/boost.svelte';
-	// import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
     import NDK, { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
 
-    // import HighlightButton from "./buttons/HighlightButton.svelte";
     import Zaps from "./Buttons/Zaps.svelte";
     import Comments from "./Buttons/Comments.svelte";
     import Bookmark from "./Buttons/Bookmark.svelte";
-    // import { user } from '$stores/session';
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let event: NDKEvent;
 
     let zappedAmount: number;
 
-    function shouldShowHighlightButton() {
-        const notAHighlight = event.kind !== NDKKind.Highlight;
-        const qTag = event.tagValue('q');
-        const kTag = event.tagValue('k') === '9802';
-
-        return notAHighlight && !(qTag && kTag);
+    function commentClicked(e: Event) {
+        if (!dispatch("reply", event, { cancelable: true })) {
+            e.preventDefault();
+        }
     }
 </script>
 
@@ -48,7 +43,11 @@
 -->
 
     <div>
-        <Comments {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light" />
+        <Comments
+            {event}
+            on:click={commentClicked}
+            class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light"
+        />
     </div>
 
     <div>

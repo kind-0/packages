@@ -94,7 +94,10 @@
 
 
                     <div>
-                        <EventCardActions {event} />
+                        <EventCardActions
+                            on:reply
+                            {event}
+                        />
                     </div>
                 </div>
             {:else if !skipFooter}
