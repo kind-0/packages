@@ -116,6 +116,7 @@ export { default as ResponsiveLogoNavbar } from './components/Navigation/Respons
  * Sidebar
  */
 export { default as SidebarSectionLink } from './components/Sidebar/SidebarSectionLink.svelte'
+export { default as CollapsibleSidebarMenuContainer } from './components/Sidebar/CollapsibleSidebarMenuContainer.svelte'
 
 /**
  * User
