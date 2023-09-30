@@ -1,5 +1,6 @@
 <script lang="ts">
     export let from: HTMLElement;
+    export let topOffset = 20;
 
     let bottomOfFrom: number = 0;
     let container: HTMLElement | undefined = undefined;
@@ -47,7 +48,7 @@
         margin-left: -20px;
         width: 20px;
         border-bottom-left-radius: 1rem;
-        height: {topOfContainer - bottomOfFrom + 20}px;
+        height: {topOfContainer - bottomOfFrom + topOffset}px;
         margin-top: -{topOfContainer - bottomOfFrom}px;
     "></div>
     <slot />
