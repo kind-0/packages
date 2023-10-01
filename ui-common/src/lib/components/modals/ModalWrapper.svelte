@@ -8,8 +8,6 @@
     export let onModalClose = async () => {return}
 
     async function onClose() {
-        console.log(`\nmodal onClose!\n`);
-
         closeModal()
         await onModalClose()
     }
