@@ -5,6 +5,14 @@
 
     export let title: string | undefined;
     export let subtitle: string | undefined = undefined;
+    export let onModalClose = async () => {return}
+
+    async function onClose() {
+        console.log(`\nmodal onClose!\n`);
+
+        closeModal()
+        await onModalClose()
+    }
 </script>
 
 <div class="
@@ -13,7 +21,7 @@
     flex justify-center items-center
     z-50
     w-screen
-" transition:fade on:click={closeModal}>
+" transition:fade on:click={onClose}>
     <div class="
         card
         rounded-3xl
@@ -30,7 +38,7 @@
                     class="absolute"
                     style="left: 22px; top: 22px;"
                 >
-                    <button on:click={closeModal} class="btn-close-inner w-7 h-7 p-1.5 rounded-full">
+                    <button on:click={onClose} class="btn-close-inner w-7 h-7 p-1.5 rounded-full">
                         <X />
                     </button>
                 </div>

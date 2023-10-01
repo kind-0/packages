@@ -15,6 +15,8 @@
     let eventId: string;
     let zaps: NDKEventStore<NDKEvent>;
     export let zappedAmount: number = 1000;
+    export let onZapsModalOpen = async () => {return}
+    export let onZapsModalClose = async () => {return}
 
     onDestroy(() => {
         if (zaps) zaps.unsubscribe();
@@ -55,7 +57,7 @@
         <button
             class="flex flex-row items-center gap-1
             {$$props.class}"
-            on:click|stopPropagation|preventDefault={() => { openModal(ZapModal, { event }) }}
+            on:click|stopPropagation|preventDefault={async () => { await onZapsModalOpen(); openModal(ZapModal, { event, onZapModalClose: async () => { await onZapsModalClose() } }) }}
         >
             <ZapIcon class="
                 w-4 h-4

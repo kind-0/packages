@@ -18,6 +18,7 @@
     import { nicelyFormattedSatNumber } from "../../utils/bitcoin.js";
 
     export let event: NDKEvent;
+    export let onZapModalClose = async () => {return}
 
     let zapSent = false;
 
@@ -125,7 +126,7 @@
     }, 0);
 </script>
 
-<ModalWrapper class="max-w-md" bodyClass="p-8" title="Zap">
+<ModalWrapper class="max-w-md" bodyClass="p-8" title="Zap" onModalClose={onZapModalClose}>
     {#if zapSent}
         <div class="flex flex-col items-center justify-center">
             <div>
