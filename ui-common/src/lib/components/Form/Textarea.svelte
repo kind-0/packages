@@ -73,6 +73,7 @@
     on:keydown={keydown}
     on:keyup
     on:change
+    on:input
     use:dropTextarea
     {...$$props}
     class="
