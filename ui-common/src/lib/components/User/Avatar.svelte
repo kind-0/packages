@@ -4,10 +4,11 @@
     import {Avatar} from '@nostr-dev-kit/ndk-svelte-components';
 
     export let pubkey: string | undefined = undefined;
+    export let npub: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
     export let klass: string = $$props.class??'';
-    export let size: 'tiny' | 'small' | 'large' | undefined = undefined;
+    export let size: 'tiny' | 'small' | 'medium' | 'large' | undefined = undefined;
     export let type: 'square' | 'circle' = 'circle';
 
     let sizeClass = '';
@@ -19,6 +20,9 @@
             break;
         case 'small':
             sizeClass = 'w-8 h-8';
+            break;
+        case 'medium':
+            sizeClass = 'w-12 h-12';
             break;
     }
 
@@ -35,6 +39,7 @@
 <Avatar
     ndk={$ndk}
     {pubkey}
+    {npub}
     {user}
     {userProfile}
     class="{shapeClass} {sizeClass} {$$props.class??klass}"
