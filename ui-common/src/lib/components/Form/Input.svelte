@@ -10,7 +10,8 @@
     on:keyup
     on:change
     on:blur
+    on:input
     class="
-        input input-bordered
+        input input-bordered focus:outline-0 focus:ring-0
     {$$props.class??""}
 " {...$$props} />

@@ -71,6 +71,11 @@ export { default as ThreeColumnsLayout } from './layouts/ThreeColumnsLayout.svel
 export { default as ResponsiveColumnsLayout } from './layouts/ResponsiveColumnsLayout.svelte'
 
 /**
+ * Layouts
+ */
+export { default as LoadingSpinner } from './components/Loading/LoadingSpinner.svelte'
+
+/**
  * Icons
  */
 export { default as ZapIcon } from './icons/ZapIcon.svelte';

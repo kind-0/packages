@@ -72,7 +72,7 @@
     }
 </script>
 
-<div class="dropdown">
+<div class="dropdown dropdown-end lg:dropdown-bottom">
     <label tabindex="0" on:click|stopPropagation={prepareDropdown} class="btn btn-circle bg-base-300 btn-xs">
         <DotsThree class="w-4 h-4" />
     </label>
