@@ -75,10 +75,10 @@
     on:change
     on:input
     use:dropTextarea
-    {...$$props}
     class="
-        textarea textarea-bordered
+        textarea textarea-bordered bg-base-100
+        focus:outline-0 focus:ring-0
         text-lg
         resize-none
         {$$props.class}
-"></textarea>
+" {...$$props}></textarea>

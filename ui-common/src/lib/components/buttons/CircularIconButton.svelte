@@ -1,9 +1,11 @@
 <script lang="ts">
     export let title: string;
-    export let group: string | number;
-    export let value: string | number;
+    export let group: string | number = ``;
+    export let value: string | number = ``;
+    export let onButtonClick = async () => {return}
 
-    let onClick = () => {
+    let onClick = async () => {
+        await onButtonClick()
         group = value
     }
 

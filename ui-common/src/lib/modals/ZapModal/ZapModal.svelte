@@ -16,9 +16,17 @@
     import CircularIconButton from "../../components/buttons/CircularIconButton.svelte";
     import AttentionButton from "../../components/buttons/AttentionButton.svelte";
     import { nicelyFormattedSatNumber } from "../../utils/bitcoin.js";
+    import CircularTitledButton from "../../components/buttons/CircularTitledButton.svelte";
+    import ZapIcon from "../../icons/ZapIcon.svelte";
+    import Input from "../../components/Form/Input.svelte";
+    import EntryInput from "../../components/Form/EntryInput.svelte";
+    import LoadingSpinner from "../../components/Loading/LoadingSpinner.svelte";
 
     export let event: NDKEvent;
     export let onZapModalClose = async () => {return}
+
+    let _loading = false
+    let _errorMessage = ``
 
     let zapSent = false;
 
@@ -30,6 +38,10 @@
     let comment = '';
     let zapButtonEnabled = true;
     let zapping = false;
+    
+    let showCustomAmountInput = false;
+    //let valueCustomAmount = ``
+    let errorCustomAmount = ``
 
     $: isCustomAmountSelected = ![1000, 10000, 50000, 100000].includes(amount)
 
@@ -37,7 +49,7 @@
         if (amount) {
             zapButtonEnabled = true;
         } else {
-            if (customAmount && isValidCustomAmount){
+            if ((!showCustomAmountInput && amount != 0) || (customAmount && isValidCustomAmount)){
                 zapButtonEnabled = true;
             } else {
                 zapButtonEnabled = false;
@@ -73,39 +85,49 @@
 
     async function zap() {
         // closeModal();
+        if(Number.isNaN(amount) && errorCustomAmount) {
+            alert('Specify a number to zap') ;
+            return;
+        }
 
-        const prs: string[] = await Promise.all(
+        try {
+            _loading = true
+
+            const prs: string[] = await Promise.all(
             zapSplits.map((zapSplit) =>
                 event.zap(
                     zapSplit[2] * 1000,
                     comment,
                     [],
                     $ndk.getUser({ hexpubkey: zapSplit[0] })  // if this is async, use await
-                )
-            )
-        );
+                )));
 
-        event.ndk = $ndk;
-        zapping = true;
+            event.ndk = $ndk;
+            zapping = true;
 
-        for (const pr of prs) {
-            if (!pr) {
-                console.log('no payment request');
-                continue
-            }
+            for (const pr of prs) {
+                if (!pr) {
+                    console.log('no payment request');
+                    continue
+                }
 
-            try {
                 const webln = await requestProvider();
                 await webln.sendPayment(pr);
                 zapping = false;
                 zapSent = true;
                 // TODO we should check here if the payment was successful, with a timer
                 // that is canceled here; if the timer doesn't come back, show the modal again
-                // or instruct the user to do something with the failed payment
-            } catch (err: any) {
-                zapping = false;
-                return;
             }
+        } catch (e) {
+            console.log(`zap modal error: `, e);
+            
+            let error_tmpl_1 = `Error: Prompt was closed`
+            
+            if(e.slice(error_tmpl_1.length) === error_tmpl_1) _errorMessage = ``
+            
+            zapping = false;
+        } finally {
+            _loading = false
         }
     }
 
@@ -127,101 +149,109 @@
 </script>
 
 <ModalWrapper class="max-w-md" bodyClass="p-8" title="Zap" onModalClose={onZapModalClose}>
-    {#if zapSent}
-        <div class="flex flex-col items-center justify-center">
-            <div>
-                <ZapSent class="h-[267px]"/>
+    <div class="flex max-lg:flex-col flex-row flex-nowrap h-mobileModalContents justify-start gap-4">
+        {#if _loading}
+            <div class="flex flex-col h-full w-full justify-center items-center">
+                <LoadingSpinner />
             </div>
-            <SubtleButton handleClick={closeModal} class="w-fit">
-                <span class="glow flex items-center gap-3 text-base-100-content text-base leading-normal font-normal">
-                    <CheckSimple class="text-accent"/>
-                    Zap Sent
-                </span>
-            </SubtleButton>
-        </div>
-
-    {:else}
-        <div class="flex flex-col gap-8">
-            <div class="flex flex-col gap-4">
-                <div
-                    class="text-base-300-content text-sm font-semibold tracking-widest"
-                    class:hidden={zapSplits.length === 1}
-                >SPLITS</div>
-                {#if zapSplits}
-                    {#each zapSplits as zapSplit}
-                        <ZapUserSplit
-                            pubkey={zapSplit[0]}
-                            bind:split={zapSplit[1]}
-                            bind:satSplit={zapSplit[2]}
-                            {totalSplitValue}
-                            totalSatsAvailable={amount}
-                            hideRange={zapSplits.length === 1}
-                        />
-                    {/each}
-                {/if}
-                <!-- TODO add other people involved in the highlight? -->
+        {:else if zapSent}
+            <div class="flex flex-col items-center justify-center">
+                <div>
+                    <ZapSent class="h-[267px]"/>
+                </div>
+                <SubtleButton handleClick={closeModal} class="w-fit">
+                    <span class="glow flex items-center gap-3 text-base-100-content text-base leading-normal font-normal">
+                        <CheckSimple class="text-accent"/>
+                        Zap Sent
+                    </span>
+                </SubtleButton>
             </div>
+        {:else}
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-4">
+                    <div
+                        class="text-base-300-content text-sm font-semibold tracking-widest"
+                        class:hidden={zapSplits.length === 1}
+                    >SPLITS</div>
+                    {#if zapSplits}
+                        {#each zapSplits as zapSplit}
+                            <ZapUserSplit
+                                pubkey={zapSplit[0]}
+                                bind:split={zapSplit[1]}
+                                bind:satSplit={zapSplit[2]}
+                                {totalSplitValue}
+                                totalSatsAvailable={amount}
+                                hideRange={zapSplits.length === 1}
+                            />
+                        {/each}
+                    {/if}
+                    <!-- TODO add other people involved in the highlight? -->
+                </div>
 
-            <div class="flex flex-col gap-3">
-                <div class="text-base-300-content text-sm font-semibold tracking-widest">AMOUNT</div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-base-300-content text-sm font-semibold tracking-widest">AMOUNT</div>
 
-                <div class="flex flex-row gap-4">
-                    <div class="flex flex-row gap-3">
-                        <CircularIconButton title={"1K"} bind:group={amount} value={1000}>
-                            <Like />
-                        </CircularIconButton>
-                        <CircularIconButton title={"10K"} bind:group={amount} value={10000}>
-                            <Heart />
-                        </CircularIconButton>
-                        <CircularIconButton title={"50K"} bind:group={amount} value={50000}>
-                            <Fire />
-                        </CircularIconButton>
-                        <CircularIconButton title={"100K"} bind:group={amount} value={100000}>
-                            <Rocket />
-                        </CircularIconButton>
+                    <div class="flex max-lg:flex-col flex-row gap-4">
+                        <div class="flex flex-row gap-3">
+                            <CircularIconButton title={"1K"} bind:group={amount} value={1000} onButtonClick={async () => { showCustomAmountInput = false } }>
+                                <Like />
+                            </CircularIconButton>
+                            <CircularIconButton title={"10K"} bind:group={amount} value={10000} onButtonClick={async () => { showCustomAmountInput = false } }>
+                                <Heart />
+                            </CircularIconButton>
+                            <CircularIconButton title={"50K"} bind:group={amount} value={50000} onButtonClick={async () => { showCustomAmountInput = false } }>
+                                <Fire />
+                            </CircularIconButton>
+                            <CircularIconButton title={"100K"} bind:group={amount} value={100000} onButtonClick={async () => { showCustomAmountInput = false } }>
+                                <Rocket />
+                            </CircularIconButton>
+                            <CircularTitledButton title={"Custom"} buttonActive={showCustomAmountInput} onClick={async () => { amount = showCustomAmountInput ? 1000 : 0; showCustomAmountInput = !showCustomAmountInput }}>
+                                <ZapIcon />
+                            </CircularTitledButton>
+                        </div>
                     </div>
-                    <div class="w-full flex flex-col items-center">
-                        <input
-                            type="text"
+                    
+                    <div class="flex flex-col w-full justify-center items-center pt-4 gap-4">
+                        {#if showCustomAmountInput}
+                            <div class="flex flex-col w-full justify-center items-center bg-red-200">
+                                <EntryInput 
+                                    placeholder="Zap custom amount..." 
+                                    onInputCallback={async () => { errorCustomAmount = `` }}
+                                    onInputValidation={async v => /^[1-9]\d*$/.test(v)}
+                                    onInputValidationSuccess={async v => { amount = Number(v) }}
+                                    onInputValidationFailure={async () => { amount = 0; errorCustomAmount = `Please enter a number.` }}
+                                }} />
+                            </div>
+                            {#if errorCustomAmount}
+                                <div class="flex flex-row w-full justify-center items-center">
+                                    <p class="font-sans font-light text-sm">
+                                        {`${errorCustomAmount}`}
+                                    </p>
+                                </div>
+                            {/if}
+                        {/if}
+                        <Input
+                            _class="w-full"
                             maxlength="50"
-                            class="
-                                input text-center w-full  rounded-full h-11 mb-2
-                                w-48
-                                border-1 {isCustomAmountSelected ? 'border-accent': 'border-neutral-800'}
-                                focus:ring-transparent focus:border-accent
-                                {isValidCustomAmount ? '!bg-transparent' : '!bg-error !bg-opacity-20'}
-                            "
-                            bind:value={customAmount}
-                            on:focus={focusCustomInput}
-                            on:blur={clearCustomAmount}
-                            on:input={validateCustomAmount}/>
-                        <span class="text-xs text-center font-normal text-base-100-content">
-                            Custom
-                        </span>
+                            placeholder="Add a comment..."
+                            bind:value={comment}/>
                     </div>
                 </div>
-            </div>
 
-            <input
-                type="text"
-                maxlength="50"
-                class="
-                    input text-start text-base px-6 w-full  rounded-full h-11
-                    border-1 border-neutral-800 focus:ring-transparent focus:border-neutral-800
-                    !bg-transparent
-                "
-                placeholder="Add a comment..."
-                bind:value={comment}/>
-
-            <AttentionButton on:click={zap} class="{!zapButtonEnabled ? 'btn-disabled' : ''}">
-                {#if zapping}
-                    <span class="loading loading-sm opacity-50"></span>
-                {:else}
+                <AttentionButton on:click={zap} class="{!zapButtonEnabled ? 'btn-disabled' : ''}" loading={zapping}>
                     Zap
                     {nicelyFormattedSatNumber(amount)}
                     sats
+                </AttentionButton>
+
+                {#if _errorMessage}
+                    <div class="flex flex-col w-full justify-center items-center">
+                        <p class="font-sans font-medium text-base">
+                            {`There was an error: ${_errorMessage}`}
+                        </p>
+                    </div>
                 {/if}
-            </AttentionButton>
-        </div>
-    {/if}
+            </div>
+        {/if}
+    </div>
 </ModalWrapper>

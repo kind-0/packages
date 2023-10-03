@@ -62,6 +62,7 @@ export { default as Textarea } from './components/Form/Textarea.svelte';
 export { default as Input } from './components/Form/Input.svelte';
 export { default as TopicInput } from './components/Form/TopicInput.svelte';
 export { default as AddTopicInput } from './components/Form/AddTopicInput.svelte';
+export { default as EntryInput } from './components/Form/EntryInput.svelte';
 
 /**
  * Layouts

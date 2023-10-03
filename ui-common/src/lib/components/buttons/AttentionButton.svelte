@@ -1,6 +1,7 @@
 <script lang="ts">
     export let href: string | undefined = undefined;
     export let color: 'accent' | 'accent2' = 'accent2'
+    export let loading = false
 </script>
 
 {#if href}
@@ -8,8 +9,12 @@
         <slot />
     </a>
 {:else}
-    <button on:click class="{color} {$$props.class??""}">
-        <slot />
+    <button on:click class="{color} {$$props.class??""} {loading ? `` : ``}">
+        {#if loading}
+            <span class="loading loading-spinner loading-sm opacity-50"></span>
+        {:else}
+            <slot />
+        {/if}
     </button>
 {/if}
 
