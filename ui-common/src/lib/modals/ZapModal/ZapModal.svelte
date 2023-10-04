@@ -27,6 +27,7 @@
 
     let _loading = false
     let _errorMessage = ``
+    let _weblnPageReload = false
 
     let zapSent = false;
 
@@ -85,14 +86,14 @@
 
     async function zap() {
         // closeModal();
+
         if(Number.isNaN(amount) && errorCustomAmount) {
             alert('Specify a number to zap') ;
             return;
         }
 
+        _loading = true
         try {
-            _loading = true
-
             const prs: string[] = await Promise.all(
             zapSplits.map((zapSplit) =>
                 event.zap(
@@ -120,12 +121,24 @@
             }
         } catch (e) {
             console.log(`zap modal error: `, e);
-            
+
+            const error_msg = String(e).trim()
+            console.log(`error_msg:${error_msg}`);
+
             let error_tmpl_1 = `Error: Prompt was closed`
-            
-            if(e.slice(error_tmpl_1.length) === error_tmpl_1) _errorMessage = ``
+            let error_tmpl_2 = `Error: webln.enable() failed`
+
+            if(error_msg.slice(0, error_tmpl_1.length) === error_tmpl_1) {
+                _errorMessage = `Zaps require 'webln'.`
+                alert(_errorMessage)
+
+            } else if(error_msg.slice(0, error_tmpl_2.length) === error_tmpl_2) {
+                _errorMessage = `Reloading the page.`
+                _weblnPageReload = true
+            }
             
             zapping = false;
+            _loading = false
         } finally {
             _loading = false
         }
@@ -146,15 +159,20 @@
     $: totalSplitValue = zapSplits.reduce((acc: number, split: Split) => {
         return acc + split[1];
     }, 0);
+
+
+    $: {
+        if(_weblnPageReload) {
+            _weblnPageReload = false
+            location.reload()
+        }
+        
+    }
 </script>
 
 <ModalWrapper class="max-w-md" bodyClass="p-8" title="Zap" onModalClose={onZapModalClose}>
     <div class="flex max-lg:flex-col flex-row flex-nowrap h-mobileModalContents justify-start gap-4">
-        {#if _loading}
-            <div class="flex flex-col h-full w-full justify-center items-center">
-                <LoadingSpinner />
-            </div>
-        {:else if zapSent}
+        {#if zapSent}
             <div class="flex flex-col items-center justify-center">
                 <div>
                     <ZapSent class="h-[267px]"/>
@@ -217,7 +235,7 @@
                                 <EntryInput 
                                     placeholder="Zap custom amount..." 
                                     onInputCallback={async () => { errorCustomAmount = `` }}
-                                    onInputValidation={async v => /^[1-9]\d*$/.test(v)}
+                                    onInputValidation={async v => /^[0-9]\d*$/.test(v)}
                                     onInputValidationSuccess={async v => { amount = Number(v) }}
                                     onInputValidationFailure={async () => { amount = 0; errorCustomAmount = `Please enter a number.` }}
                                 }} />
@@ -238,19 +256,29 @@
                     </div>
                 </div>
 
-                <AttentionButton on:click={zap} class="{!zapButtonEnabled ? 'btn-disabled' : ''}" loading={zapping}>
+                <AttentionButton on:click={zap} class="{!zapButtonEnabled ? 'btn-disabled' : ''}">
                     Zap
                     {nicelyFormattedSatNumber(amount)}
                     sats
                 </AttentionButton>
 
-                {#if _errorMessage}
+                {#if _loading}
+                    <div class="flex flex-row w-full justify-center items-center">
+                        <div class="flex flex-row gap-2">
+                            <LoadingSpinner class="h-3 w-3 text-stone-200" />
+                            <p class="font-sans font-medium text-sm">
+                                {`Loading 'webln'`}
+                            </p>
+                        </div>
+                    </div>
+                {:else if !!_errorMessage}
                     <div class="flex flex-col w-full justify-center items-center">
-                        <p class="font-sans font-medium text-base">
-                            {`There was an error: ${_errorMessage}`}
+                        <p class="font-sans font-medium text-sm">
+                            {`${_errorMessage}`}
                         </p>
                     </div>
                 {/if}
+
             </div>
         {/if}
     </div>
