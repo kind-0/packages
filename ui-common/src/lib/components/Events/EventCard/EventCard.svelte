@@ -13,6 +13,8 @@
     export let authorAction: string | undefined = undefined;
     export let skipHeader = false;
     export let skipFooter = false;
+    export let disableZaps = false;
+    export let disableBookmark = false;
 
     /**
      * Whether this event should be expandible so that clicking on it
@@ -56,13 +58,17 @@
                             />
                         </div>
 
-                        {#if event.created_at}
-                            <a href={linkToEvent()}>
-                                <RelativeTime
-                                    {event}
-                                    class="text-sm whitespace-nowrap"
-                                />
-                            </a>
+                        {#if $$slots.headerTime}
+                            <slot name="headerTime" />
+                        {:else}
+                            {#if event.created_at}
+                                <a href={linkToEvent()}>
+                                    <RelativeTime
+                                        {event}
+                                        class="text-sm whitespace-nowrap"
+                                    />
+                                </a>
+                            {/if}
                         {/if}
                     </div>
                 </div>
@@ -97,7 +103,13 @@
                         <EventCardActions
                             on:reply
                             {event}
-                        />
+                            {disableZaps}
+                            {disableBookmark}
+                        >
+                            {#if $$slots.extraActions}
+                                <slot name="extraActions" />
+                            {/if}
+                        </EventCardActions>
                     </div>
                 </div>
             {:else if !skipFooter}

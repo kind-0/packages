@@ -6,9 +6,11 @@
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
     import { ndk } from "../../../stores/ndk";
     import { onDestroy } from "svelte";
+    import ElementConnector from "../../ElementConnector.svelte";
 
     export let event: NDKEvent;
     export let skipEvent = false;
+    export let eventCardProps: any = {};
 
     const replies = $ndk.storeSubscribe({
         kinds: [1],
@@ -43,20 +45,47 @@
 
         return true;
     }
+
+    let eventContainer: HTMLElement;
 </script>
 
-<div class="flex flex-col gap-4 my-2 w-96" transition:fade={{ duration: 500 }}>
+<div class="flex flex-col gap-4 my-2" transition:fade={{ duration: 500 }}>
     {#if !skipEvent}
-        <EventCard {event} class="border border-base-300 w-full">
-            <EventContent ndk={$ndk} {event} />
-        </EventCard>
+        <div class="event-wrapper w-full" bind:this={eventContainer}>
+            <EventCard
+                {event}
+                on:reply
+                class="border border-base-300 w-full"
+                {...eventCardProps}
+            >
+                <EventContent ndk={$ndk} {event} class="event-content" />
+                <slot slot="extraActions" name="extraActions" />
+            </EventCard>
+        </div>
     {/if}
 
     {#if $actualReplies?.length > 0}
-        <div class="flex flex-col gap-4 max-lg:pl-4 lg:pl-12">
-            {#each $actualReplies as reply}
-                <svelte:self event={reply} skipEvent={false} />
-            {/each}
+        <div class="max-lg:pl-4 lg:pl-12">
+            <ElementConnector
+                from={eventContainer}
+                topOffset={80}
+            >
+                <div class="flex flex-col gap-4">
+                    {#each $actualReplies as reply}
+                        <svelte:self
+                            event={reply}
+                            skipEvent={false}
+                            {eventCardProps}
+                        />
+                    {/each}
+                </div>
+            </ElementConnector>
         </div>
     {/if}
 </div>
+
+<style lang="postcss">
+    :global(.event-content a) {
+        @apply text-accent;
+    }
+</style>

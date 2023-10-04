@@ -9,6 +9,8 @@
     const dispatch = createEventDispatcher();
 
     export let event: NDKEvent;
+    export let disableZaps = false;
+    export let disableBookmark = false;
 
     let zappedAmount: number;
 
@@ -41,20 +43,27 @@
         </div>
     </div>
 -->
+    {#if $$slots.default}
+        <slot />
+    {/if}
 
     <div>
         <Comments
             {event}
             on:click={commentClicked}
-            class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light"
+            class="btn bg-base-300 btn-sm p-1 !rounded-full px-3 font-light"
         />
     </div>
 
-    <div>
-        <Zaps bind:zappedAmount {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-2.5 font-light" />
-    </div>
+    {#if !disableZaps}
+        <div>
+            <Zaps bind:zappedAmount {event} class="btn bg-base-300 btn-sm p-1 !rounded-full px-2.5 font-light" />
+        </div>
+    {/if}
 
-    <div>
-        <Bookmark {event} class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light" />
-    </div>
+    {#if !disableBookmark}
+        <div>
+            <Bookmark {event} class="btn bg-base-300 btn-sm p-1 !rounded-full px-3 font-light" />
+        </div>
+    {/if}
 </div>
