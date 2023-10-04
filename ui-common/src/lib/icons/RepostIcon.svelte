@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" class={$$props.class || ``}><path d="M229.5,113,166.07,90,143,26.5a16,16,0,0,0-30,0L90,89.93,26.5,113a16,16,0,0,0,0,30l63.43,23L113,229.5a16,16,0,0,0,30,0l23.07-63.44L229.5,143a16,16,0,0,0,0-30Zm-68.93,38a16,16,0,0,0-9.54,9.54L128,223.9l-23-63.33A16,16,0,0,0,95.43,151L32.1,128l63.33-23A16,16,0,0,0,105,95.43L128,32.1l23,63.33a16,16,0,0,0,9.54,9.54l63.33,23Z"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class={$$props.class??""}>
+    <path d="M1.33398 8.33325C1.33398 6.11659 3.13265 4.33325 5.33398 4.33325H14.6673" stroke="#B3B3B3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.6673 2.33325L14.6673 4.33325L12.6673 6.33325M14.6673 7.66658C14.6673 9.88325 12.8687 11.6666 10.6673 11.6666H1.33398" stroke="#B3B3B3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.33398 13.6665L1.33398 11.6665L3.33398 9.6665" stroke="#B3B3B3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
