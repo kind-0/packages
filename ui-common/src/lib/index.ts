@@ -11,6 +11,7 @@ export const userLabels = writable<Set<string>>(new Set());
 export * from './stores/nip89.js';
 export * from './stores/ndk.js';
 export * from './stores/toaster.js';
+export * from './stores/layout.js';
 
 /**
  * Buttons

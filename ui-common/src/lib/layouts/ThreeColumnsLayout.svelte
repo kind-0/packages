@@ -1,5 +1,6 @@
 <script lang="ts">
     import Toaster from "../components/Toaster/Toaster.svelte";
+    import { rightSidebar } from "../stores/layout.js";
 </script>
 
 <div class="w-screen lg:w-fit mx-0 lg:mx-auto flex flex-col gap-0 lg:gap-8 min-h-screen">
@@ -21,6 +22,8 @@
         <div class="hidden lg:block w-auto lg:w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto">
             {#if $$slots.rightSidebar}
                 <slot name="rightSidebar" />
+            {:else if $rightSidebar?.component}
+                <svelte:component this={$rightSidebar.component} {...$rightSidebar.props} />
             {/if}
         </div>
     </div>
