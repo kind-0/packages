@@ -3,6 +3,8 @@
     import Time from "svelte-time";
 
     export let event: NDKEvent | undefined = undefined;
+    export let relative = true;
+    export let format: string | undefined = undefined;
 
     /**
      * Timestamp to display
@@ -20,6 +22,8 @@
     export let timeAgoCutoff: number = 60*60*24;
 
     function useRelativeTime() {
+        if (!relative) return false;
+
         const now = Date.now();
         const diff = now - timestamp;
 
@@ -33,5 +37,6 @@
         live={true}
         {timestamp}
         class={$$props.class || ``}
+        {format}
     />
 {/if}
