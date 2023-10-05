@@ -11,7 +11,7 @@
     <div class="flex flex-col w-main h-full overflow-x-scroll justify-start items-start bg-blue-200">
         <slot />
     </div>
-    <div class="flex flex-col basis-1/4 h-full justify-center items-center bg-yellow-300">
+    <div class="flex flex-col basis-1/4 h-full justify-center items-center bg-red-300">
         {#if $$slots.rightSidebar}
             <slot name="rightSidebar" />
         {:else if $rightSidebar?.component}

@@ -231,7 +231,7 @@
                     
                     <div class="flex flex-col w-full justify-center items-center pt-4 gap-4">
                         {#if showCustomAmountInput}
-                            <div class="flex flex-col w-full justify-center items-center bg-red-200">
+                            <div class="flex flex-col w-full justify-center items-center">
                                 <EntryInput 
                                     placeholder="Zap custom amount..." 
                                     onInputCallback={async () => { errorCustomAmount = `` }}
