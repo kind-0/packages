@@ -70,6 +70,7 @@ export { default as EntryInput } from './components/Form/EntryInput.svelte';
  */
 export { default as MainWithRightSidebar } from './layouts/MainWithRightSidebar.svelte'
 export { default as ThreeColumnsLayout } from './layouts/ThreeColumnsLayout.svelte'
+export { default as ThreeColumnsLayout2 } from './layouts/ThreeColumnsLayout2.svelte'
 export { default as ResponsiveColumnsLayout } from './layouts/ResponsiveColumnsLayout.svelte'
 
 /**

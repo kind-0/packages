@@ -1,11 +1,6 @@
 <script lang="ts">
     import Toaster from "../components/Toaster/Toaster.svelte";
     import { rightSidebar } from "../stores/layout.js";
-
-    /*
-
-
-    */
 </script>
 
 <div class="w-screen flex flex-col gap-0 lg:gap-8 min-h-screen">
@@ -16,12 +11,12 @@
     {/if}
 
     <div class="flex flex-row w-full px-0 lg:px-2">
-        <div class="max-lg:hidden min-w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto">
+        <div class="block max-lg:hidden min-w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto bg-red-300">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />
             {/if}
         </div>
-        <div class="flex flex-col basis-3/5 justify-start">
+        <div class="flex flex-col basis-3/5 justify-start bg-red-200">
             <slot />
         </div>
         <div class="max-lg:hidden basis-1/5 sticky top-0 max-h-[90vh] overflow-y-auto">
