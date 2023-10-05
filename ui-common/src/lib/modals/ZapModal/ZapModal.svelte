@@ -170,7 +170,7 @@
     }
 </script>
 
-<ModalWrapper class="max-w-md" bodyClass="p-8" title="Zap" onModalClose={onZapModalClose}>
+<ModalWrapper class="h-[500px]" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose}>
     <div class="flex max-lg:flex-col flex-row flex-nowrap h-mobileModalContents justify-center gap-4">
         {#if zapSent}
             <div class="flex flex-col items-center justify-center">

@@ -75,3 +75,14 @@
     padding: 1px;
     @apply transition duration-300;
 }
+
+@layer base {
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+}
