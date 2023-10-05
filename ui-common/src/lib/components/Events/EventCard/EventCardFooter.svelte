@@ -51,10 +51,7 @@
         {/if}
 
         <div class="md:opacity-10 group-hover:opacity-100">
-            <EventCardDropdown
-                {event}
-                on:deleted={() => deleted = true}
-            />
+            <EventCardDropdown {event} />
         </div>
     </div>
 
