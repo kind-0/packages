@@ -5,15 +5,15 @@
 </script>
 
 <div class="flex flex-row items-center justify-stretch w-full {$$props.class}">
-  <div class="min-w-0 flex-1 flex flex-col md:flex-row items-center justify-between flew-wrap gap-4">
+  <div class="min-w-0 flex-1 flex flex-row items-center justify-start flew-wrap gap-2 px-4">
     <h1 class="text-2xl font-bold leading-7 sm:truncate sm:text-4xl sm:tracking-tight !text-base-100-content">
       {title}
     </h1>
     <div class="flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 items-center">
       {#if subtitle}
-        <h2 class="flex items-center font-light text-base opacity-60">
-          {subtitle || ''}
-        </h2>
+        <h1 class="text-2xl font-bold leading-7 sm:truncate sm:text-4xl sm:tracking-tight !text-base-100-content">
+        {subtitle || ''}
+        </h1>
       {/if}
 
       {#if timestamp}
