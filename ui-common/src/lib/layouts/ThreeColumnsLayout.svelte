@@ -12,8 +12,8 @@
         </div>
     {/if}
 
-    <div class="flex flex-row w-full px-0 gap-0 lg:gap-4">
-        <div class="block max-lg:hidden min-w-sidebar sticky top-0 max-h-[90vh] overflow-y-auto">
+    <div class="flex flex-row px-0 gap-32 lg:mx-auto">
+        <div class="hidden lg:block w-auto lg:w-sidebar sticky max-h-[90vh] overflow-y-auto top-0">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />
             {/if}

@@ -10,7 +10,7 @@
 
     export let event: NDKEvent;
     export let skipEvent = false;
-    export let eventCardProps: any = {};
+    export let eventCardActionsComponent: any = undefined;
 
     const replies = $ndk.storeSubscribe({
         kinds: [1],
@@ -55,31 +55,33 @@
             <EventCard
                 {event}
                 on:reply
+                skipHeader={!$$slots.header}
                 class="border border-base-300 w-full"
-                {...eventCardProps}
+                {eventCardActionsComponent}
             >
+                <slot slot="header" name="header" />
                 <EventContent ndk={$ndk} {event} class="event-content" />
-                <slot slot="extraActions" name="extraActions" />
             </EventCard>
         </div>
     {/if}
 
     {#if $actualReplies?.length > 0}
         <div class="max-lg:pl-4 lg:pl-12">
-            <ElementConnector
-                from={eventContainer}
-                topOffset={80}
-            >
-                <div class="flex flex-col gap-4">
-                    {#each $actualReplies as reply}
+            <div class="flex flex-col gap-4">
+                {#each $actualReplies as reply}
+                    <ElementConnector
+                        from={eventContainer}
+                        topOffset={80}
+                    >
                         <svelte:self
                             event={reply}
+                            on:reply
                             skipEvent={false}
-                            {eventCardProps}
+                            {eventCardActionsComponent}
                         />
-                    {/each}
-                </div>
-            </ElementConnector>
+                    </ElementConnector>
+                {/each}
+            </div>
         </div>
     {/if}
 </div>

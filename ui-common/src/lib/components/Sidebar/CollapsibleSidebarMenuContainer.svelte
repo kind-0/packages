@@ -5,7 +5,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let title: string;
+    export let title: string | undefined = undefined;
     export let icon: typeof SvelteComponent | undefined = undefined;
     export let open: boolean = true;
 
@@ -27,7 +27,9 @@
             <svelte:component this={icon} class="text-accent w-6 h-6" />
         {/if}
 
-        {title}
+        {#if title}
+            {title}
+        {/if}
     </button>
 
     {#if open}

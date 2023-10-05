@@ -22,15 +22,15 @@
 </script>
 
 <div class="relative">
-    <button 
+    <button
         on:click={() => (isOpen = true)}
         class="{!isOpen ? 'block' : 'hidden'} transition-all"
     >
         <slot name="dropdown-btn-open" />
     </button>
 
-    <button 
-        on:click={() => (isOpen = false)} 
+    <button
+        on:click={() => (isOpen = false)}
         class="{isOpen ? 'block' : 'hidden'} transition-all"
     >
         <slot name="dropdown-btn-close">
@@ -41,12 +41,13 @@
             </button>
         </slot>
     </button>
-    
-    <div 
-        use:clickOutside 
-        on:outclick={() => (isOpen = false)}
-        class={isOpen ? "block" : "hidden"}
-    >
-        <slot name="dropdown-content" />
-    </div>
+
+    {#if isOpen}
+        <div
+            use:clickOutside
+            on:outclick={() => (isOpen = false)}
+        >
+            <slot name="dropdown-content" />
+        </div>
+    {/if}
 </div>

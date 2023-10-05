@@ -1,13 +1,7 @@
 <script lang="ts">
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
-    import RelativeTime from "../../RelativeTime.svelte";
-
-    import { ndk } from "../../../stores/ndk.js";
-
+    import EventCardFooter from "./EventCardFooter.svelte";
     import EventCardActions from "./EventCardActions.svelte";
-    import Avatar from "../../User/Avatar.svelte";
-    import Name from "../../User/Name.svelte";
-    import EventCardDropdown from "./EventCardDropdown.svelte";
 
     export let event: NDKEvent;
     export let authorAction: string | undefined = undefined;
@@ -15,16 +9,13 @@
     export let skipFooter = false;
     export let disableZaps = false;
     export let disableBookmark = false;
+    export let eventCardActionsComponent: any = EventCardActions;
 
     /**
      * Whether this event should be expandible so that clicking on it
      * will open a thread view
      */
     export let expandible = true;
-
-    function linkToEvent() {
-        return `/e/${event.encode()}`;
-    }
 
     let deleted = false;
 
@@ -36,9 +27,12 @@
             return;
         }
 
-
         // $rightDrawerContent = event;
     }
+
+    let showHeader: boolean;
+
+    $: showHeader = !skipHeader && ($$slots.header) || ($$slots.headerTime);
 </script>
 
 {#if !deleted}
@@ -46,74 +40,41 @@
         card card-compact !rounded-none md:!rounded-2xl group {$$props.class??""}
     " on:mouseenter on:mouseleave on:click={toggleDrawer}>
         <div class="card-body flex flex-col text-base gap-4">
-            {#if !skipHeader}
+            {#if showHeader}
                 <div class="flex flex-row justify-between gap-4 md:gap-12">
-                    <slot name="header" />
-
-                    <div class="flex flex-row items-center gap-4">
-                        <div class="md:opacity-10 group-hover:opacity-100">
-                            <EventCardDropdown
-                                {event}
-                                on:deleted={() => deleted = true}
-                            />
+                    {#if $$slots.header}
+                        <div class="flex-grow">
+                            <slot name="header" />
                         </div>
+                    {:else}
+                        <div>&nbsp;</div>
+                    {/if}
 
+                    <div class="flex flex-row items-center gap-4 self-end">
                         {#if $$slots.headerTime}
                             <slot name="headerTime" />
-                        {:else}
-                            {#if event.created_at}
-                                <a href={linkToEvent()}>
-                                    <RelativeTime
-                                        {event}
-                                        class="text-sm whitespace-nowrap"
-                                    />
-                                </a>
-                            {/if}
                         {/if}
                     </div>
                 </div>
             {/if}
 
-            <slot />
+            <div class="event-card--content">
+                <slot />
+            </div>
 
-            {#if !skipFooter && !$$slots.footer}
-                <div class="flex flex-row items-center justify-between">
-                    <a
-                        href="/p/{event.author.npub}"
-                        class="flex flex-row items-center gap-2 text-sm"
+            {#if !skipFooter}
+                {#if !$$slots.footer}
+                    <EventCardFooter
+                        {event}
+                        {authorAction}
+                        on:reply
+                        {eventCardActionsComponent}
                     >
-                        <Avatar user={event.author} size="small" />
-                        <div class="text-xs hidden md:block">
-                            {#if authorAction}
-                                <span>
-                                    {authorAction}
-                                </span>
-                            {/if}
-
-                            <span
-                                class="text-xs font-semibold"
-                            >
-                                <Name ndk={$ndk} user={event.author} />
-                            </span>
-                        </div>
-                    </a>
-
-
-                    <div>
-                        <EventCardActions
-                            on:reply
-                            {event}
-                            {disableZaps}
-                            {disableBookmark}
-                        >
-                            {#if $$slots.extraActions}
-                                <slot name="extraActions" />
-                            {/if}
-                        </EventCardActions>
-                    </div>
-                </div>
-            {:else if !skipFooter}
-                <slot name="footer" />
+                        <slot slot="extraActions" name="extraActions" />
+                    </EventCardFooter>
+                {:else}
+                    <slot name="footer" />
+                {/if}
             {/if}
         </div>
     </div>
@@ -122,5 +83,10 @@
 <style>
     .card.card-compact .card-body {
         @apply text-base;
+    }
+
+    :global(.event-card--content) {
+        @apply text-lg;
+        font-weight: 300 !important;
     }
 </style>

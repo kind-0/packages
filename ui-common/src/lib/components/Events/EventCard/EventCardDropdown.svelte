@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { NDKEvent } from "@nostr-dev-kit/ndk";
+    import type { NDKEvent } from "@nostr-dev-kit/ndk";
 
     import { Anchor, Copy, DotsThree, Garage, Link, Trash } from "phosphor-svelte";
     import { onMount } from "svelte";
@@ -77,7 +77,7 @@
         <DotsThree class="w-4 h-4" />
     </label>
 
-    <ul tabindex="0" class="dropdown-content z-50 menu p-2 rounded-box w-48">
+    <ul tabindex="0" class="dropdown-content z-50 menu p-2 rounded-box w-48 border border-base-300">
         <li>
             <a href="/e/{event.encode()}" class="flex flex-row items-center gap-3">
                 <Anchor class="w-4 h-4" />
