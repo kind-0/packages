@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors");
+//const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
@@ -22,6 +22,9 @@ module.exports = {
       width: {
         'sidebar': '244px',
         'main': '700px',
+      },
+      maxWidth: {
+        'mainContentLg': '820px'
       },
       spacing: {
         '32': '32px'
