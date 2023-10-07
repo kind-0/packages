@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { NDKEvent } from "@nostr-dev-kit/ndk";
+    import type { Hexpubkey, NDKEvent } from "@nostr-dev-kit/ndk";
     import { derived } from 'svelte/store';
     import { fade } from 'svelte/transition';
     import EventCard from "../EventCard/EventCard.svelte";
@@ -7,10 +7,13 @@
     import { ndk } from "../../../stores/ndk";
     import { onDestroy } from "svelte";
     import ElementConnector from "../../ElementConnector.svelte";
+  import SubtleButton from "../../buttons/SubtleButton.svelte";
 
     export let event: NDKEvent;
     export let skipEvent = false;
     export let eventCardActionsComponent: any = undefined;
+    export let whitelistPubkeys: Set<Hexpubkey> | undefined = undefined;
+    export let useWhitelist = true;
 
     const replies = $ndk.storeSubscribe({
         kinds: [1],
@@ -38,10 +41,11 @@
 
         if (replyMarker) return true;
 
-        // check if the event has reply markers
-        const hasReplyMarker = e.tags.find(tag => tag[3] === 'reply');
+        // check if the event has valid markers, if it does and we don't have an explicit reply, this was
+        // probably a reply to a reply or a mention
+        const hasMarker = e.tags.find(tag => ["reply", "mention"].includes(tag[3]));
 
-        if (hasReplyMarker) return false;
+        if (hasMarker) return false;
 
         return true;
     }
@@ -69,17 +73,26 @@
         <div class="max-lg:pl-4 lg:pl-12">
             <div class="flex flex-col gap-4">
                 {#each $actualReplies as reply}
-                    <ElementConnector
-                        from={eventContainer}
-                        topOffset={80}
-                    >
-                        <svelte:self
-                            event={reply}
-                            on:reply
-                            skipEvent={false}
-                            {eventCardActionsComponent}
-                        />
-                    </ElementConnector>
+                    {#if !whitelistPubkeys || !useWhitelist || whitelistPubkeys.has(reply.pubkey)}
+                        <ElementConnector
+                            from={eventContainer}
+                            topOffset={80}
+                        >
+                            <svelte:self
+                                event={reply}
+                                on:reply
+                                skipEvent={false}
+                                {eventCardActionsComponent}
+                            />
+                        </ElementConnector>
+                    {:else if whitelistPubkeys && useWhitelist && !whitelistPubkeys.has(reply.pubkey)}
+                        <div class="flex flex-col gap-4">
+                            <div class="flex flex-row gap-2 items-center">
+                                <span class="text-base-content flex-grow ui-common-font-light">This reply was hidden because it is out of your network</span>
+                                <button class="btn btn-sm btn-ghost capitalize" on:click={() => useWhitelist = false}>Show anyway</button>
+                            </div>
+                        </div>
+                    {/if}
                 {/each}
             </div>
         </div>
@@ -88,6 +101,10 @@
 
 <style lang="postcss">
     :global(.event-content a) {
+        @apply text-accent;
+    }
+
+    :global(.event-content span.name) {
         @apply text-accent;
     }
 </style>
