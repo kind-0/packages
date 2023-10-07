@@ -4,7 +4,7 @@
     import AttentionButton from '../buttons/AttentionButton.svelte';
 
     export let loginNip07: (e: MouseEvent) => void;
-    export let loginAsGuest: (e: MouseEvent) => void;
+    export let loginAsGuest: (e: MouseEvent) => void | undefined;
 </script>
 
 
@@ -35,18 +35,21 @@
                     </slot>
 				</div>
 			</div>
-			<div class="p-4">
-				<div class="flex justify-center">
-					<div class="flex flex-col gap-2 w-full">
-						<div class="text-center text-xs font-normal">New to all this?</div>
-						<AttentionButton on:click={loginAsGuest}>
-                            <div class="flex items-center gap-2">
-                                <span >Continue as Guest</span>
-                            </div>
-                        </AttentionButton>
+
+			{#if loginAsGuest}
+				<div class="p-4">
+					<div class="flex justify-center">
+						<div class="flex flex-col gap-2 w-full">
+							<div class="text-center text-xs font-normal">New to all this?</div>
+							<AttentionButton on:click={loginAsGuest}>
+								<div class="flex items-center gap-2">
+									<span >Continue as Guest</span>
+								</div>
+							</AttentionButton>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 			<div class="p-4">
 				<div class="flex justify-center">
 					<div class="flex flex-col gap-2 w-full">
