@@ -55,6 +55,7 @@ export { default as Favicon } from './components/Favicon.svelte';
 export { default as Toaster } from './components/Toaster/Toaster.svelte';
 export { default as LazyLoadedImage } from './components/Image/LazyLoadedImage.svelte';
 export { default as ThreadView } from './components/Events/ThreadView/ThreadView.svelte';
+export { default as Hotkey } from './components/Hotkey.svelte';
 
 /**
  * Form components
@@ -139,4 +140,5 @@ export { default as LinkToProfile } from './components/User/LinkToProfile.svelte
  */
 export * from './utils/bitcoin';
 export * from './utils/user/login';
+export * from './utils/key'
 export { default as linkToArticle } from './components/Events/Kinds/Highlight/link-to-article.js';

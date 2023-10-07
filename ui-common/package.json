@@ -23,6 +23,7 @@
     "@kind0/eslint-config-custom": "workspace:*",
     "@kind0/tailwind-config": "workspace:*",
     "@kind0/tsconfig": "workspace:*",
+    "@svelte-put/shortcut": "^3.0.0",
     "@sveltejs/package": "^2.2.1",
     "daisyui": "^3.7.4",
     "postcss": "^8.4.28",

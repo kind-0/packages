@@ -37,7 +37,7 @@
 
 {#if !deleted}
     <div class="
-        card card-compact !rounded-none md:!rounded-2xl group {$$props.class??""}
+        card card-compact px-2 pt-2 !rounded-none md:!rounded-2xl group {$$props.class??""}
     " on:mouseenter on:mouseleave on:click={toggleDrawer}>
         <div class="card-body flex flex-col text-base gap-4">
             {#if showHeader}
