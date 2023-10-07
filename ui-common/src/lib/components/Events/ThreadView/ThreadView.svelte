@@ -49,7 +49,7 @@
     let eventContainer: HTMLElement;
 </script>
 
-<div class="flex flex-col gap-4 my-2" transition:fade={{ duration: 500 }}>
+<div class="flex flex-col gap-6" transition:fade={{ duration: 500 }}>
     {#if !skipEvent}
         <div class="event-wrapper w-full" bind:this={eventContainer}>
             <EventCard
