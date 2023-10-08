@@ -24,6 +24,7 @@
 
     export let event: NDKEvent;
     export let onZapModalClose = async () => {return}
+    export let onZapModalErrorMessageClose = async () => {return}
 
     let _loading = false
     let _errorMessage = ``
@@ -174,7 +175,7 @@
     }
 </script>
 
-<ModalWrapper class="max-lg:h-mobileModalContents lg:h-modalLargeScreen" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose} {modalErrorMessage} onModalErrorMessageClose={async () => {modalErrorMessage = ``}}>
+<ModalWrapper class="max-lg:h-mobileModalContents lg:h-modalLargeScreen" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose} {modalErrorMessage} onModalErrorMessageClose={async () => await  onZapModalErrorMessageClose()}>
     <div class="flex max-lg:flex-col flex-row flex-nowrap justify-center gap-4">
         {#if zapSent}
             <div class="flex flex-col items-center justify-center">
