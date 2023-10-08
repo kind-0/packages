@@ -1,6 +1,5 @@
 <script lang="ts">
-    import NDK, { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
-
+    import { type NDKEvent } from "@nostr-dev-kit/ndk";
     import Zaps from "./Buttons/Zaps.svelte";
     import Comments from "./Buttons/Comments.svelte";
     import Bookmark from "./Buttons/Bookmark.svelte";
@@ -22,7 +21,7 @@
 </script>
 
 <div class="
-    flex flex-row gap-4 items-end
+    flex flex-row max-lg:gap-2 lg:gap-4 items-center
     text-base-100-content
     z-10
 ">
@@ -57,7 +56,7 @@
 
     {#if !disableZaps}
         <div>
-            <Zaps bind:zappedAmount {event} class="btn bg-base-300 btn-sm p-1 !rounded-full px-2.5 font-light" />
+            <Zaps bind:zappedAmount {event} class="btn bg-base-300 btn-sm p-2 !rounded-full font-light" />
         </div>
     {/if}
 

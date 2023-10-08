@@ -1,16 +1,8 @@
 <script lang="ts">
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
 
-    import { Anchor, Copy, DotsThree, Garage, Link, Trash } from "phosphor-svelte";
+    import { Anchor, Copy, DotsThree } from "phosphor-svelte";
     import { onMount } from "svelte";
-
-    // import { signers } from "$lib/stores/signer";
-    // import { ndk } from "@kind0/ui-common";
-
-    // import { db } from "@nostr-dev-kit/ndk-cache-dexie";
-    import { createEventDispatcher } from "svelte";
-
-    // const dispatch = createEventDispatcher();
 
     export let event: NDKEvent
 
@@ -72,12 +64,12 @@
     }
 </script>
 
-<div class="dropdown dropdown-end lg:dropdown-bottom">
-    <label tabindex="0" on:click|stopPropagation={prepareDropdown} class="btn btn-circle bg-base-300 btn-xs">
+<div class="dropdown dropdown-top lg:dropdown-end">
+    <label tabindex="0" on:click|stopPropagation={prepareDropdown} class="btn bg-base-300 btn-sm !rounded-full p-2">
         <DotsThree class="w-4 h-4" />
     </label>
 
-    <ul tabindex="0" class="dropdown-content z-50 menu p-2 rounded-box w-48 border border-base-300">
+    <ul tabindex="0" class="dropdown-content z-[1000] menu p-2 rounded-box w-48 border border-base-300">
         <li>
             <a href="/e/{event.encode()}" class="flex flex-row items-center gap-3">
                 <Anchor class="w-4 h-4" />
