@@ -6,6 +6,8 @@
     export let title: string | undefined;
     export let subtitle: string | undefined = undefined;
     export let onModalClose = async () => {return}
+    export let modalErrorMessage: string = ``
+    export let onModalErrorMessageClose = async () => {return}
 
     async function onClose() {
         closeModal()
@@ -27,7 +29,7 @@
         shadow-xl
         flex flex-col
         relative
-        overflow-y-auto
+        overflow-y-hidden
         {$$props.class}
     " style="pointer-events: auto; max-height: 92vh;" on:click|stopPropagation={()=>{}}>
         <div class="flex flex-col divide-y divide-base-300">
@@ -55,8 +57,37 @@
                     </div>
                 {/if}
             </div>
-            <div class="card-body {$$props.bodyClass || ``}">
-                <slot />
+            <div class="card-body h-full {$$props.bodyClass || ``}">
+                {#if !!modalErrorMessage}
+                    <div class="flex flex-col h-full w-full justify-center items-between gap-4">
+                        <div class="flex flex-row w-full justify-center items-center px-2 gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+                            <div class="flex">
+                            <p class="font-sans font-medium text-base">
+                                {`Error:`}
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row w-full justify-center items-center">
+                            <p class="font-sans font-medium text-base text-center">
+                                {modalErrorMessage}
+                            </p>
+                        </div>
+
+                        <div class="flex flex-row w-full justify-center items-center pt-2 px-2 gap-2">
+                            <button type="button" class="btn btn-sm btn-wide btn-neutral" on:click|preventDefault={async () => await onModalErrorMessageClose()}>
+                                {`Go back`}
+                            </button>
+                        </div>
+                    </div>
+                {:else}
+                    <div class="flex flex-col h-full w-full scrollbar-hide">
+                        <slot />
+                    </div>
+                {/if}
             </div>
         </div>
     </div>

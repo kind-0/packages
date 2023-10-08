@@ -17,7 +17,8 @@ module.exports = {
         "accent2": "#817EFF",
       },
       height: {
-        mobileModalContents: "460px"
+        modalCoverScreen: "90vh",
+        modalLargeScreen: "490px",
       },
       width: {
         'sidebar': '244px',

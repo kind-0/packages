@@ -29,6 +29,8 @@
     let _errorMessage = ``
     let _weblnPageReload = false
 
+    let modalErrorMessage: string = ``
+
     let zapSent = false;
 
     let amount = 1000;
@@ -125,21 +127,23 @@
             const error_msg = String(e).trim()
             console.log(`error_msg:${error_msg}`);
 
+            let error_tmpl_0 = `TypeError: signer is`
             let error_tmpl_1 = `Error: Prompt was closed`
             let error_tmpl_2 = `Error: webln.enable() failed`
 
-            if(error_msg.slice(0, error_tmpl_1.length) === error_tmpl_1) {
-                _errorMessage = `Zaps require 'webln'.`
-                alert(_errorMessage)
-
+            if(error_msg.slice(0, error_tmpl_0.length) === error_tmpl_0) {
+                modalErrorMessage = `A 'webln' signer is required to zap.`
+            } else if(error_msg.slice(0, error_tmpl_1.length) === error_tmpl_1) {
+                modalErrorMessage = `The 'webln' signer was closed.`
             } else if(error_msg.slice(0, error_tmpl_2.length) === error_tmpl_2) {
-                _errorMessage = `Reloading the page.`
+                modalErrorMessage = `Reloading the page.`
+               
                 _weblnPageReload = true
             }
             
             zapping = false;
             _loading = false
-        } finally {
+        } finally {       
             _loading = false
         }
     }
@@ -170,8 +174,8 @@
     }
 </script>
 
-<ModalWrapper class="h-[500px]" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose}>
-    <div class="flex max-lg:flex-col flex-row flex-nowrap h-mobileModalContents justify-center gap-4">
+<ModalWrapper class="max-lg:h-mobileModalContents lg:h-modalLargeScreen" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose} {modalErrorMessage} onModalErrorMessageClose={async () => {modalErrorMessage = ``}}>
+    <div class="flex max-lg:flex-col flex-row flex-nowrap justify-center gap-4">
         {#if zapSent}
             <div class="flex flex-col items-center justify-center">
                 <div>
