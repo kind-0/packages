@@ -5,15 +5,31 @@
     import EventCard from "../EventCard/EventCard.svelte";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
     import { ndk } from "../../../stores/ndk";
-    import { onDestroy } from "svelte";
+    import { SvelteComponent, onDestroy } from "svelte";
     import ElementConnector from "../../ElementConnector.svelte";
-    import SubtleButton from "../../buttons/SubtleButton.svelte";
+
+    type ExtraItem = {
+        component: typeof SvelteComponent;
+        props: any;
+    }
+    type ExtraItemFetcher = (event: NDKEvent) => Readable<ExtraItem[]>;
 
     export let event: NDKEvent;
     export let skipEvent = false;
     export let eventCardActionsComponent: any = undefined;
     export let whitelistPubkeys: Set<Hexpubkey> | undefined = undefined;
     export let useWhitelist = true;
+    export let extraItemsFetcher: ExtraItemFetcher | undefined = undefined;
+
+    /**
+     * Extra events are events that might be coming from alternative sources
+     * instead of coming from a relay
+     */
+    let extraItems: Readable<ExtraItem[]>;
+
+    if (extraItemsFetcher) {
+        extraItems = extraItemsFetcher(event);
+    }
 
     const replies = $ndk.storeSubscribe({
         kinds: [1],
@@ -51,10 +67,6 @@
 
                 const taggedEventsIds = r.getMatchingTags("e").map(tag => tag[1]);
                 const allTaggedEventsAreByOriginalAuthor = taggedEventsIds.every(id => eventsByOriginalAuthor.has(id));
-
-                if (r.id === "1475ac9a571d1418ff5b72f0b53ecd698cee6fa1af3ca30b5c689eb9e433e347") {
-                    console.log(r.id, {eventsByOriginalAuthor, taggedEventsIds, allTaggedEventsAreByOriginalAuthor})
-                }
 
                 return allTaggedEventsAreByOriginalAuthor;
             });
@@ -130,10 +142,21 @@
         </div>
     {/if}
 
-    {#if $actualReplies?.length > 0}
+    {#if $actualReplies?.length > 0 || $extraItems}
         <div class="max-lg:pl-4 lg:pl-12">
             <div class="flex flex-col gap-4">
-                {#each $actualReplies as reply}
+                {#each $extraItems as item (item.props.key)}
+                    <ElementConnector
+                        from={eventContainer}
+                        topOffset={80}
+                    >
+                        <svelte:component this={item.component}
+                            {...item.props}
+                        />
+                    </ElementConnector>
+                {/each}
+
+                {#each $actualReplies as reply (reply.id)}
                     {#if !whitelistPubkeys || !useWhitelist || whitelistPubkeys.has(reply.pubkey)}
                         <ElementConnector
                             from={eventContainer}
@@ -144,13 +167,16 @@
                                 on:reply
                                 skipEvent={false}
                                 {eventCardActionsComponent}
+                                {whitelistPubkeys}
+                                {useWhitelist}
+                                {extraItemsFetcher}
                             />
                         </ElementConnector>
                     {:else if whitelistPubkeys && useWhitelist && !whitelistPubkeys.has(reply.pubkey)}
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-row gap-2 items-center">
                                 <span class="text-base-content flex-grow ui-common-font-light">This reply was hidden because it is out of your network</span>
-                                <button class="btn btn-sm btn-ghost capitalize" on:click={() => useWhitelist = false}>Show anyway</button>
+                                <button class="btn btn-sm bg-base-300 capitalize" on:click={() => useWhitelist = false}>Show anyway</button>
                             </div>
                         </div>
                     {/if}
@@ -166,7 +192,7 @@
     }
 
     :global(.event-content span.name) {
-        @apply text-accent;
+        @apply text-white;
     }
 
     :global(.list-container) {
