@@ -17,8 +17,6 @@
      */
     export let expandible = true;
 
-    let deleted = false;
-
     function toggleDrawer(e: MouseEvent) {
         const { target } = e;
 
@@ -35,50 +33,48 @@
     $: showHeader = !skipHeader && ($$slots.header) || ($$slots.headerTime);
 </script>
 
-{#if !deleted}
-    <div class="
-        card card-compact px-2 pt-2 !rounded-none md:!rounded-2xl group {$$props.class??""}
-    " on:mouseenter on:mouseleave on:click={toggleDrawer}>
-        <div class="card-body flex flex-col text-base gap-4">
-            {#if showHeader}
-                <div class="flex flex-row justify-between gap-4 md:gap-12">
-                    {#if $$slots.header}
-                        <div class="flex-grow">
-                            <slot name="header" />
-                        </div>
-                    {:else}
-                        <div>&nbsp;</div>
-                    {/if}
-
-                    <div class="flex flex-row items-center gap-4 self-end">
-                        {#if $$slots.headerTime}
-                            <slot name="headerTime" />
-                        {/if}
+<div class="
+    card card-compact px-2 pt-2 rounded-2xl group {$$props.class??""}
+" on:mouseenter on:mouseleave on:click={toggleDrawer}>
+    <div class="card-body flex flex-col text-base gap-4">
+        {#if showHeader}
+            <div class="flex flex-row justify-between gap-4 md:gap-12">
+                {#if $$slots.header}
+                    <div class="flex-grow">
+                        <slot name="header" />
                     </div>
-                </div>
-            {/if}
-
-            <div class="event-card--content">
-                <slot />
-            </div>
-
-            {#if !skipFooter}
-                {#if !$$slots.footer}
-                    <EventCardFooter
-                        {event}
-                        {authorAction}
-                        on:reply
-                        {eventCardActionsComponent}
-                    >
-                        <slot slot="extraActions" name="extraActions" />
-                    </EventCardFooter>
                 {:else}
-                    <slot name="footer" />
+                    <div>&nbsp;</div>
                 {/if}
-            {/if}
+
+                <div class="flex flex-row items-center gap-4 self-end">
+                    {#if $$slots.headerTime}
+                        <slot name="headerTime" />
+                    {/if}
+                </div>
+            </div>
+        {/if}
+
+        <div class="event-card--content">
+            <slot />
         </div>
+
+        {#if !skipFooter}
+            {#if !$$slots.footer}
+                <EventCardFooter
+                    {event}
+                    {authorAction}
+                    on:reply
+                    {eventCardActionsComponent}
+                >
+                    <slot slot="extraActions" name="extraActions" />
+                </EventCardFooter>
+            {:else}
+                <slot name="footer" />
+            {/if}
+        {/if}
     </div>
-{/if}
+</div>
 
 <style>
     .card.card-compact .card-body {

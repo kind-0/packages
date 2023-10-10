@@ -1,13 +1,13 @@
 <script lang="ts">
-    import type { Hexpubkey, NDKEvent } from "@nostr-dev-kit/ndk";
-    import { derived } from 'svelte/store';
+    import type { Hexpubkey, NDKEvent, NDKEventId } from "@nostr-dev-kit/ndk";
+    import { Readable, derived } from 'svelte/store';
     import { fade } from 'svelte/transition';
     import EventCard from "../EventCard/EventCard.svelte";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
     import { ndk } from "../../../stores/ndk";
     import { onDestroy } from "svelte";
     import ElementConnector from "../../ElementConnector.svelte";
-  import SubtleButton from "../../buttons/SubtleButton.svelte";
+    import SubtleButton from "../../buttons/SubtleButton.svelte";
 
     export let event: NDKEvent;
     export let skipEvent = false;
@@ -24,9 +24,51 @@
         replies.unsubscribe();
     })
 
-    const actualReplies = derived(replies, ($replies) => {
+    // derived store with the replies directly to this event
+    const filteredReplies = derived(replies, ($replies) => {
         return $replies.filter((r: NDKEvent) => isReply(r));
     });
+
+    let threadEvents: Readable<NDKEvent[]>;
+    let actualReplies: Readable<NDKEvent[]>;
+
+    if (!skipEvent) {
+        threadEvents = derived(filteredReplies, ($replies) => {
+            const eventsByOriginalAuthor = new Set<NDKEventId>();
+            eventsByOriginalAuthor.add(event.id);
+
+            // Add all events authored by the author of the main event of this ThreadView
+            for (const reply of $replies) {
+                if (reply.pubkey === event.pubkey) {
+                    eventsByOriginalAuthor.add(reply.id);
+                }
+            }
+
+            // Filter the events that have, as e tags, the id of an event authored by the original author
+            return $replies.filter((r: NDKEvent) => {
+                // reply is by the same author as the original event
+                if (r.pubkey !== event.pubkey) return false;
+
+                const taggedEventsIds = r.getMatchingTags("e").map(tag => tag[1]);
+                const allTaggedEventsAreByOriginalAuthor = taggedEventsIds.every(id => eventsByOriginalAuthor.has(id));
+
+                if (r.id === "1475ac9a571d1418ff5b72f0b53ecd698cee6fa1af3ca30b5c689eb9e433e347") {
+                    console.log(r.id, {eventsByOriginalAuthor, taggedEventsIds, allTaggedEventsAreByOriginalAuthor})
+                }
+
+                return allTaggedEventsAreByOriginalAuthor;
+            });
+        });
+
+        // derived store of all events that are in filteredReplies but not in threadEvents
+        actualReplies = derived([filteredReplies, threadEvents], ([$replies, $threadEvents]) => {
+            const threadEventsIds = new Set($threadEvents.map(e => e.id));
+
+            return $replies.filter(e => !threadEventsIds.has(e.id));
+        });
+    } else {
+        actualReplies = filteredReplies;
+    }
 
     function isReply(e: NDKEvent): boolean {
         // check if event is tagged with a reply marker
@@ -47,7 +89,13 @@
 
         if (hasMarker) return false;
 
-        return true;
+        // if we don't have markers, check if there are tags for other events that the main event
+        // does not have
+        const expectedTags = event.getMatchingTags("e").map(tag => tag[1]);
+        expectedTags.push(event.id);
+
+        // return true if there are no unexpected e tags
+        return e.getMatchingTags("e").every(tag => expectedTags.includes(tag[1]));
     }
 
     let eventContainer: HTMLElement;
@@ -55,17 +103,30 @@
 
 <div class="flex flex-col gap-6" transition:fade={{ duration: 500 }}>
     {#if !skipEvent}
-        <div class="event-wrapper w-full" bind:this={eventContainer}>
+        <div class="event-wrapper w-full join-vertical join" bind:this={eventContainer}>
             <EventCard
                 {event}
                 on:reply
                 skipHeader={!$$slots.header}
-                class="border border-base-300 w-full"
+                class="border border-base-300 w-full join-iten"
                 {eventCardActionsComponent}
             >
                 <slot slot="header" name="header" />
                 <EventContent ndk={$ndk} {event} class="event-content" />
             </EventCard>
+
+            {#each $threadEvents as event (event.id)}
+                <EventCard
+                    {event}
+                    on:reply
+                    skipHeader={!$$slots.header}
+                    class="border border-base-300 w-full join-item"
+                    {eventCardActionsComponent}
+                >
+                    <slot slot="header" name="header" />
+                    <EventContent ndk={$ndk} {event} class="event-content" />
+                </EventCard>
+            {/each}
         </div>
     {/if}
 
@@ -106,5 +167,9 @@
 
     :global(.event-content span.name) {
         @apply text-accent;
+    }
+
+    :global(.list-container) {
+        @apply flex flex-col gap-32;
     }
 </style>
