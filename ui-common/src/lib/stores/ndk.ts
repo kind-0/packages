@@ -32,11 +32,10 @@ if (relays) {
 
 export const defaultRelays = [
     'wss://pablof7z.nostr1.com',
-    'wss://purplepag.es',
     // 'ws://localhost:8080',
 
     'wss://nos.lol',
-    'wss://relay.f7z.io',
+    // 'wss://relay.f7z.io',
     'wss://relay.damus.io',
     'wss://relay.snort.social',
     // // // 'wss://offchain.pub/',
@@ -58,14 +57,14 @@ const _ndk: NDKSvelte = new NDKSvelte({
     // devWriteRelayUrls: [
     //     'wss://pablof7z.nostr1.com',
     // ],
-    enableOutboxModel: false,
+    enableOutboxModel: true,
     cacheAdapter,
 }) as NDKSvelte;
 
 export const ndk = writable(_ndk);
 
 const _bunkerNDK = new NDK({
-    explicitRelayUrls: ['wss://relay.nsecbunker.com', 'wss://nostr.vulpem.com'],
+    explicitRelayUrls: ['wss://relay.nsecbunker.com'],
 });
 
 export const bunkerNDK = writable(_bunkerNDK);
