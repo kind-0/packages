@@ -42,7 +42,7 @@
     let replies = $ndk.storeSubscribe({
         kinds: [1],
         "#e": Array.from(threadIds.keys())
-    }, { closeOnEose: false, groupable: false, groupableDelay: 100, subId: "thread-filter" });
+    }, { closeOnEose: false, groupableDelay: 100 });
 
     $: {
         const threadIdCountBefore = threadIds.size;
@@ -124,13 +124,21 @@
         return e.getMatchingTags("e").every(tag => expectedTags.includes(tag[1]));
     }
 
+    function sortThread(a: NDKEvent, b: NDKEvent): number {
+        return a.created_at - b.created_at;
+    }
+
+    function sortReplies(a: NDKEvent, b: NDKEvent): number {
+        return a.created_at - b.created_at;
+    }
+
     let eventContainer: HTMLElement;
 </script>
 
 <div class="flex flex-col gap-6" transition:fade={{ duration: 500 }}>
     {#if !skipEvent}
         <div class="event-wrapper w-full join-vertical join" bind:this={eventContainer}>
-            {#each Array.from(threadIds.values()) as event (event.id)}
+            {#each Array.from(threadIds.values()).sort(sortThread) as event (event.id)}
                 <EventCard
                     {event}
                     on:reply
@@ -159,7 +167,7 @@
                     </ElementConnector>
                 {/each}
 
-                {#each Array.from(replyIds.values()) as reply (reply.id)}
+                {#each Array.from(replyIds.values()).sort(sortReplies) as reply (reply.id)}
                     {#if !whitelistPubkeys || !useWhitelist || whitelistPubkeys.has(reply.pubkey)}
                         <ElementConnector
                             from={eventContainer}
