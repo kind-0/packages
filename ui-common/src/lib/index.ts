@@ -83,6 +83,7 @@ export { default as LoadingSpinner } from './components/Loading/LoadingSpinner.s
  * Icons
  */
 export { default as ZapIcon } from './icons/ZapIcon.svelte';
+export { default as ZapSentIcon } from './icons/ZapSent.svelte';
 export { default as KeyIcon } from './icons/KeyIcon.svelte'
 export { default as CommentIcon } from './icons/CommentIcon.svelte';
 export { default as BookmarkIcon } from './icons/BookmarkIcon.svelte';

@@ -69,6 +69,8 @@
                 const allTaggedEventsAreByOriginalAuthor = taggedEventsIds.every(id => eventsByOriginalAuthor.has(id));
 
                 return allTaggedEventsAreByOriginalAuthor;
+            }).sort((a, b) => {
+                return a.created_at - b.created_at;
             });
         });
 
@@ -83,8 +85,10 @@
     }
 
     function isReply(e: NDKEvent): boolean {
+        console.log(e.id);
         // check if event is tagged with a reply marker
         const opTagId = event.tagId();
+        console.log({opTagId});
 
         const replyMarker = e.tags.find(tag => {
             return (
@@ -93,11 +97,15 @@
             );
         })
 
+        console.log(e.id, {replyMarker});
+
         if (replyMarker) return true;
 
         // check if the event has valid markers, if it does and we don't have an explicit reply, this was
         // probably a reply to a reply or a mention
-        const hasMarker = e.tags.find(tag => ["reply", "mention"].includes(tag[3]));
+        const hasMarker = !!e.tags.find(tag => ["reply", "mention"].includes(tag[3]));
+
+        console.log(e.id, {hasMarker});
 
         if (hasMarker) return false;
 
@@ -105,6 +113,8 @@
         // does not have
         const expectedTags = event.getMatchingTags("e").map(tag => tag[1]);
         expectedTags.push(event.id);
+
+        console.log(e.id, {expectedTags});
 
         // return true if there are no unexpected e tags
         return e.getMatchingTags("e").every(tag => expectedTags.includes(tag[1]));
@@ -175,7 +185,7 @@
                     {:else if whitelistPubkeys && useWhitelist && !whitelistPubkeys.has(reply.pubkey)}
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-row gap-2 items-center">
-                                <span class="text-base-content flex-grow ui-common-font-light">This reply was hidden because it is out of your network</span>
+                                <span class="text-base-content flex-grow ui-common-font-light">This reply was hidden</span>
                                 <button class="btn btn-sm bg-base-300 capitalize" on:click={() => useWhitelist = false}>Show anyway</button>
                             </div>
                         </div>

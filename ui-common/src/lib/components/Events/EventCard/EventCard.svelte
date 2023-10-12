@@ -2,6 +2,7 @@
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
     import EventCardFooter from "./EventCardFooter.svelte";
     import EventCardActions from "./EventCardActions.svelte";
+    import { requestProvider } from 'webln';
 
     export let event: NDKEvent;
     export let authorAction: string | undefined = undefined;
@@ -66,6 +67,8 @@
                     {authorAction}
                     on:reply
                     {eventCardActionsComponent}
+                    {disableZaps}
+                    {disableBookmark}
                 >
                     <slot slot="extraActions" name="extraActions" />
                 </EventCardFooter>
