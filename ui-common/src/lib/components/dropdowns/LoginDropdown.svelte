@@ -13,7 +13,7 @@
 		slot="dropdown-btn-open"
 		class="btn btn-outline rounded-full border-accent bg-transparent text-base-100-content text-sm md:text-base normal-case hover:border-accent hover:bg-accent hover:bg-opacity-20 hover:text-base-100-content"
 	>
-		<span class="px-0 md:px-4 lg:px-9">Log In</span>
+		<span class="px-0 md:px-4 lg:px-9 whitespace-nowrap">Log In</span>
 	</button>
 
 	<div slot="dropdown-content" class="w-sidebar absolute right-0 mt-2 shadow-xl rounded-xl bg-base-200 transition-all">
