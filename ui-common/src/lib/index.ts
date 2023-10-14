@@ -108,6 +108,7 @@ export { default as ShelvesIcon } from './icons/ShelvesIcon.svelte';
  * Logos
  */
 export { default as AtlasNotesLogo } from './logos/AtlasNotesLogo.svelte';
+export { default as VendataLogo } from './logos/VendataLogo.svelte';
 
 /**
  * Modals

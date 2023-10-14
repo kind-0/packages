@@ -209,4 +209,20 @@
     :global(.list-container) {
         @apply flex flex-col gap-32;
     }
+
+    :global(.event-card--content h1.article--title) {
+        @apply text-2xl font-semibold text-base-100-content;
+    }
+
+    :global(.event-card--content .article p) {
+        @apply mb-4;
+    }
+
+    :global(.event-card--content .article h1) {
+        @apply text-lg font-semibold mb-4;
+    }
+
+    :global(.event-card--content .article ul) {
+        @apply list-disc ml-4;
+    }
 </style>
