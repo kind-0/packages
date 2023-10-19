@@ -12,7 +12,7 @@
         </div>
     {/if}
 
-    <div class="flex flex-row px-0 gap-32 lg:mx-auto">
+    <div class="col-container">
         <div class="hidden lg:block w-auto lg:w-sidebar sticky max-h-[90vh] overflow-y-auto top-[100px]">
             {#if $$slots.sidebar}
                 <slot name="sidebar" />
@@ -32,3 +32,9 @@
 </div>
 
 <Toaster />
+
+<style lang="postcss">
+    .col-container {
+        @apply flex flex-row px-0 gap-32 lg:mx-auto;
+    }
+</style>

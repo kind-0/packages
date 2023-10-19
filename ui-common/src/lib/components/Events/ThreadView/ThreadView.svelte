@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Hexpubkey, NDKEvent, NDKEventId } from "@nostr-dev-kit/ndk";
-    import { Readable } from 'svelte/store';
+    import type { Readable } from 'svelte/store';
     import { fade } from 'svelte/transition';
     import EventCard from "../EventCard/EventCard.svelte";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
