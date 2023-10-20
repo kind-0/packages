@@ -1,9 +1,11 @@
 <script lang="ts">
 	import CollapsableDropdown from './CollapsableDropdown.svelte';
     import LoginNip07Button from '../buttons/LoginNip07Button.svelte';
+    import LoginNip46Button from '../buttons/LoginNip46Button.svelte';
     import AttentionButton from '../buttons/AttentionButton.svelte';
 
     export let loginNip07: (e: MouseEvent) => void;
+    export let loginNip46: (e: MouseEvent) => void;
     export let loginAsGuest: (e: MouseEvent) => void | undefined;
 </script>
 
@@ -55,7 +57,7 @@
 					<div class="flex flex-col gap-2 w-full">
 						<div class="text-center text-xs font-normal">Already on Nostr?</div>
 						<LoginNip07Button {loginNip07} />
-						<!-- <LoginNip46Button /> -->
+						<LoginNip46Button {loginNip46} />
 					</div>
 				</div>
 			</div>
