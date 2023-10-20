@@ -1,6 +1,8 @@
 <script lang="ts">
     import Toaster from "../components/Toaster/Toaster.svelte";
-    import { rightSidebar, pageDrawerToggle, logo } from "../stores/layout.js";
+    import { rightSidebar, pageDrawerToggle, logo, leftSidebarAvailable } from "../stores/layout.js";
+
+    $leftSidebarAvailable = !!$$slots.sidebar
 </script>
 
 <div class="drawer">
@@ -35,10 +37,10 @@
     <div
         class="drawer-side"
     >
-        <label for="drawer-toggle" aria-label="close sidebar" class="drawer-overlay" />
+        <label for="drawer-toggle" aria-label="close sidebar" class="drawer-overlay" on:change={() => { $pageDrawerToggle = false }} />
         <div class="drawer-side-content">
             {#if $logo}
-            <svelte:component this={$logo.component} {...$logo.props} />
+                <svelte:component this={$logo.component} {...$logo.props} />
             {/if}
 
             {#if $$slots.sidebar}

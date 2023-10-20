@@ -11,3 +11,5 @@ export const rightSidebar: Writable<Component> = writable(initialData);
 export const logo: Writable<Component | undefined> = writable();
 
 export const pageDrawerToggle: Writable<boolean> = writable(false);
+
+export const leftSidebarAvailable: Writable<boolean> = writable(true);
