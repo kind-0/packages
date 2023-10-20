@@ -1,10 +1,13 @@
 import { writable, Writable } from 'svelte/store';
 
-interface SidebarComponent {
+interface Component {
     component: ConstructorOfATypedSvelteComponent;
     props: { [key: string]: any };
 }
 
-const initialData: SidebarComponent = { component: null, props: {} };
+const initialData: Component = { component: null, props: {} };
 
-export const rightSidebar: Writable<SidebarComponent> = writable(initialData);
+export const rightSidebar: Writable<Component> = writable(initialData);
+export const logo: Writable<Component | undefined> = writable();
+
+export const pageDrawerToggle: Writable<boolean> = writable(false);
