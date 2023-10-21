@@ -35,7 +35,7 @@
     </div>
 
     <div
-        class="drawer-side"
+        class="drawer-side lg:hidden"
     >
         <label for="drawer-toggle" aria-label="close sidebar" class="drawer-overlay" on:change={() => { $pageDrawerToggle = false }} />
         <div class="drawer-side-content">

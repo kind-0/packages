@@ -22,7 +22,7 @@
 
     $: if ($appHandlers && !nip89event) {
         nip89event = findNip89Event(dvmPubkey, jobRequest.kind!);
-        console.log({nip89event})
+        console.log({nip89event, dvmPubkey})
         if (nip89event) {
             nip89event.fetchProfile().then((p) => {
                 profile = p;
@@ -158,7 +158,8 @@
 
             {#if hasJobResult}
                 {#each jobResults as jobResult (jobResult.id)}
-                    <JobResultRow event={jobResult} imageClass="max-h-48 rounded-lg" />
+                    {jobResult.id}
+                    <!-- <JobResultRow event={jobResult} imageClass="max-h-48 rounded-lg" /> -->
                 {/each}
             {:else}
                 <EventContent ndk={$ndk} event={mostRecentEvent} />

@@ -18,7 +18,6 @@
 
     const results = $ndk.storeSubscribe(
         {
-            kinds: [7, 5, 65000 as number, 65001 as number],
             ...jobRequest.filter(),
         },
         { closeOnEose: false, groupableDelay: 1000 },
