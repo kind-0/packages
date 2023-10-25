@@ -12,6 +12,7 @@ const config = {
             $layouts: "src/lib/layouts",
             $root: "src/lib",
             $utils: "src/lib/utils",
+            $stores: "src/lib/stores",
         },
     }
 };

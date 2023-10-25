@@ -249,10 +249,19 @@ importers:
       svelte-preprocess:
         specifier: ^5.0.4
         version: 5.0.4(@babel/core@7.22.19)(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2)
+      svelte-time:
+        specifier: ^0.8.0
+        version: 0.8.0
     devDependencies:
       '@nostr-dev-kit/eslint-config-custom':
         specifier: workspace:*
         version: link:../packages/eslint-config-custom
+      '@nostr-dev-kit/ndk-cache-dexie':
+        specifier: workspace:*
+        version: link:../ndk-cache-dexie
+      '@nostr-dev-kit/ndk-svelte':
+        specifier: workspace:*
+        version: link:../ndk-svelte
       '@nostr-dev-kit/tailwind-config':
         specifier: workspace:*
         version: link:../packages/tailwind-config
@@ -437,6 +446,9 @@ importers:
       '@types/sanitize-html':
         specifier: ^2.9.0
         version: 2.9.0
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
       markdown-it:
         specifier: ^13.0.1
         version: 13.0.1

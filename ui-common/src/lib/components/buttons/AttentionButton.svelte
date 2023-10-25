@@ -5,7 +5,7 @@
 </script>
 
 {#if href}
-    <a {href} on:click class="attention-button {color} {$$props.class??""}">
+    <a {href} on:click class="attention-button text-base-100-content {color} {$$props.class??""}">
         {#if loading}
             <span class="loading loading-spinner loading-sm opacity-50"></span>
         {:else}
@@ -13,7 +13,7 @@
         {/if}
     </a>
 {:else}
-    <button on:click class="{color} {$$props.class??""} {loading ? `` : ``}">
+    <button on:click class="attention-button text-base-100-content {color} {$$props.class??""} {loading ? `` : ``}">
         {#if loading}
             <span class="loading loading-spinner loading-sm opacity-50"></span>
         {:else}
@@ -24,7 +24,7 @@
 
 <style lang="postcss">
     a, button {
-        @apply btn h-11 bg-base-100 rounded-full border-2 text-base-100-content font-medium normal-case   overflow-hidden whitespace-nowrap flex-nowrap;
+        @apply btn h-11 bg-base-100 rounded-full border-2 font-medium normal-case overflow-hidden whitespace-nowrap flex-nowrap font-normal px-8;
         @apply transition-all duration-100;
     }
 

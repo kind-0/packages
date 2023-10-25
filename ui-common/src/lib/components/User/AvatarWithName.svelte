@@ -31,12 +31,14 @@
                 <Avatar {user} {pubkey} {userProfile} class={avatarClass} />
             </div>
             <div>
-                <p class="text-sm font-medium"><span class={$$props.nameClass}><Name {user} {pubkey} {userProfile} /></span></p>
-                <div class="text-xs truncate">
+                <p class="text-sm font-medium"><span class={$$props.nameClass??""}><Name {user} {pubkey} {userProfile} /></span></p>
+                <div class="text-xs truncate {$$props.subtitleClass??""}">
                     {#if subtitle}
                         {subtitle}
                     {:else if $$slots.bio}
                         <slot name="bio" />
+                    {:else if $$props.showBio}
+                        {userProfile?.bio ?? userProfile?.about}
                     {/if}
                 </div>
             </div>

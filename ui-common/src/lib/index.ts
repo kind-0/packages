@@ -19,7 +19,10 @@ export * from './stores/layout.js';
 export { default as AttentionButton } from "./components/buttons/AttentionButton.svelte";
 export { default as SubtleButton } from './components/buttons/SubtleButton.svelte'
 export { default as CommentsButton } from './components/Events/EventCard/Buttons/Comments.svelte';
+export { default as CopyButton } from './components/buttons/CopyButton.svelte';
 export { default as ZapsButton } from "./components/Events/EventCard/Buttons/Zaps.svelte";
+export { default as PrimaryButton } from './components/buttons/PrimaryButton.svelte'
+export { default as ModalButton } from './components/buttons/ModalButton.svelte'
 
 /**
  * Dropdowns
@@ -143,4 +146,5 @@ export { default as LinkToProfile } from './components/User/LinkToProfile.svelte
 export * from './utils/bitcoin';
 export * from './utils/user/login';
 export * from './utils/key'
+export * from './utils/pay';
 export { default as linkToArticle } from './components/Events/Kinds/Highlight/link-to-article.js';

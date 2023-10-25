@@ -24,6 +24,9 @@
         case 'medium':
             sizeClass = 'w-12 h-12';
             break;
+        case 'large':
+            sizeClass = 'w-16 h-16';
+            break;
     }
 
     switch (type) {

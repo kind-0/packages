@@ -2,15 +2,27 @@
     import { X } from "phosphor-svelte";
     import { closeModal } from "svelte-modals";
     import { fade } from "svelte/transition";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let title: string | undefined;
     export let subtitle: string | undefined = undefined;
+
+    /**
+     * @deprecated Really bad pattern; please don't use, use events.
+     */
     export let onModalClose = async () => {return}
     export let modalErrorMessage: string = ``
+
+    /**
+     * @deprecated Really bad pattern; please don't use, use events.
+     */
     export let onModalErrorMessageClose = async () => {return}
 
     async function onClose() {
         closeModal()
+        dispatch("close");
         await onModalClose()
     }
 </script>

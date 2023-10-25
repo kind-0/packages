@@ -42,7 +42,7 @@
     let comment = '';
     let zapButtonEnabled = true;
     let zapping = false;
-    
+
     let showCustomAmountInput = false;
     //let valueCustomAmount = ``
     let errorCustomAmount = ``
@@ -138,13 +138,13 @@
                 modalErrorMessage = `The 'webln' signer was closed.`
             } else if(error_msg.slice(0, error_tmpl_2.length) === error_tmpl_2) {
                 modalErrorMessage = `Reloading the page.`
-               
+
                 _weblnPageReload = true
             }
-            
+
             zapping = false;
             _loading = false
-        } finally {       
+        } finally {
             _loading = false
         }
     }
@@ -171,11 +171,17 @@
             _weblnPageReload = false
             location.reload()
         }
-        
+
     }
 </script>
 
-<ModalWrapper class="max-lg:h-mobileModalContents lg:h-modalLargeScreen" bodyClass="scrollbar-hide" title="Zap" onModalClose={onZapModalClose} {modalErrorMessage} onModalErrorMessageClose={async () => await  onZapModalErrorMessageClose()}>
+<ModalWrapper
+    class="max-lg:h-mobileModalContents lg:h-modalLargeScreen"
+    bodyClass="scrollbar-hide"
+    title="Zap"
+    on:close={onZapModalClose}
+    {modalErrorMessage}
+    onModalErrorMessageClose={async () => await  onZapModalErrorMessageClose()}>
     <div class="flex max-lg:flex-col flex-row flex-nowrap justify-center gap-4">
         {#if zapSent}
             <div class="flex flex-col items-center justify-center">
@@ -233,12 +239,12 @@
                             </CircularTitledButton>
                         </div>
                     </div>
-                    
+
                     <div class="flex flex-col w-full justify-center items-center pt-4 gap-4">
                         {#if showCustomAmountInput}
                             <div class="flex flex-col w-full justify-center items-center">
-                                <EntryInput 
-                                    placeholder="Zap custom amount..." 
+                                <EntryInput
+                                    placeholder="Zap custom amount..."
                                     onInputCallback={async () => { errorCustomAmount = `` }}
                                     onInputValidation={async v => /^[0-9]\d*$/.test(v)}
                                     onInputValidationSuccess={async v => { amount = Number(v) }}
@@ -271,9 +277,6 @@
                     <div class="flex flex-row w-full justify-center items-center">
                         <div class="flex flex-row gap-2">
                             <LoadingSpinner class="h-3 w-3 text-stone-200" />
-                            <p class="font-sans font-medium text-sm">
-                                {`Loading 'webln'`}
-                            </p>
                         </div>
                     </div>
                 {:else if !!_errorMessage}
