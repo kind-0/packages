@@ -26,7 +26,7 @@
 
 <div class="flex flex-col gap-4 w-fit">
     <div class="flex flex-row overflow-y-auto flex-grow max-h-64">
-        <div class="w-1/2">
+        <div class="{(suggestedTopics.length > 0) ? "w-1/2" : "w-full"}">
             <TopicSelectionList
                 title="TOPICS"
                 topics={availableTopics}

@@ -28,7 +28,7 @@
         autocomplete="off"
         class="
             input input-bordered
-            block w-full rounded-full py-1.5 pl-12
+            block w-full rounded-full py-1.5
             focus:border-0
             focus:ring-2 focus:ring-inset focus:ring-accent2
             !bg-base-200
@@ -41,3 +41,9 @@
         on:keydown={keydown}
     />
 </div>
+
+<style lang="postcss">
+    input {
+        @apply pl-12;
+    }
+</style>

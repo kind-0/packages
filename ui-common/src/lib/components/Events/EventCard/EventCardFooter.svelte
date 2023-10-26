@@ -7,6 +7,7 @@
     import EventCardActions from "./EventCardActions.svelte";
     import { ndk } from "../../../stores/ndk.js";
     import { NDKEvent } from "@nostr-dev-kit/ndk";
+  import HighlightIcon from "../../../icons/HighlightIcon.svelte";
 
     export let event: NDKEvent;
     export let authorAction: string | undefined = undefined;

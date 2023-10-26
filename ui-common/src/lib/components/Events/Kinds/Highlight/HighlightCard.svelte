@@ -71,7 +71,7 @@
 {#await articlePromise then article}
     <EventCard
         event={highlight}
-        authorAction={"highlighted by"}
+        authorAction={"highlight by"}
         skipHeader={skipTitle}
         class={$$props.class || ``}
     >

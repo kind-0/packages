@@ -5,21 +5,21 @@
 	import { appHandlers } from "../../../../../stores/nip89.js";
 	import { findNip89Event } from "../../../../../utils/nip89.js";
 	import { Avatar, EventContent, Name } from "@nostr-dev-kit/ndk-svelte-components";
-	import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 	// import JobStatusLabel from "./JobStatusLabel.svelte";
 	import EventCard from "../../../EventCard/EventCard.svelte";
-    import { onMount } from "svelte";
-  import PaymentRequiredButton from "../PaymentRequiredButton.svelte";
+    import PaymentRequiredButton from "../PaymentRequiredButton.svelte";
+    import type{ Readable } from "svelte/store";
+  import PrimaryButton from "../../../../buttons/PrimaryButton.svelte";
 
     export let jobRequest: NDKDVMRequest;
     export let dvmPubkey: string;
-    export let events: NDKEventStore<NDKEvent>;
-	export let parentElement: HTMLElement;
+    export let events: Readable<NDKEvent[]>;
+    export let results: NDKDVMJobResult[] = [];
 
     let nip89event: NDKAppHandlerEvent | undefined;
 
     let paymentPending = false;
-    let paymentPendingEvent: NDKDVMJobFeedback | undefined;
+    let paymentPendingEvent: NDKEvent | undefined;
 
     $: if ($appHandlers && !nip89event) {
         nip89event = findNip89Event(dvmPubkey, jobRequest.kind!);
@@ -72,10 +72,9 @@
         });
     }
 
-    let jobResults: NDKDVMJobResult[] = [];
     let mostRecentEvent: NDKEvent | undefined;
 
-    $: jobResults = $events
+    $: results = $events
         .filter((event) => event.kind === jobRequest.kind+1000)
         .map((event) => NDKDVMJobResult.from(event));
 
@@ -85,7 +84,7 @@
 
     let hasJobResult = false;
 
-    $: hasJobResult = jobResults.length > 0;
+    $: hasJobResult = results.length > 0;
 
     let containerClass: string = "";
 
@@ -151,15 +150,19 @@
         <EventCard
             event={mostRecentEvent}
             userProfile={profile}
+            authorAction="processed by"
             on:mouseover={() => { hover = true; }}
             on:mouseleave={() => { hover = false; }}
         >
-            <div slot="headerRight" class="whitespace-nowrap">
+            <div slot="headerTime" class="whitespace-nowrap">
+                {#if results.length > 0}
+                    <PrimaryButton href="/a/{results[0].encode()}">Open Results</PrimaryButton>
+                {/if}
                 <!-- <JobStatusLabel status={mostRecentEvent?.tagValue('status')??""} /> -->
             </div>
 
             {#if hasJobResult}
-                {#each jobResults as jobResult (jobResult.id)}
+                {#each results as jobResult (jobResult.id)}
                     <EventContent ndk={$ndk} event={jobResult} />
                 {/each}
             {:else}

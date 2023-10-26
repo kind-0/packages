@@ -90,7 +90,7 @@
     }
 </script>
 
-<ModalWrapper class="w-fit" title="Bookmark">
+<ModalWrapper class="w-fit" title="Label">
     <TopicSelectionForm
         bind:availableTopics
         bind:suggestedTopics

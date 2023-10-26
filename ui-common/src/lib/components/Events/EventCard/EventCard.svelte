@@ -93,8 +93,12 @@
         @apply text-base;
     }
 
-    :global(.event-card--content) {
+    .event-card--content {
         @apply text-lg;
         font-weight: 300 !important;
+    }
+
+    .event-card--content {
+        @apply max-h-96 overflow-y-auto;
     }
 </style>

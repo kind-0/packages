@@ -5,6 +5,7 @@
     import type { Readable } from "svelte/store";
     import DvmResultCard from "./DvmResultCard.svelte";
     import { ndk } from "../../../../../stores/ndk.js";
+    import PrimaryButton from "../../../../buttons/PrimaryButton.svelte";
 
     /**
      * Job request's results to display
@@ -37,12 +38,12 @@
 
 {#if Object.keys(dvms).length > 0}
 	<div class="indented flex flex-col gap-4">
-		<div class="section-title text-base-100-content">
-			{Object.keys(dvms).length} {Object.keys(dvms).length === 1 ? 'DVM' : 'DVMs'}
-			replied
-		</div>
 		{#each Object.entries(dvms) as [dvmPubkey, events]}
-			<DvmResultCard {jobRequest} {dvmPubkey} {events} />
+			<DvmResultCard
+                {jobRequest}
+                {dvmPubkey}
+                {events}
+            />
 		{/each}
 	</div>
 {/if}
