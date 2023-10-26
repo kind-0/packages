@@ -6,11 +6,11 @@ const $ndk = getStore(ndk);
 
 export const appHandlers = $ndk.storeSubscribe<NDKAppHandlerEvent>({
     kinds: [31990 as number],
-    "#k": [ 65002, 65008 ].map(j => j.toString())
+    "#k": [ 5300, 65002, 65008 ].map(j => j.toString())
 }, { closeOnEose: true, subId: 'app-handlers' },
 NDKAppHandlerEvent
 );
 
 export const contentDiscoveryApps = derived(appHandlers, ($appHandlers) => {
-    return $appHandlers.filter((event) => event.kind === 65008);
+    return $appHandlers.filter((event) => event.tagValue("k") === "65008");
 });
