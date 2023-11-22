@@ -36,7 +36,8 @@ export const defaultRelays = [
 
     'wss://nos.lol',
     // 'wss://relay.f7z.io',
-    'wss://relay.damus.io',
+    'wss://purplepag.es',
+    'wss://offchain.pub',
     'wss://relay.snort.social',
     // // // 'wss://offchain.pub/',
     "wss://relay.noswhere.com",

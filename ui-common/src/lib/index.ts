@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import './styles.css';
 import { NDKUser } from '@nostr-dev-kit/ndk';
 
-export const user = writable<NDKUser | undefined>(undefined);
+export const user = writable<NDKUser | undefined | null>(undefined);
 export const userLabels = writable<Set<string>>(new Set());
 
 /**

@@ -72,6 +72,7 @@
     bind:this={element}
     on:keydown={keydown}
     on:keyup
+    on:blur
     on:change
     on:input
     use:dropTextarea
