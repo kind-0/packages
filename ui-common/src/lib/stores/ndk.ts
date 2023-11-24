@@ -43,6 +43,7 @@ export const defaultRelays = [
     "wss://relay.noswhere.com",
     "wss://relay.nostr.band/",
     'wss://nostr.mom',
+    'wss://relay.getfaaans.com',
     // 'wss://nostr-pub.wellorder.net'
 ];
 

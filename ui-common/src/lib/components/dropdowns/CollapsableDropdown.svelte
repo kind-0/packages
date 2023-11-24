@@ -21,7 +21,7 @@
 
 </script>
 
-<div class="relative">
+<div class="relative {$$props.class??""}">
     <button
         on:click={() => (isOpen = true)}
         class="{!isOpen ? 'block' : 'hidden'} transition-all"
