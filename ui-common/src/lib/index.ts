@@ -23,6 +23,7 @@ export { default as CopyButton } from './components/buttons/CopyButton.svelte';
 export { default as ZapsButton } from "./components/Events/EventCard/Buttons/Zaps.svelte";
 export { default as PrimaryButton } from './components/buttons/PrimaryButton.svelte'
 export { default as ModalButton } from './components/buttons/ModalButton.svelte'
+export { default as UploadButton } from './components/buttons/UploadButton.svelte';
 
 /**
  * Dropdowns

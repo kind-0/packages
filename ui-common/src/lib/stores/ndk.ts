@@ -31,18 +31,18 @@ if (relays) {
 }
 
 export const defaultRelays = [
-    'wss://pablof7z.nostr1.com',
+    // 'wss://pablof7z.nostr1.com',
     // 'ws://localhost:8080',
 
     'wss://nos.lol',
     // 'wss://relay.f7z.io',
     'wss://purplepag.es',
     'wss://offchain.pub',
-    'wss://relay.snort.social',
+    // 'wss://relay.snort.social',
     // // // 'wss://offchain.pub/',
-    "wss://relay.noswhere.com",
-    "wss://relay.nostr.band/",
-    'wss://nostr.mom',
+    // "wss://relay.noswhere.com",
+    // "wss://relay.nostr.band/",
+    // 'wss://nostr.mom',
     'wss://relay.getfaaans.com',
     // 'wss://nostr-pub.wellorder.net'
 ];
@@ -59,7 +59,7 @@ const _ndk: NDKSvelte = new NDKSvelte({
     // devWriteRelayUrls: [
     //     'wss://pablof7z.nostr1.com',
     // ],
-    enableOutboxModel: true,
+    enableOutboxModel: false,
     cacheAdapter,
 }) as NDKSvelte;
 

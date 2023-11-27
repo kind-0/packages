@@ -76,10 +76,5 @@
     on:change
     on:input
     use:dropTextarea
-    class="
-        textarea textarea-bordered bg-base-100
-        focus:outline-0 focus:ring-0
-        text-lg
-        resize-none
-        {$$props.class}
-" {...$$props}></textarea>
+    {...$$props}
+    class="resize-none {$$props.class??""}"></textarea>
