@@ -7,13 +7,30 @@
     export let pubkey: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
+
+    /**
+     * Flag when the fetching is being done in a higher component
+     **/
+    export let fetching: boolean | undefined = undefined;
+
+    const randSkeletonWidth = Math.max(Math.floor(Math.random() * 100) + 120, 190);
+
+    const defaultLoadingClass = "skeleton h-[15px]";
+    const defaultLoadingStyle = `width: ${randSkeletonWidth}px; height: 15px;`;
 </script>
 
-<Name
-    ndk={$ndk}
-    {pubkey}
-    {user}
-    {userProfile}
-    class={$$props.class || ``}
-    on:click
-/>
+{#if !userProfile && fetching}
+    <div
+        style={$$props.loadingStyle ? $$props.loadingStyle : defaultLoadingStyle}
+        class={$$props.loadingClass ? $$props.loadingClass : defaultLoadingClass}
+    />
+{:else if userProfile || user || pubkey}
+    <Name
+        ndk={$ndk}
+        {pubkey}
+        {user}
+        {userProfile}
+        class={$$props.class || ``}
+        on:click
+    />
+{/if}

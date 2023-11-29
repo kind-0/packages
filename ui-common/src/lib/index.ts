@@ -140,6 +140,7 @@ export { default as AvatarWithName } from './components/User/AvatarWithName.svel
 export { default as Avatar } from './components/User/Avatar.svelte'
 export { default as Name } from './components/User/Name.svelte'
 export { default as LinkToProfile } from './components/User/LinkToProfile.svelte'
+export { default as UserProfile } from './components/User/UserProfile.svelte';
 
 /**
  * Utils

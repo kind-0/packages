@@ -7,9 +7,12 @@
     export let npub: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
-    export let klass: string = $$props.class??'';
     export let size: 'tiny' | 'small' | 'medium' | 'large' | undefined = undefined;
     export let type: 'square' | 'circle' = 'circle';
+    /**
+     * Flag when the fetching is being done in a higher component
+     **/
+    export let fetching: boolean | undefined = undefined;
 
     let sizeClass = '';
     let shapeClass = '';
@@ -37,13 +40,37 @@
             shapeClass = 'rounded-md';
             break;
     }
+
+    if (fetching === undefined && !userProfile) {
+        fetching = true;
+        user ??= $ndk.getUser({npub, pubkey});
+        user?.fetchProfile().then((p) => {
+            userProfile = p;
+        }).catch((e) => {
+            userProfile = null;
+        }).finally(() => {
+            fetching = false;
+        });
+    }
 </script>
 
-<Avatar
-    ndk={$ndk}
-    {pubkey}
-    {npub}
-    {user}
-    {userProfile}
-    class="{shapeClass} {sizeClass} {$$props.class??klass}"
-/>
+{#if !userProfile && fetching}
+    <div
+        class="
+            skeleton
+            {$$props.class}
+            {$$props.loadingClass ? $$props.loadingClass : ""}
+            {sizeClass} {shapeClass}
+        "
+        style={$$props.loadingStyle??""}
+    />
+{:else if userProfile || user || pubkey || npub}
+    <Avatar
+        ndk={$ndk}
+        {pubkey}
+        {npub}
+        {user}
+        {userProfile}
+        class="{shapeClass} {sizeClass} {$$props.class??""}"
+    />
+{/if}
