@@ -19,22 +19,24 @@ export const defaultRelays = [
     // 'wss://pablof7z.nostr1.com',
     // 'ws://localhost:8080',
 
-    'wss://nos.lol',
+//    'wss://nos.lol',
     // 'wss://relay.f7z.io',
-    'wss://purplepag.es',
-    'wss://offchain.pub',
+  //  'wss://purplepag.es',
+    //'wss://offchain.pub',
     // 'wss://relay.snort.social',
     // // // 'wss://offchain.pub/',
     // "wss://relay.noswhere.com",
     // "wss://relay.nostr.band/",
     // 'wss://nostr.mom',
-    'wss://relay.getfaaans.com',
+    //'wss://relay.getfaaans.com',
     // 'wss://nostr-pub.wellorder.net'
 ];
 
 // if (!relayList || !Array.isArray(relayList) || relayList.length === 0) {
     relayList = defaultRelays;
 // }
+    //
+console.log({relayList});
 
 const _ndk: NDKSvelte = new NDKSvelte({
     explicitRelayUrls: relayList,

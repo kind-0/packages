@@ -60,6 +60,7 @@ export { default as Toaster } from './components/Toaster/Toaster.svelte';
 export { default as LazyLoadedImage } from './components/Image/LazyLoadedImage.svelte';
 export { default as ThreadView } from './components/Events/ThreadView/ThreadView.svelte';
 export { default as Hotkey } from './components/Hotkey.svelte';
+export { default as HighlightWrapper } from './components/HighlightWrapper.svelte';
 
 /**
  * Form components
