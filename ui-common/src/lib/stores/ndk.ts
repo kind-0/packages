@@ -36,7 +36,6 @@ export const defaultRelays = [
     relayList = defaultRelays;
 // }
     //
-console.log({relayList});
 
 const _ndk: NDKSvelte = new NDKSvelte({
     explicitRelayUrls: relayList,

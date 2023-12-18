@@ -4,7 +4,6 @@
     import { Check, Copy } from 'phosphor-svelte';
 
     export let data: string | object;
-    export let tooltip: string | undefined = undefined;
     export let label: string | undefined = undefined;
 
     let strData: string;

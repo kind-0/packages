@@ -14,7 +14,6 @@
     const dispatch = createEventDispatcher();
 
     export let event: NDKEvent;
-    export let emit = false;
     export let commentCount: number = 0;
 
     let eventId: string;

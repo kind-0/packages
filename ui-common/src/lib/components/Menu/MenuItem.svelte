@@ -47,16 +47,3 @@
         {/if}
     </a>
 </li>
-
-<style>
-
-    li.menu-title, li a {
-        @apply py-3;
-    }
-
-    li a.active {
-        @apply bg-transparent;
-        @apply border-l-4 rounded-l-none -ml-2 pl-5;
-        @apply text-base-100-content;
-    }
-</style>

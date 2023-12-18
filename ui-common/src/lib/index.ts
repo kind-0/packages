@@ -76,7 +76,6 @@ export { default as EntryInput } from './components/Form/EntryInput.svelte';
  */
 export { default as MainWithRightSidebar } from './layouts/MainWithRightSidebar.svelte'
 export { default as ThreeColumnsLayout } from './layouts/ThreeColumnsLayout.svelte'
-export { default as ThreeColumnsLayout2 } from './layouts/ThreeColumnsLayout2.svelte'
 export { default as ResponsiveColumnsLayout } from './layouts/ResponsiveColumnsLayout.svelte'
 
 /**
@@ -150,4 +149,5 @@ export * from './utils/bitcoin';
 export * from './utils/user/login';
 export * from './utils/key'
 export * from './utils/pay';
+export * from './utils/upload';
 export { default as linkToArticle } from './components/Events/Kinds/Highlight/link-to-article.js';

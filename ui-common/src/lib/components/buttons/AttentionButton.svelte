@@ -29,12 +29,12 @@
     }
 
     a.accent, button.accent {
-        @apply border-accent hover:bg-accent/20 hover:border-accent;
+        @apply border-accent bg-accent/20 border-accent;
         box-shadow: 0px 0px 21px 2px #FB603855;
     }
 
     a.accent2, button.accent2 {
-        @apply border-accent2 hover:bg-accent2/20 hover:border-accent2;
+        @apply border-accent2 bg-accent2/20 border-accent2;
         box-shadow: 0px 0px 21px 2px rgba(142, 113, 255, 0.33);
     }
 </style>
