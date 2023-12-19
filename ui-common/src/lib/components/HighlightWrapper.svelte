@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
     import { createEventDispatcher } from 'svelte';
-    import { getText, getParagraph, getSentence } from 'get-selection-more'
+    import pkg from 'get-selection-more';
+    const {getText, getParagraph, getSentence} = pkg;
 
     export let selection: string | undefined = undefined;
 
