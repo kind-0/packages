@@ -5,10 +5,11 @@
 
     const dispatch = createEventDispatcher();
 
-    const { useTextareaAutosize } = createTextareaAutosize();
-
     export let value = '';
     export let element: HTMLTextAreaElement | null = null;
+    export let fixedHeight = false;
+
+    const { useTextareaAutosize } =  createTextareaAutosize();
 
     function keydown(event) {
         if (event.key === 'Enter' && event.metaKey) {
@@ -66,16 +67,31 @@
     }
 </script>
 
-<textarea
-    use:useTextareaAutosize
-    bind:value
-    bind:this={element}
-    on:keydown={keydown}
-    on:keyup
-    on:focus
-    on:blur
-    on:change
-    on:input
-    use:dropTextarea
-    {...$$props}
-    class="resize-none {$$props.class??""}"></textarea>
+{#if fixedHeight}
+    <textarea
+        bind:value
+        bind:this={element}
+        on:keydown={keydown}
+        on:keyup
+        on:focus
+        on:blur
+        on:change
+        on:input
+        use:dropTextarea
+        {...$$props}
+        class="resize-none {$$props.class??""}"></textarea>
+{:else}
+    <textarea
+        use:useTextareaAutosize
+        bind:value
+        bind:this={element}
+        on:keydown={keydown}
+        on:keyup
+        on:focus
+        on:blur
+        on:change
+        on:input
+        use:dropTextarea
+        {...$$props}
+        class="resize-none {$$props.class??""}"></textarea>
+{/if}

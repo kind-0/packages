@@ -37,7 +37,7 @@
             shapeClass = 'rounded-full';
             break;
         case 'square':
-            shapeClass = 'rounded-md';
+            shapeClass = 'mask mask-squircle';
             break;
     }
 
@@ -71,6 +71,6 @@
         {npub}
         {user}
         {userProfile}
-        class="{shapeClass} {sizeClass} {$$props.class??""}"
+        class="flex-none object-cover {shapeClass} {sizeClass} {$$props.class??""}"
     />
 {/if}
