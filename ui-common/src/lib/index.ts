@@ -48,7 +48,6 @@ export { default as HighlightContent } from "./components/Events/Kinds/Highlight
 /**
  * Generic Components
  */
-export { default as PageTitle } from './components/PageTitle.svelte'
 export { default as SectionTitle } from './components/SectionTitle.svelte'
 export { default as Panel } from './components/Panel.svelte'
 export { default as MenuItem } from './components/Menu/MenuItem.svelte'

@@ -46,6 +46,7 @@
     }
 
     async function handleFileChange(event: Event) {
+        progress = undefined;
         const inputElement = event.target as HTMLInputElement;
         const files = inputElement?.files;
         if (!files || files.length === 0) {
@@ -78,7 +79,7 @@
     function onXhrLoad(event: ProgressEvent) {
         const xhr = event.target as XMLHttpRequest;
 
-        console.log("uoload", xhr.responseText)
+        console.log("upload", xhr.responseText)
         file = undefined;
 
         if (xhr.status === 200) {
@@ -89,10 +90,10 @@
                 json.nip94.push(["duration", Math.floor(videoDuration).toString()]);
             }
 
-            const url = json.nip94.find((t: NDKTag) => t[0] === "url")?.[1];
-            const tags = json.nip94;
+            // const url = json.nip94_event.tags.find((t: NDKTag) => t[0] === "url")?.[1];
+            // const tags = json.nip94;
 
-            dispatch('uploaded',  { url, tags });
+            // dispatch('uploaded',  { url, tags });
             progress = undefined;
             blob = undefined;
         } else if (xhr.status === 402) {
@@ -149,7 +150,7 @@
         if (videoDuration && tags instanceof Array) {
             tags.push(["duration", Math.floor(videoDuration).toString()]);
         }
-        file = undefined;
+        // file = undefined;
         progress = undefined;
         blob = undefined;
 
@@ -171,7 +172,7 @@
 {/if}
 
 {#if progress === undefined}
-    <button class={$$props.class??""} on:click={() => file.click()}>
+    <button class={$$props.class??""} on:click={() => document.getElementById('file').click()}>
         <slot />
     </button>
 {:else}

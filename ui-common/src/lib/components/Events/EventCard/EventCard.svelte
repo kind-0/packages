@@ -12,12 +12,6 @@
     export let disableBookmark = false;
     export let eventCardActionsComponent: any = EventCardActions;
 
-    /**
-     * Whether this event should be expandible so that clicking on it
-     * will open a thread view
-     */
-    export let expandible = true;
-
     let showHeader: boolean;
 
     $: showHeader = !skipHeader && ($$slots.header) || ($$slots.headerTime);
