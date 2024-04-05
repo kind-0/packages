@@ -1,4 +1,4 @@
 [submodule "ndk"]
 	path = ndk
-	url = git@github.com:nostr-dev-kit/ndk
+	url = https://github.com/nostr-dev-kit/ndk/
 	branch = master
