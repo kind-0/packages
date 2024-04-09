@@ -1,12 +1,13 @@
 <script lang="ts">
     import { ndk } from "../../stores/ndk.js";
-    import type { NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
+    import type { NDKSubscriptionOptions, NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
     import {Avatar} from '@nostr-dev-kit/ndk-svelte-components';
 
     export let pubkey: string | undefined = undefined;
     export let npub: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
+    export let subOpts: NDKSubscriptionOptions | undefined = undefined;
     export let size: 'tiny' | 'small' | 'medium' | 'large' | undefined = undefined;
     export let type: 'square' | 'circle' = 'circle';
     /**
@@ -44,7 +45,7 @@
     if (fetching === undefined && !userProfile) {
         fetching = true;
         user ??= $ndk.getUser({npub, pubkey});
-        user?.fetchProfile().then((p) => {
+        user?.fetchProfile(subOpts).then((p) => {
             userProfile = p;
         }).catch((e) => {
             userProfile = null;
