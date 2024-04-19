@@ -56,7 +56,11 @@ const _ndk: NDKSvelte = new NDKSvelte({
 export const ndk = writable(_ndk);
 
 const _bunkerNDK = new NDK({
-    explicitRelayUrls: ['wss://relay.nsecbunker.com'],
+    explicitRelayUrls: [
+        'wss://relay.nsecbunker.com',
+        'wss://relay.damus.io',
+        'wss://relay.nsec.app',
+    ],
 });
 
 export const bunkerNDK = writable(_bunkerNDK);

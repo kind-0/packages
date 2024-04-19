@@ -3,10 +3,20 @@
 
     import {Name} from '@nostr-dev-kit/ndk-svelte-components';
     import type { NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
+    import { onMount } from "svelte";
 
     export let pubkey: string | undefined = undefined;
     export let user: NDKUser | undefined = undefined;
     export let userProfile: NDKUserProfile | undefined = undefined;
+    export let npubMaxLength: number | undefined = 12;
+
+    let timedout = false;
+
+    onMount(() => {
+        setTimeout(() => {
+            timedout = true;
+        }, 1500);
+    });
 
     /**
      * Flag when the fetching is being done in a higher component
@@ -19,7 +29,7 @@
     const defaultLoadingStyle = `width: ${randSkeletonWidth}px; height: 15px;`;
 </script>
 
-{#if !userProfile && fetching}
+{#if !userProfile && fetching && !timedout}
     <div
         style={$$props.loadingStyle ? $$props.loadingStyle : defaultLoadingStyle}
         class={$$props.loadingClass ? $$props.loadingClass : defaultLoadingClass}
@@ -28,6 +38,7 @@
     <Name
         ndk={$ndk}
         {pubkey}
+        {npubMaxLength}
         {user}
         {userProfile}
         class={$$props.class || ``}

@@ -27,7 +27,7 @@
         zaps?.unsubscribe();
 
         zaps = $ndk.storeSubscribe(
-            { kinds: [ 9735 ], '#e': [event.id] },
+            { kinds: [ 9735 ], ...event.filter() },
             { closeOnEose: false, groupableDelay: 1500, subId: "zaps-button" }
         );
     }
@@ -46,23 +46,24 @@
             return acc + zapInvoice.amount;
         }, 0);
     }
-
-    let tooltip: string;
-    $: tooltip = $user ? 'Zap' : 'You are not logged in';
-
 </script>
 
 {#if event?.id}
-    <div class="tooltip tooltip-bottom flex flex-row items-center" data-tip={tooltip}>
+    <div class="flex flex-row items-center">
         <button
             class="flex flex-row items-center gap-1
             {$$props.class}"
             on:click|stopPropagation|preventDefault={async () => { await onZapsModalOpen(); openModal(ZapModal, { event, onZapModalClose: async () => { await onZapsModalClose() } }) }}
         >
-            <ZapIcon class="
-                w-4 h-4
-                {zappedByCurrentUser ? 'text-primary-500' : ''}
-                " />
+            {#if $$slots.icon}
+                <slot name="icon" {zappedByCurrentUser} />
+            {:else}
+                <ZapIcon class="
+                    w-4 h-4
+                    {$$props.iconClass??""}
+                    {zappedByCurrentUser ? 'text-primary-500' : ''}
+                    " />
+            {/if}
             {#if zappedAmount > 0}
                 <div class="
                 {zappedByCurrentUser ? 'text-primary-500' : ''}
