@@ -6,10 +6,13 @@
     export let relative = true;
     export let format: string | undefined = undefined;
 
+    let published_at = event?.tagValue("published_at");
+
     /**
      * Timestamp to display
      */
-    export let timestamp: number| undefined = event?.created_at * 1000;
+    export let timestamp: number| undefined = published_at ? parseInt(published_at) * 1000 : undefined;
+
 
     /**
      * Force-correct events/timestamps that are using milliseconds
