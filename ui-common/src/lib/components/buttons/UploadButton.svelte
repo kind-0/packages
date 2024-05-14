@@ -172,7 +172,7 @@
 {/if}
 
 {#if progress === undefined}
-    <button class={$$props.class??""} on:click={() => document.getElementById('file').click()}>
+    <button class={$$props.class??""} on:click={() => file.click()}>
         <slot />
     </button>
 {:else}

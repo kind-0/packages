@@ -60,6 +60,7 @@ export { default as LazyLoadedImage } from './components/Image/LazyLoadedImage.s
 export { default as ThreadView } from './components/Events/ThreadView/ThreadView.svelte';
 export { default as Hotkey } from './components/Hotkey.svelte';
 export { default as HighlightWrapper } from './components/HighlightWrapper.svelte';
+export { default as Zap } from "./components/Zap.svelte";
 
 /**
  * Form components
@@ -118,6 +119,7 @@ export { default as VendataLogo } from './logos/VendataLogo.svelte';
  */
 export { default as ModalWrapper } from './components/modals/ModalWrapper.svelte'
 export { default as ZapModal } from './modals/ZapModal/ZapModal.svelte';
+export { default as ZapModalContent } from './modals/ZapModal/ZapModalContent.svelte';
 export { default as LabelModal } from './modals/LabelModal/LabelModal.svelte';
 export { default as ReplyModal } from './modals/ReplyModal/ReplyModal.svelte';
 

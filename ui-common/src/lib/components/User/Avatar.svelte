@@ -53,12 +53,15 @@
             fetching = false;
         });
     }
+
+    let randSeed = Math.floor(Math.random() * 10) + 1;
 </script>
 
 {#if !userProfile && fetching}
-    <div
+    <img
+        alt="Avatar loading..."
+        src="https://api.dicebear.com/8.x/thumbs/svg?seed={user?.pubkey??randSeed}"
         class="
-            skeleton
             {$$props.class}
             {$$props.loadingClass ? $$props.loadingClass : ""}
             {sizeClass} {shapeClass}
